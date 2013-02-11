@@ -79,7 +79,6 @@ class Table:
 		self.colMaxLens = None
 		self.colHeaders = None
 		self._lastPrintedRow = -1
-		self.setColMaxLens(None)
 	
 	def setColHeaders(self, headers):
 		"""
