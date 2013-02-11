@@ -6,7 +6,7 @@ def askYesNo(question):
 	"""Print a question to the terminal for the user. Expects a yes or no response. Returns True if yes, False if no."""
 	return raw_input(question + " [y/n]: ").lower() in ["y", "yes"]
 
-class ColoredText(str):
+class FormattedText(str):
 	def __new__(cls, text, color=None, background=None,
 				bold=None, dark=None, underline=None, blink=None, reverse=None, concealed=None):
 		return str.__new__(cls, text)
@@ -50,7 +50,7 @@ class ColoredText(str):
 	
 	def __getattribute__(self, attrName):
 		""" This is necessary to return objects with the extra attributes defined in this class """
-		func = super(ColoredText, self).__getattribute__(attrName)
+		func = super(FormattedText, self).__getattribute__(attrName)
 		# any function in this class which returns a string instance must be listed here to avoid infinite recursion
 		if not callable(func) or attrName in ["_generateColored", "asColored", "asUncolored"]:   # if it's a property, not a method
 			return func
@@ -58,28 +58,35 @@ class ColoredText(str):
 		def changeReturnFunc(*args, **kwargs):
 			result = func(*args, **kwargs)
 			if isinstance(result, basestring):
-				return ColoredText(result, color=self.color, background=self.background, bold=self.bold, dark=self.dark,
+				return FormattedText(result, color=self.color, background=self.background, bold=self.bold, dark=self.dark,
 								   underline=self.underline, blink=self.blink, reverse=self.reverse, concealed=self.concealed)
 			else:
 				return result
 		return changeReturnFunc
 	
 	def __add__(self, other):
-		if isinstance(other, ColoredText):
+		if isinstance(other, FormattedText):
 			return self.asColored() + other.asColored()
 		else:
 			return self.asColored() + other
 	
 
 class Table:
+	"""Prints data in a table format to the terminal."""
 	def __init__(self):
 		self.rows = []
 		self.autoResizeCols = True
 		self.colMaxLens = None
 		self.colHeaders = None
 		self._lastPrintedRow = -1
+		self.setColMaxLens(None)
 	
 	def setColHeaders(self, headers):
+		"""
+		Column headers will be printed at the top of the table.
+		
+		@param headers	tuple or list of str:	Headers from left to right
+		"""
 		self.colHeaders = headers
 		self._updateColMaxLens(headers)
 	
@@ -87,7 +94,7 @@ class Table:
 		"""
 		Call before adding rows to set the max lengths of each column.
 		
-		Use None for any column for automatic sizing based on table contents.
+		@param maxLens	iterable of (int or None):	Maximum lengths for each column. Use None for any column for automatic sizing based on column contents and header.
 		"""
 		self.colMaxLens = maxLens
 		self.autoResizeCols = [True if maxLen == None else False for maxLen in self.colMaxLens]
@@ -99,6 +106,9 @@ class Table:
 	def getColMaxLens(self):
 		return self.colMaxLens
 	def addRow(self, row):
+		"""
+		@param row	list of str:	Values for each column for the row.
+		"""
 		self.rows.append(row)
 		self._updateColMaxLens(row)
 	
@@ -125,6 +135,7 @@ class Table:
 			str_ += self._fmtRow(row)
 		return str
 	def printLive(self):
+		"""Prints any rows not printed before, such as those that have been added since the last call to this function."""
 		if self._lastPrintedRow == -1 and self.colHeaders != None:
 			print(self._fmtRow(self.colHeaders))
 		for rowNum in range(self._lastPrintedRow + 1, len(self.rows)):
