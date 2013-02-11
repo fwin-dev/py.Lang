@@ -14,9 +14,17 @@ class LoggerAbstract(object):
 		self.minSeverity = Severity.INFO
 		self.execLevel = 0
 	def notifyException(self, exceptionClass, exceptionInstance, tracebackInstance):
+		"""
+		@param exceptionClass:		The exception class/type of the instance
+		@param tracebackInstance:	Suitable for passing into the builtin python function traceback.format_tb
+		"""
 		pass
 	
 	def write(self, message, severity, *args):
+		"""
+		Write a message to the log
+		@param *args:	Additional arguments passed to _write() for subclasses
+		"""
 		if severity >= self.minSeverity:
 			self._write(message, severity, *args)
 	@abstractmethod
@@ -24,23 +32,19 @@ class LoggerAbstract(object):
 		pass
 
 class StdoutLogger(LoggerAbstract):
+	"""Logs messages to sys.stdout"""
 	def __init__(self):
 		super(StdoutLogger, self).__init__()
 	def write(self, message, severity):
 		print("\t" * self.execLevel + message)
 
-class MySQLloggerAbstract(LoggerAbstract):
-	try:
-		from Net.DB import MySQL as _MySQL
-	except ImportError:
-		raise Exception("Install the py.Net.DB.MySQL package via pip to use this logging class")
-	
-	def __init__(self, host, port, database, username, password):
-		super(MySQLloggerAbstract, self).__init__()
-		self._db = self._MySQL.Connection(host=host, port=port, database=database, username=username, password=password)
-
-
 class Logging:
+	"""
+	Provides logging messages to one or more loggers.
+	
+	Just call this class with your event notification methods which are defined in your Logger subclasses. Every logger
+	will then be called with that method and its arguments.
+	"""
 	Severity = Severity
 	def __init__(self, loggers):
 		self.loggers = loggers

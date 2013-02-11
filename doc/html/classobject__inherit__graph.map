@@ -1,0 +1,4 @@
+<map id="object" name="object">
+<area shape="rect" id="node3" href="$class_lang_1_1_logging_1_1_logger_abstract.html" title="{Lang.Logging.LoggerAbstract\n|+ minSeverity\l+ execLevel\l|+ __init__()\l+ notifyException()\l+ write()\l}" alt="" coords="5,131,192,253"/>
+<area shape="rect" id="node5" href="$class_lang_1_1_logging_1_1_stdout_logger.html" title="Logs messages to sys.stdout." alt="" coords="11,302,185,394"/>
+</map>
