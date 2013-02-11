@@ -13,9 +13,8 @@ class LoggerAbstract(object):
 	def __init__(self):
 		self.minSeverity = Severity.INFO
 		self.execLevel = 0
-	def notifyException(self, exceptionClass, exceptionInstance, tracebackInstance):
+	def notifyException(self, exceptionInstance, tracebackInstance):
 		"""
-		@param exceptionClass:		The exception class/type of the instance
 		@param tracebackInstance:	Suitable for passing into the builtin python function traceback.format_tb
 		"""
 		pass

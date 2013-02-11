@@ -193,6 +193,20 @@ When using multiple loggers, the function you call on the `Logging` instance wil
 	log = Logging((StdoutLogger, MyFileLog))
 	log.notifyFolderCheck("folder/path/here")
 
+### Logging uncaught exceptions
+
+When an uncaught exception happens, a special `notifyException` method will be called on each of your loggers
+automatically if it exists, with the exception instance and a traceback instance as parameters. What you do with
+these parameters is up to you, but here is an example:
+
+	def notifyException(self, exceptionInstance, tracebackInstance):
+		import traceback
+		tracebackStr = "".join(traceback.format_tb(tracebackInstance))
+		exceptionStr = str(exceptionInstance)
+		print(tracebackStr)
+		print()
+		print(exceptionStr)
+
 ## Terminal improvements
 
 ### Asking a question to the user
