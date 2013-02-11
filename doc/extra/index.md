@@ -60,7 +60,7 @@ Note that `cls` and `self` are automatically ignored for class methods and insta
 
 ## An improved ArgParser
 
-In addition to the plethora of features in python's built in `ArgParser`, a couple more are added in here:
+In addition to the plethora of features in python's built in `ArgParser`, a few more are added in here:
 
 - Improved help formatting, similar to `man`
 - 3 way boolean (`True`, `False`, `None`)
@@ -133,25 +133,25 @@ Convert the full file path of a module to a relative path, which can be used for
 
 Get the full file path of a module or package object:
 
-	fullPath = convert_objectToFullPath(obj)
+	fullPath = PkgUtil.convert_objectToFullPath(obj)
 
 ### Full path -> Object
 
 Get the module or package object from a full path, aka import a module or package at the specified path:
 
-	obj = convert_fullPathToObject(fullPath)
+	obj = PkgUtil.convert_fullPathToObject(fullPath)
 
 ### Name string -> Object
 
 Import an object by its name:
 
-	obj = convert_nameToObject("moduleName")
+	obj = PkgUtil.convert_nameToObject("moduleName")
 
 ### Object -> Name string
 
 Get the name of a module or package:
 
-	name = convert_objectToName(obj)
+	name = PkgUtil.convert_objectToName(obj)
 
 ## LIFO/Stack
 
