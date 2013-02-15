@@ -21,7 +21,7 @@ library but weren't, including:
 
 ## Timing execution of a function
 
-	from Lang import timeIt	
+	from Lang.FuncTools import timeIt	
 
 `timeIt` is a function decorator, so with the function you want to time, do:
 
@@ -34,7 +34,7 @@ library but weren't, including:
 The built in `abc.abstractmethod` decorator won't work if used in conjunction with a `classmethod` decorator.
 Use this abstract method decorator instead:
 
-	from Lang import abstractmethod
+	from Lang.FuncTools.Abstraction import abstractmethod
 	
 	@classmethod
 	@abstractmethod
@@ -47,7 +47,7 @@ Python provides `**kwargs` and `*args` to get a dictionary or list of a function
 for IDEs and documentation generators to determine all possible arguments to the function. As an alternative to
 `**kwargs` or `*args`, you can use the `getArgs()` method:
 
-	from Lang import getArgs
+	from Lang.FuncTools import getArgs
 	def myFunc(arg1, arg2):
 		allArgs = getArgs()
 
