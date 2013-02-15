@@ -1,4 +1,4 @@
-from . import abstractmethod
+from FuncTools.Abstraction import abstractmethod
 import sys
 
 class Severity:
