@@ -1,4 +1,4 @@
-from _lang import getArgs
+from FuncTools import getArgs
 
 from termcolor import colored
 
