@@ -157,7 +157,7 @@ Get the name of a module or package:
 
 Python lists can be used as stacks, but they don't have the normal API that a stack does.
 
-	from Lang.QueueStacks import LIFOstack
+	from Lang.Struct import LIFOstack
 	stack = LIFOstack()
 	stack.push("a")
 	element = stack.peek()

@@ -1,5 +1,3 @@
-
-
 class LIFOstack:
 	"""Standard LIFO stack based on a list."""
 	def __init__(self):
