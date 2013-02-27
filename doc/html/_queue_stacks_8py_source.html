@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>py.Lang: /Users/jcowles/Desktop/workspace/py.Lang/src/Lang/QueueStacks.py Source File</title>
+<title>py.Lang: /Users/jcowles/Desktop/workspace/py.Lang/src/Lang/Struct/QueueStacks.py Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -102,28 +102,26 @@ $(document).ready(function(){initNavTree('_queue_stacks_8py_source.html','');});
 <div class="title">QueueStacks.py</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_queue_stacks_8py.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="code" href="namespace_lang_1_1_queue_stacks.html">    1</a></span>&#160;</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">##</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"># Standard LIFO stack based on a list.</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno"><a class="code" href="class_lang_1_1_queue_stacks_1_1_l_i_f_ostack.html">    5</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_lang_1_1_queue_stacks_1_1_l_i_f_ostack.html" title="Standard LIFO stack based on a list.">LIFOstack</a>:</div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="code" href="class_lang_1_1_queue_stacks_1_1_l_i_f_ostack.html#a7df46b3bb03dfe09256a1b6635d6ce2e">    6</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_queue_stacks_1_1_l_i_f_ostack.html#a7df46b3bb03dfe09256a1b6635d6ce2e">__init__</a>(self):</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        self.<a class="code" href="class_lang_1_1_queue_stacks_1_1_l_i_f_ostack.html#ac6e724d3d4a4e272d1c4b87237b86d8b">_list</a> = []</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="code" href="class_lang_1_1_queue_stacks_1_1_l_i_f_ostack.html#a6155f63404a08a24e24699ece1d2b9c1">    8</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_queue_stacks_1_1_l_i_f_ostack.html#a6155f63404a08a24e24699ece1d2b9c1">push</a>(self, item):</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        self._list.append(item)</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="code" href="class_lang_1_1_queue_stacks_1_1_l_i_f_ostack.html#ace43072bab2a65fe7de2ee125a58493b">   10</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_queue_stacks_1_1_l_i_f_ostack.html#ace43072bab2a65fe7de2ee125a58493b">peek</a>(self, index=1):</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="keywordflow">return</span> self.<a class="code" href="class_lang_1_1_queue_stacks_1_1_l_i_f_ostack.html#ac6e724d3d4a4e272d1c4b87237b86d8b">_list</a>[-index]</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="code" href="class_lang_1_1_queue_stacks_1_1_l_i_f_ostack.html#a02940cef49e6bdf305c7b084edc6ef03">   12</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_queue_stacks_1_1_l_i_f_ostack.html#a02940cef49e6bdf305c7b084edc6ef03">__getattr__</a>(self, funcName):</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keywordflow">if</span> funcName <span class="keywordflow">in</span> (<span class="stringliteral">&quot;pop&quot;</span>, <span class="stringliteral">&quot;__getitem__&quot;</span>, <span class="stringliteral">&quot;__setitem__&quot;</span>, <span class="stringliteral">&quot;__len__&quot;</span>, <span class="stringliteral">&quot;__str__&quot;</span>, <span class="stringliteral">&quot;__repr__&quot;</span>):</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            <span class="keywordflow">return</span> getattr(self.<a class="code" href="class_lang_1_1_queue_stacks_1_1_l_i_f_ostack.html#ac6e724d3d4a4e272d1c4b87237b86d8b">_list</a>, funcName)</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<a href="_queue_stacks_8py.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="code" href="namespace_lang_1_1_struct_1_1_queue_stacks.html">    1</a></span>&#160;<span class="comment">##</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"># Standard LIFO stack based on a list.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno"><a class="code" href="class_lang_1_1_struct_1_1_queue_stacks_1_1_l_i_f_ostack.html">    3</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_lang_1_1_struct_1_1_queue_stacks_1_1_l_i_f_ostack.html" title="Standard LIFO stack based on a list.">LIFOstack</a>:</div>
+<div class="line"><a name="l00004"></a><span class="lineno"><a class="code" href="class_lang_1_1_struct_1_1_queue_stacks_1_1_l_i_f_ostack.html#a84577cf8b8da51d45112adaca082ecdd">    4</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_struct_1_1_queue_stacks_1_1_l_i_f_ostack.html#a84577cf8b8da51d45112adaca082ecdd">__init__</a>(self):</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        self.<a class="code" href="class_lang_1_1_struct_1_1_queue_stacks_1_1_l_i_f_ostack.html#a9e0056477865d48d9b9758743232c9c0">_list</a> = []</div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="code" href="class_lang_1_1_struct_1_1_queue_stacks_1_1_l_i_f_ostack.html#ad17cdbd408867917efa730a250e4bd82">    6</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_struct_1_1_queue_stacks_1_1_l_i_f_ostack.html#ad17cdbd408867917efa730a250e4bd82">push</a>(self, item):</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        self._list.append(item)</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="code" href="class_lang_1_1_struct_1_1_queue_stacks_1_1_l_i_f_ostack.html#a3e18cb8d7fcb16f7c8e33a602b34ffac">    8</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_struct_1_1_queue_stacks_1_1_l_i_f_ostack.html#a3e18cb8d7fcb16f7c8e33a602b34ffac">peek</a>(self, index=1):</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <span class="keywordflow">return</span> self.<a class="code" href="class_lang_1_1_struct_1_1_queue_stacks_1_1_l_i_f_ostack.html#a9e0056477865d48d9b9758743232c9c0">_list</a>[-index]</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="code" href="class_lang_1_1_struct_1_1_queue_stacks_1_1_l_i_f_ostack.html#a0869989904b5a3c439a4d9ab0462533a">   10</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_struct_1_1_queue_stacks_1_1_l_i_f_ostack.html#a0869989904b5a3c439a4d9ab0462533a">__getattr__</a>(self, funcName):</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="keywordflow">if</span> funcName <span class="keywordflow">in</span> (<span class="stringliteral">&quot;pop&quot;</span>, <span class="stringliteral">&quot;__getitem__&quot;</span>, <span class="stringliteral">&quot;__setitem__&quot;</span>, <span class="stringliteral">&quot;__len__&quot;</span>, <span class="stringliteral">&quot;__str__&quot;</span>, <span class="stringliteral">&quot;__repr__&quot;</span>):</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;            <span class="keywordflow">return</span> getattr(self.<a class="code" href="class_lang_1_1_struct_1_1_queue_stacks_1_1_l_i_f_ostack.html#a9e0056477865d48d9b9758743232c9c0">_list</a>, funcName)</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_8c0cb69ef2063fa3564da4462eb195d1.html">Lang</a></li><li class="navelem"><a class="el" href="_queue_stacks_8py.html">QueueStacks.py</a></li>
-    <li class="footer">Generated on Mon Feb 11 2013 14:24:03 for py.Lang by
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_8c0cb69ef2063fa3564da4462eb195d1.html">Lang</a></li><li class="navelem"><a class="el" href="dir_f4aa025d2533d5062ca446f3201e45fa.html">Struct</a></li><li class="navelem"><a class="el" href="_queue_stacks_8py.html">QueueStacks.py</a></li>
+    <li class="footer">Generated on Wed Feb 27 2013 14:49:57 for py.Lang by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

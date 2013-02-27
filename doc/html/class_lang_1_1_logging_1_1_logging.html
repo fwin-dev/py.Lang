@@ -135,7 +135,7 @@ Static Public Attributes</h2></td></tr>
 <div class="textblock"><p>Provides logging messages to one or more loggers. </p>
 <p>Just call this class with your event notification methods which are defined in your Logger subclasses. Every logger will then be called with that method and its arguments. </p>
 
-<p>Definition at line <a class="el" href="_logging_8py_source.html#l00051">51</a> of file <a class="el" href="_logging_8py_source.html">Logging.py</a>.</p>
+<p>Definition at line <a class="el" href="_logging_8py_source.html#l00050">50</a> of file <a class="el" href="_logging_8py_source.html">Logging.py</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a9257c89c04975aef4312f143b0330b66"></a>
 <div class="memitem">
@@ -161,20 +161,20 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_logging_8py_source.html#l00053">53</a> of file <a class="el" href="_logging_8py_source.html">Logging.py</a>.</p>
-<div class="fragment"><div class="line"><a name="l00053"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logging.html#a9257c89c04975aef4312f143b0330b66">   53</a></span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">   54</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_logging.html#a9257c89c04975aef4312f143b0330b66">__init__</a>(self, loggers):</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a> = loggers</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">if</span> <span class="keywordflow">not</span> hasattr(self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a>, <span class="stringliteral">&quot;__iter__&quot;</span>):</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a> = tuple(self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a>)</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">for</span> logger <span class="keywordflow">in</span> loggers:</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keyword">assert</span> isinstance(logger, LoggerAbstract)</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        oldFunc = sys.excepthook</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keyword">def </span>branchHook(exceptionClass, exceptionInstance, tracebackInstance):</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            oldFunc(exceptionClass, exceptionInstance, tracebackInstance)</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            self.notifyException(exceptionClass, exceptionInstance, tracebackInstance)</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        sys.excepthook = branchHook</div>
+<p>Definition at line <a class="el" href="_logging_8py_source.html#l00052">52</a> of file <a class="el" href="_logging_8py_source.html">Logging.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00052"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logging.html#a9257c89c04975aef4312f143b0330b66">   52</a></span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">   53</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_logging.html#a9257c89c04975aef4312f143b0330b66">__init__</a>(self, loggers):</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a> = loggers</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">if</span> <span class="keywordflow">not</span> hasattr(self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a>, <span class="stringliteral">&quot;__iter__&quot;</span>):</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a> = tuple(self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a>)</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">for</span> logger <span class="keywordflow">in</span> loggers:</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keyword">assert</span> isinstance(logger, LoggerAbstract)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        oldFunc = sys.excepthook</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keyword">def </span>branchHook(exceptionClass, exceptionInstance, tracebackInstance):</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            oldFunc(exceptionClass, exceptionInstance, tracebackInstance)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            self.notifyException(exceptionClass, exceptionInstance, tracebackInstance)</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        sys.excepthook = branchHook</div>
  </div>
 </div><!-- fragment -->
 </div>
@@ -204,20 +204,20 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_logging_8py_source.html#l00066">66</a> of file <a class="el" href="_logging_8py_source.html">Logging.py</a>.</p>
-<div class="fragment"><div class="line"><a name="l00066"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logging.html#af977ba2883863ef28ec4e8a8b439e4ea">   66</a></span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_logging.html#af977ba2883863ef28ec4e8a8b439e4ea">__getattr__</a>(self, name):</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keyword">def </span>_run(*args, **kwargs):</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            found = <span class="keyword">False</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keywordflow">for</span> logger <span class="keywordflow">in</span> self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a>:</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                <span class="keywordflow">if</span> hasattr(logger, name):</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                    found = <span class="keyword">True</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                    getattr(logger, name)(*args, **kwargs)</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">if</span> <span class="keywordflow">not</span> found:</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                <span class="keywordflow">if</span> name != <span class="stringliteral">&quot;notifyException&quot;</span>:</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                    <span class="keywordflow">raise</span> AttributeError</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">return</span> _run</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<p>Definition at line <a class="el" href="_logging_8py_source.html#l00065">65</a> of file <a class="el" href="_logging_8py_source.html">Logging.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logging.html#af977ba2883863ef28ec4e8a8b439e4ea">   65</a></span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_logging.html#af977ba2883863ef28ec4e8a8b439e4ea">__getattr__</a>(self, name):</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keyword">def </span>_run(*args, **kwargs):</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            found = <span class="keyword">False</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordflow">for</span> logger <span class="keywordflow">in</span> self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a>:</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                <span class="keywordflow">if</span> hasattr(logger, name):</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                    found = <span class="keyword">True</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                    getattr(logger, name)(*args, **kwargs)</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordflow">if</span> <span class="keywordflow">not</span> found:</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                <span class="keywordflow">if</span> name != <span class="stringliteral">&quot;notifyException&quot;</span>:</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                    <span class="keywordflow">raise</span> AttributeError</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">return</span> _run</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -232,7 +232,7 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_logging_8py_source.html#l00054">54</a> of file <a class="el" href="_logging_8py_source.html">Logging.py</a>.</p>
+<p>Definition at line <a class="el" href="_logging_8py_source.html#l00053">53</a> of file <a class="el" href="_logging_8py_source.html">Logging.py</a>.</p>
 
 </div>
 </div>
@@ -254,7 +254,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_logging_8py_source.html#l00052">52</a> of file <a class="el" href="_logging_8py_source.html">Logging.py</a>.</p>
+<p>Definition at line <a class="el" href="_logging_8py_source.html#l00051">51</a> of file <a class="el" href="_logging_8py_source.html">Logging.py</a>.</p>
 
 </div>
 </div>
@@ -267,7 +267,7 @@ Static Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_lang.html">Lang</a></li><li class="navelem"><a class="el" href="namespace_lang_1_1_logging.html">Logging</a></li><li class="navelem"><a class="el" href="class_lang_1_1_logging_1_1_logging.html">Logging</a></li>
-    <li class="footer">Generated on Mon Feb 11 2013 14:24:04 for py.Lang by
+    <li class="footer">Generated on Wed Feb 27 2013 14:49:59 for py.Lang by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

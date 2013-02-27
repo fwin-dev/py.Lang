@@ -6,30 +6,28 @@ Package description	{#mainpage}
 This package provides a lot of miscellaneous things that probably should have been included in python's built-in
 library but weren't, including:
 
-- Timing execution of a function with a decorator
-- An abstract class method
-- A way to get the argument names and values of a function without using **kwargs or *args
-- An improved ArgParser for parsing command line arguments
-- A poor man's debug tracer when a better tracer isn't available (for example, when running a python script over ssh)
-- A way to describe the argument and return types of functions, kind of similar to a statically typed language
-- A module to get details about a python package (Is it built in? In what file is it? etc.)
-- LIFO/Stack implementation
-- Easy event logging
-- Terminal/user interaction improvements
+* Various function/method utilities/tools
+  * An abstract class method
+  * Timing execution of a function with a decorator
+  * A way to get the argument names and values of a function without using **kwargs or *args
+  * A way to describe the argument and return types of functions, kind of similar to a statically typed language
+* Various class utilities/tools
+  * Getting the variables of a class instance with __slots__
+* Various module and package utilities/tools (Is a module built in? In what file is it? etc.)
+* Implementation of various structures to hold data
+  * LIFO/Stack
+  * Frozen dictionary
+  * Ordered set
+* An improved ArgParser for parsing command line arguments
+* A poor man's debug tracer when a better tracer isn't available (for example, when running a python script over ssh)
+* Easy event logging
+* Terminal/user interaction improvements
 
 # Detailed functionality
 
-## Timing execution of a function
+## Function/method tools
 
-	from Lang.FuncTools import timeIt	
-
-`timeIt` is a function decorator, so with the function you want to time, do:
-
-	@timeIt
-	def myFunction(...):
-		asdf
-
-## An abstract class method
+### An abstract class method
 
 The built in `abc.abstractmethod` decorator won't work if used in conjunction with a `classmethod` decorator.
 Use this abstract method decorator instead:
@@ -41,7 +39,17 @@ Use this abstract method decorator instead:
 	def myFunction(...):
 		asdf
 
-## Getting a function's arguments
+### Timing execution of a function
+
+`timeIt` is a function decorator, so with the function you want to time, do:
+
+	from Lang.FuncTools import timeIt	
+	
+	@timeIt
+	def myFunction(...):
+		asdf
+
+### Getting a function's arguments
 
 Python provides `**kwargs` and `*args` to get a dictionary or list of a function's arguments, but this makes it hard
 for IDEs and documentation generators to determine all possible arguments to the function. As an alternative to
@@ -58,39 +66,22 @@ argument names and values instead, similar to `**kwargs`, use `getArgs(useKwargF
 
 Note that `cls` and `self` are automatically ignored for class methods and instance methods.
 
-## An improved ArgParser
-
-In addition to the plethora of features in python's built in `ArgParser`, a few more are added in here:
-
-- Improved help formatting, similar to `man`
-- 3 way boolean (`True`, `False`, `None`)
-- Required named parameters - the built in ArgParser only supports required positional arguments and optional named parameters
-
-The new `ArgParser` uses the same interface as the old one, so see the built in `ArgParser` documentation.
-
-Example:
-
-	from Lang.ArgParser import ArgParser
-    parser = ArgParser(argument_default=None, add_help=True, description="Adds a user to a linux machine")
-    parser.add_argument("username")
-	parser.add_argument("-p", "--password", required=False, help="Prompt for password if this is not given")
-	parser.add_argument("-H", "--create-home", type=Bool3Way, required=True,
-		help="Controls home directory creation for user. None uses the default behavior which varies between machines.")
-	args = parser.parse_args()
-
-## Poor man's debugger
-
-Several arguments are available here. See the source for more details.
-
-	from Lang.DebugTracer import setTraceOn
-	setTraceOn()
-
-## Describing a function's argument and return types
+### Describing a function's argument and return types
 
 Some convenience classes are defined here that provide a thin, rough API for describing types. See the source in
 `Lang.Function` for details.
 
+## Class tools
+
+### Getting the variables of a class instance with __slots__
+
+This works the same as the built-in python function `vars()`, except it also works on slotted classes:
+
+	from Lang.ClassTools import vars
+	myClassVars = vars(MyClass())
+
 ## Details about python packages
+
 Python can provide a lot of information about a package and a lot of different ways of loading packages, but
 the functions and code to accomplish this is scattered. This `PkgUtil` module provides everything in one location.
 
@@ -153,7 +144,9 @@ Get the name of a module or package:
 
 	name = PkgUtil.convert_objectToName(obj)
 
-## LIFO/Stack
+## Structures
+
+### LIFO/Stack
 
 Python lists can be used as stacks, but they don't have the normal API that a stack does.
 
@@ -162,6 +155,54 @@ Python lists can be used as stacks, but they don't have the normal API that a st
 	stack.push("a")
 	element = stack.peek()
 	element = stack.pop()
+
+### Frozen dictionary
+
+In the case where a hashable dictionary is needed, `FrozenDict` can be used. `FrozenDict` is just like a normal `dict`
+except it cannot be modified.
+
+	from Lang.Struct import FrozenDict
+	dict_ = FrozenDict({"asdf": 1, "jkl": 2})
+
+### Ordered set
+
+The built-in python `set` is just like a `list`, except for 2 things:
+
+* Sets can't contain duplicate elements
+* Sets are unordered
+ 
+However, there are some cases where an ordered set (aka a list with no duplicate elements) is desirable. For this, use
+the `OrderedSet` provided here, which provides a similar implementation compared to the built-in `set`:
+
+	from Lang.Struct import OrderedSet
+	set_ = OrderedSet(range(1,10))
+
+## An improved ArgParser
+
+In addition to the plethora of features in python's built in `ArgParser`, a few more are added in here:
+
+- Improved help formatting, similar to `man`
+- 3 way boolean (`True`, `False`, `None`)
+- Required named parameters - the built in ArgParser only supports required positional arguments and optional named parameters
+
+The new `ArgParser` uses the same interface as the old one, so see the built in `ArgParser` documentation.
+
+Example:
+
+	from Lang.ArgParser import ArgParser
+    parser = ArgParser(argument_default=None, add_help=True, description="Adds a user to a linux machine")
+    parser.add_argument("username")
+	parser.add_argument("-p", "--password", required=False, help="Prompt for password if this is not given")
+	parser.add_argument("-H", "--create-home", type=Bool3Way, required=True,
+		help="Controls home directory creation for user. None uses the default behavior which varies between machines.")
+	args = parser.parse_args()
+
+## Poor man's debugger
+
+Several arguments are available here. See the source for more details.
+
+	from Lang.DebugTracer import setTraceOn
+	setTraceOn()
 
 ## Event logging
 

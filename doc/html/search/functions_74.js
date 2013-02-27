@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['timeit',['timeIt',['../namespace_lang_1_1__lang.html#a3467fbde881b9d33406db31181eadf8f',1,'Lang::_lang']]]
+  ['timeit',['timeIt',['../namespace_lang_1_1_func_tools_1_1___func_tools.html#aed4f1cc82dee4e32cdf895e545e10bca',1,'Lang::FuncTools::_FuncTools']]]
 ];

@@ -173,12 +173,6 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>exceptionClass</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
           <td class="paramname"><em>exceptionInstance</em>, </td>
         </tr>
         <tr>
@@ -196,16 +190,15 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">exceptionClass:</td><td>The exception class/type of the instance </td></tr>
     <tr><td class="paramname">tracebackInstance:</td><td>Suitable for passing into the builtin python function traceback.format_tb </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_logging_8py_source.html#l00021">21</a> of file <a class="el" href="_logging_8py_source.html">Logging.py</a>.</p>
-<div class="fragment"><div class="line"><a name="l00021"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#ab5260ab13ed4d5afc3f529f33689daf6">   21</a></span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#ab5260ab13ed4d5afc3f529f33689daf6">notifyException</a>(self, exceptionClass, exceptionInstance, tracebackInstance):</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">pass</span></div>
+<p>Definition at line <a class="el" href="_logging_8py_source.html#l00020">20</a> of file <a class="el" href="_logging_8py_source.html">Logging.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00020"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#ab5260ab13ed4d5afc3f529f33689daf6">   20</a></span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#ab5260ab13ed4d5afc3f529f33689daf6">notifyException</a>(self, exceptionInstance, tracebackInstance):</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">pass</span></div>
     </div>
 </div><!-- fragment -->
 </div>
@@ -254,10 +247,10 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_logging_8py_source.html#l00029">29</a> of file <a class="el" href="_logging_8py_source.html">Logging.py</a>.</p>
-<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#a5f53d7d59ed3bd7818b0a6230aa5284e">   29</a></span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#a5f53d7d59ed3bd7818b0a6230aa5284e" title="Write a message to the log.">write</a>(self, message, severity, *args):</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">if</span> severity &gt;= self.<a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#a54073cf1ada4533b712ae491eb045fc2">minSeverity</a>:</div>
+<p>Definition at line <a class="el" href="_logging_8py_source.html#l00028">28</a> of file <a class="el" href="_logging_8py_source.html">Logging.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#a5f53d7d59ed3bd7818b0a6230aa5284e">   28</a></span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#a5f53d7d59ed3bd7818b0a6230aa5284e" title="Write a message to the log.">write</a>(self, message, severity, *args):</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">if</span> severity &gt;= self.<a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#a54073cf1ada4533b712ae491eb045fc2">minSeverity</a>:</div>
             self.<a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#adc7d898097c3d16acdac818faa021f50">_write</a>(message, severity, *args)</div>
 </div><!-- fragment -->
 <p><div class="dynheader">
@@ -307,7 +300,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_lang.html">Lang</a></li><li class="navelem"><a class="el" href="namespace_lang_1_1_logging.html">Logging</a></li><li class="navelem"><a class="el" href="class_lang_1_1_logging_1_1_logger_abstract.html">LoggerAbstract</a></li>
-    <li class="footer">Generated on Mon Feb 11 2013 14:24:04 for py.Lang by
+    <li class="footer">Generated on Wed Feb 27 2013 14:49:59 for py.Lang by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

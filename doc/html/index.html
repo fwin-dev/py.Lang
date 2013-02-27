@@ -100,63 +100,62 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="textblock"><h1>Summary of functionality</h1>
 <p>This package provides a lot of miscellaneous things that probably should have been included in python's built-in library but weren't, including:</p>
 <ul>
-<li>Timing execution of a function with a decorator</li>
+<li>Various function/method utilities/tools<ul>
 <li>An abstract class method</li>
+<li>Timing execution of a function with a decorator</li>
 <li>A way to get the argument names and values of a function without using **kwargs or *args</li>
+<li>A way to describe the argument and return types of functions, kind of similar to a statically typed language</li>
+</ul>
+</li>
+<li>Various class utilities/tools<ul>
+<li>Getting the variables of a class instance with <b>slots</b></li>
+</ul>
+</li>
+<li>Various module and package utilities/tools (Is a module built in? In what file is it? etc.)</li>
+<li>Implementation of various structures to hold data<ul>
+<li>LIFO/Stack</li>
+<li>Frozen dictionary</li>
+<li>Ordered set</li>
+</ul>
+</li>
 <li>An improved ArgParser for parsing command line arguments</li>
 <li>A poor man's debug tracer when a better tracer isn't available (for example, when running a python script over ssh)</li>
-<li>A way to describe the argument and return types of functions, kind of similar to a statically typed language</li>
-<li>A module to get details about a python package (Is it built in? In what file is it? etc.)</li>
-<li>LIFO/Stack implementation</li>
 <li>Easy event logging</li>
 <li>Terminal/user interaction improvements</li>
 </ul>
 <h1>Detailed functionality</h1>
-<h2>Timing execution of a function</h2>
-<pre class="fragment">from Lang import timeIt 
-</pre><p><code>timeIt</code> is a function decorator, so with the function you want to time, do: </p>
-<pre class="fragment">@timeIt
-def myFunction(...):
-    asdf
-</pre><h2>An abstract class method</h2>
+<h2>Function/method tools</h2>
+<h3>An abstract class method</h3>
 <p>The built in <code>abc.abstractmethod</code> decorator won't work if used in conjunction with a <code>classmethod</code> decorator. Use this abstract method decorator instead: </p>
-<pre class="fragment">from Lang import abstractmethod
+<pre class="fragment">from Lang.FuncTools.Abstraction import abstractmethod
 
 @classmethod
 @abstractmethod
 def myFunction(...):
     asdf
-</pre><h2>Getting a function's arguments</h2>
+</pre><h3>Timing execution of a function</h3>
+<p><code>timeIt</code> is a function decorator, so with the function you want to time, do: </p>
+<pre class="fragment">from Lang.FuncTools import timeIt   
+
+@timeIt
+def myFunction(...):
+    asdf
+</pre><h3>Getting a function's arguments</h3>
 <p>Python provides <code>**kwargs</code> and <code>*args</code> to get a dictionary or list of a function's arguments, but this makes it hard for IDEs and documentation generators to determine all possible arguments to the function. As an alternative to <code>**kwargs</code> or <code>*args</code>, you can use the <code>getArgs()</code> method: </p>
-<pre class="fragment">from Lang import getArgs
+<pre class="fragment">from Lang.FuncTools import getArgs
 def myFunc(arg1, arg2):
     allArgs = getArgs()
 </pre><p>This method uses python's built in <code>inspect</code> module to go up the stack and inspect arguments.</p>
 <p>In the case above, <code>allArgs</code> will be a list of values, similar to as if <code>*args</code> was used. To get a dictionary of argument names and values instead, similar to <code>**kwargs</code>, use <code>getArgs(useKwargFormat=True)</code>.</p>
 <p>Note that <code>cls</code> and <code>self</code> are automatically ignored for class methods and instance methods.</p>
-<h2>An improved ArgParser</h2>
-<p>In addition to the plethora of features in python's built in <code>ArgParser</code>, a couple more are added in here:</p>
-<ul>
-<li>Improved help formatting, similar to <code>man</code></li>
-<li>3 way boolean (<code>True</code>, <code>False</code>, <code>None</code>)</li>
-<li>Required named parameters - the built in ArgParser only supports required positional arguments and optional named parameters</li>
-</ul>
-<p>The new <code>ArgParser</code> uses the same interface as the old one, so see the built in <code>ArgParser</code> documentation.</p>
-<p>Example: </p>
-<pre class="fragment">from Lang.ArgParser import ArgParser
-parser = ArgParser(argument_default=None, add_help=True, description="Adds a user to a linux machine")
-parser.add_argument("username")
-parser.add_argument("-p", "--password", required=False, help="Prompt for password if this is not given")
-parser.add_argument("-H", "--create-home", type=Bool3Way, required=True,
-    help="Controls home directory creation for user. None uses the default behavior which varies between machines.")
-args = parser.parse_args()
-</pre><h2>Poor man's debugger</h2>
-<p>Several arguments are available here. See the source for more details. </p>
-<pre class="fragment">from Lang.DebugTracer import setTraceOn
-setTraceOn()
-</pre><h2>Describing a function's argument and return types</h2>
+<h3>Describing a function's argument and return types</h3>
 <p>Some convenience classes are defined here that provide a thin, rough API for describing types. See the source in <code>Lang.Function</code> for details.</p>
-<h2>Details about python packages</h2>
+<h2>Class tools</h2>
+<h3>Getting the variables of a class instance with <b>slots</b></h3>
+<p>This works the same as the built-in python function <code>vars()</code>, except it also works on slotted classes: </p>
+<pre class="fragment">from Lang.ClassTools import vars
+myClassVars = vars(MyClass())
+</pre><h2>Details about python packages</h2>
 <p>Python can provide a lot of information about a package and a lot of different ways of loading packages, but the functions and code to accomplish this is scattered. This <code>PkgUtil</code> module provides everything in one location. </p>
 <pre class="fragment">from PyPkgUtil import PkgUtil
 </pre><h3>Is it built in?</h3>
@@ -178,23 +177,57 @@ PkgUtil.isPackage(obj)
 <pre class="fragment">relPath = PkgUtil.convert_fullPathToRelative(fullPath)
 </pre><h3>Object -&gt; Full path</h3>
 <p>Get the full file path of a module or package object: </p>
-<pre class="fragment">fullPath = convert_objectToFullPath(obj)
+<pre class="fragment">fullPath = PkgUtil.convert_objectToFullPath(obj)
 </pre><h3>Full path -&gt; Object</h3>
 <p>Get the module or package object from a full path, aka import a module or package at the specified path: </p>
-<pre class="fragment">obj = convert_fullPathToObject(fullPath)
+<pre class="fragment">obj = PkgUtil.convert_fullPathToObject(fullPath)
 </pre><h3>Name string -&gt; Object</h3>
 <p>Import an object by its name: </p>
-<pre class="fragment">obj = convert_nameToObject("moduleName")
+<pre class="fragment">obj = PkgUtil.convert_nameToObject("moduleName")
 </pre><h3>Object -&gt; Name string</h3>
 <p>Get the name of a module or package: </p>
-<pre class="fragment">name = convert_objectToName(obj)
-</pre><h2>LIFO/Stack</h2>
+<pre class="fragment">name = PkgUtil.convert_objectToName(obj)
+</pre><h2>Structures</h2>
+<h3>LIFO/Stack</h3>
 <p>Python lists can be used as stacks, but they don't have the normal API that a stack does. </p>
-<pre class="fragment">from Lang.QueueStacks import LIFOstack
+<pre class="fragment">from Lang.Struct import LIFOstack
 stack = LIFOstack()
 stack.push("a")
 element = stack.peek()
 element = stack.pop()
+</pre><h3>Frozen dictionary</h3>
+<p>In the case where a hashable dictionary is needed, <code>FrozenDict</code> can be used. <code>FrozenDict</code> is just like a normal <code>dict</code> except it cannot be modified. </p>
+<pre class="fragment">from Lang.Struct import FrozenDict
+dict_ = FrozenDict({"asdf": 1, "jkl": 2})
+</pre><h3>Ordered set</h3>
+<p>The built-in python <code>set</code> is just like a <code>list</code>, except for 2 things:</p>
+<ul>
+<li>Sets can't contain duplicate elements</li>
+<li>Sets are unordered</li>
+</ul>
+<p>However, there are some cases where an ordered set (aka a list with no duplicate elements) is desirable. For this, use the <code>OrderedSet</code> provided here, which provides a similar implementation compared to the built-in <code>set</code>: </p>
+<pre class="fragment">from Lang.Struct import OrderedSet
+set_ = OrderedSet(range(1,10))
+</pre><h2>An improved ArgParser</h2>
+<p>In addition to the plethora of features in python's built in <code>ArgParser</code>, a few more are added in here:</p>
+<ul>
+<li>Improved help formatting, similar to <code>man</code></li>
+<li>3 way boolean (<code>True</code>, <code>False</code>, <code>None</code>)</li>
+<li>Required named parameters - the built in ArgParser only supports required positional arguments and optional named parameters</li>
+</ul>
+<p>The new <code>ArgParser</code> uses the same interface as the old one, so see the built in <code>ArgParser</code> documentation.</p>
+<p>Example: </p>
+<pre class="fragment">from Lang.ArgParser import ArgParser
+parser = ArgParser(argument_default=None, add_help=True, description="Adds a user to a linux machine")
+parser.add_argument("username")
+parser.add_argument("-p", "--password", required=False, help="Prompt for password if this is not given")
+parser.add_argument("-H", "--create-home", type=Bool3Way, required=True,
+    help="Controls home directory creation for user. None uses the default behavior which varies between machines.")
+args = parser.parse_args()
+</pre><h2>Poor man's debugger</h2>
+<p>Several arguments are available here. See the source for more details. </p>
+<pre class="fragment">from Lang.DebugTracer import setTraceOn
+setTraceOn()
 </pre><h2>Event logging</h2>
 <p>Python has decent built in logging, but it doesn't follow standard object-oriented concepts where methods represent actions, so the API is not ideal for recording different events in a heavily event based system, as there would need to be a special, separate call to the logging API for every event. The logging API in <code>Lang.Logging</code> fixes this.</p>
 <h3>Example using StdoutLogger</h3>
@@ -215,6 +248,15 @@ class MyFileLog(LoggerAbstract):
 
 log = Logging((StdoutLogger, MyFileLog))
 log.notifyFolderCheck("folder/path/here")
+</pre><h3>Logging uncaught exceptions</h3>
+<p>When an uncaught exception happens, a special <code>notifyException</code> method will be called on each of your loggers automatically if it exists, with the exception instance and a traceback instance as parameters. What you do with these parameters is up to you, but here is an example: </p>
+<pre class="fragment">def notifyException(self, exceptionInstance, tracebackInstance):
+    import traceback
+    tracebackStr = "".join(traceback.format_tb(tracebackInstance))
+    exceptionStr = str(exceptionInstance)
+    print(tracebackStr)
+    print()
+    print(exceptionStr)
 </pre><h2>Terminal improvements</h2>
 <h3>Asking a question to the user</h3>
 <pre class="fragment">from Lang import Terminal
@@ -244,7 +286,7 @@ table.printLive()                       # prints all rows (and headers) that hav
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Feb 11 2013 14:24:05 for py.Lang by
+    <li class="footer">Generated on Wed Feb 27 2013 14:50:02 for py.Lang by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

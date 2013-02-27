@@ -1,0 +1,5 @@
+<map id="Lang.Struct._OrderedSet.OrderedSet.insertMultiBefore" name="Lang.Struct._OrderedSet.OrderedSet.insertMultiBefore">
+<area shape="rect" id="node2" href="$class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a3d77225d0613232e8c9106025376660c" title="Returns True if all links were inserted, False otherwise." alt="" coords="232,5,424,46"/>
+<area shape="rect" id="node3" href="$class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a0d96b91eb6a06a5725485bf0942646b5" title="Lang.Struct._OrderedSet.\lOrderedSet.discard" alt="" coords="247,70,409,111"/>
+<area shape="rect" id="node4" href="$class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a3b5b0f278022d362913215cc21961b4e" title="Inserts newElemBefore into the current position of oldLinkAfter." alt="" coords="235,135,421,177"/>
+</map>

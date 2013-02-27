@@ -1,7 +1,9 @@
 var dir_8c0cb69ef2063fa3564da4462eb195d1 =
 [
+    [ "ClassTools", "dir_f0a4421a5df6555086c69ac45e86d81a.html", "dir_f0a4421a5df6555086c69ac45e86d81a" ],
+    [ "FuncTools", "dir_dec94e5e6ec588c52760f05cabcec818.html", "dir_dec94e5e6ec588c52760f05cabcec818" ],
+    [ "Struct", "dir_f4aa025d2533d5062ca446f3201e45fa.html", "dir_f4aa025d2533d5062ca446f3201e45fa" ],
     [ "__init__.py", "____init_____8py.html", null ],
-    [ "_lang.py", "__lang_8py.html", "__lang_8py" ],
     [ "ArgParser.py", "_arg_parser_8py.html", [
       [ "Bool3Way", "class_lang_1_1_arg_parser_1_1_bool3_way.html", "class_lang_1_1_arg_parser_1_1_bool3_way" ],
       [ "_HelpFormatter", "class_lang_1_1_arg_parser_1_1___help_formatter.html", "class_lang_1_1_arg_parser_1_1___help_formatter" ],
@@ -9,10 +11,22 @@ var dir_8c0cb69ef2063fa3564da4462eb195d1 =
       [ "ArgParser", "class_lang_1_1_arg_parser_1_1_arg_parser.html", "class_lang_1_1_arg_parser_1_1_arg_parser" ]
     ] ],
     [ "DebugTracer.py", "_debug_tracer_8py.html", "_debug_tracer_8py" ],
-    [ "Function.py", "_function_8py.html", [
-      [ "FuncDesc", "class_lang_1_1_function_1_1_func_desc.html", "class_lang_1_1_function_1_1_func_desc" ],
-      [ "ArgDesc", "class_lang_1_1_function_1_1_arg_desc.html", "class_lang_1_1_function_1_1_arg_desc" ],
-      [ "Descriptor", "class_lang_1_1_function_1_1_descriptor.html", "class_lang_1_1_function_1_1_descriptor" ]
+    [ "Diff.py", "_diff_8py.html", [
+      [ "SequenceMatcher", "class_lang_1_1_diff_1_1_sequence_matcher.html", "class_lang_1_1_diff_1_1_sequence_matcher" ],
+      [ "_BlockSide", "class_lang_1_1_diff_1_1___block_side.html", "class_lang_1_1_diff_1_1___block_side" ],
+      [ "_ElemsBlockSide", "class_lang_1_1_diff_1_1___elems_block_side.html", "class_lang_1_1_diff_1_1___elems_block_side" ],
+      [ "_TwoSide", "class_lang_1_1_diff_1_1___two_side.html", "class_lang_1_1_diff_1_1___two_side" ],
+      [ "_Block", "class_lang_1_1_diff_1_1___block.html", null ],
+      [ "_BlockMatch", "class_lang_1_1_diff_1_1___block_match.html", "class_lang_1_1_diff_1_1___block_match" ],
+      [ "_BlockMismatch", "class_lang_1_1_diff_1_1___block_mismatch.html", "class_lang_1_1_diff_1_1___block_mismatch" ],
+      [ "_ElemMatch", "class_lang_1_1_diff_1_1___elem_match.html", null ],
+      [ "_ElemMismatch", "class_lang_1_1_diff_1_1___elem_mismatch.html", null ],
+      [ "_ElemBlockMatch", "class_lang_1_1_diff_1_1___elem_block_match.html", null ],
+      [ "_ElemBlockMismatch", "class_lang_1_1_diff_1_1___elem_block_mismatch.html", null ]
+    ] ],
+    [ "Iter.py", "_iter_8py.html", [
+      [ "PeekableIterable", "class_lang_1_1_iter_1_1_peekable_iterable.html", "class_lang_1_1_iter_1_1_peekable_iterable" ],
+      [ "_PeekableIterator", "class_lang_1_1_iter_1_1___peekable_iterator.html", "class_lang_1_1_iter_1_1___peekable_iterator" ]
     ] ],
     [ "Logging.py", "_logging_8py.html", [
       [ "Severity", "class_lang_1_1_logging_1_1_severity.html", "class_lang_1_1_logging_1_1_severity" ],
@@ -21,9 +35,6 @@ var dir_8c0cb69ef2063fa3564da4462eb195d1 =
       [ "Logging", "class_lang_1_1_logging_1_1_logging.html", "class_lang_1_1_logging_1_1_logging" ]
     ] ],
     [ "PyPkgUtil.py", "_py_pkg_util_8py.html", "_py_pkg_util_8py" ],
-    [ "QueueStacks.py", "_queue_stacks_8py.html", [
-      [ "LIFOstack", "class_lang_1_1_queue_stacks_1_1_l_i_f_ostack.html", "class_lang_1_1_queue_stacks_1_1_l_i_f_ostack" ]
-    ] ],
     [ "shlex2.py", "shlex2_8py.html", "shlex2_8py" ],
     [ "Terminal.py", "_terminal_8py.html", "_terminal_8py" ]
 ];

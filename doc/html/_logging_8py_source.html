@@ -102,7 +102,7 @@ $(document).ready(function(){initNavTree('_logging_8py_source.html','');});
 <div class="title">Logging.py</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_logging_8py.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="code" href="namespace_lang_1_1_logging.html">    1</a></span>&#160;<span class="keyword">from</span> . <span class="keyword">import</span> abstractmethod</div>
+<a href="_logging_8py.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="code" href="namespace_lang_1_1_logging.html">    1</a></span>&#160;<span class="keyword">from</span> FuncTools.Abstraction <span class="keyword">import</span> abstractmethod</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">import</span> sys</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
 <div class="line"><a name="l00004"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_severity.html">    4</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_lang_1_1_logging_1_1_severity.html">Severity</a>:</div>
@@ -119,74 +119,73 @@ $(document).ready(function(){initNavTree('_logging_8py_source.html','');});
 <div class="line"><a name="l00015"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#af1c1d75d0f2354a637f9b54cb840985c">   15</a></span>&#160;        self.<a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#af1c1d75d0f2354a637f9b54cb840985c">execLevel</a> = 0</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="comment">##</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="comment"># </span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="comment">#       @param exceptionClass:      The exception class/type of the instance</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="comment">#       @param tracebackInstance:   Suitable for passing into the builtin python function traceback.format_tb</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="comment">#       </span></div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#ab5260ab13ed4d5afc3f529f33689daf6">   21</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#ab5260ab13ed4d5afc3f529f33689daf6">notifyException</a>(self, exceptionClass, exceptionInstance, tracebackInstance):</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">pass</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment">##</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment"># </span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment">#       Write a message to the log</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="comment">#       @param *args:   Additional arguments passed to _write() for subclasses</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">#       </span></div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#a5f53d7d59ed3bd7818b0a6230aa5284e">   29</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#a5f53d7d59ed3bd7818b0a6230aa5284e" title="Write a message to the log.">write</a>(self, message, severity, *args):</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">if</span> severity &gt;= self.<a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#a54073cf1ada4533b712ae491eb045fc2">minSeverity</a>:</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            self.<a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#adc7d898097c3d16acdac818faa021f50">_write</a>(message, severity, *args)</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    @abstractmethod</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">def </span>_write(self, message, severity, *args):</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordflow">pass</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">##</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"># Logs messages to sys.stdout</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_stdout_logger.html">   38</a></span>&#160;<span class="keyword">class </span>StdoutLogger(LoggerAbstract):</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_stdout_logger.html#a04d442e8471a32e4e7f615546edaced2">   39</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_stdout_logger.html#a04d442e8471a32e4e7f615546edaced2">__init__</a>(self):</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        super(StdoutLogger, self).<a class="code" href="class_lang_1_1_logging_1_1_stdout_logger.html#a04d442e8471a32e4e7f615546edaced2">__init__</a>()</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_stdout_logger.html#a9afa962f5ef2d63b59d93de3ad7152b6">   41</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_stdout_logger.html#a9afa962f5ef2d63b59d93de3ad7152b6">write</a>(self, message, severity):</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        print(<span class="stringliteral">&quot;\t&quot;</span> * self.<a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#af1c1d75d0f2354a637f9b54cb840985c">execLevel</a> + message)</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">##</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment"># </span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">#   Provides logging messages to one or more loggers.</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">#   </span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">#   Just call this class with your event notification methods which are defined in your Logger subclasses. Every logger</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">#   will then be called with that method and its arguments.</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">#   </span></div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logging.html">   51</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_lang_1_1_logging_1_1_logging.html" title="Provides logging messages to one or more loggers.">Logging</a>:</div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logging.html#a1f1c41b9efe2cc2e6a361e5386808d9a">   52</a></span>&#160;    Severity = Severity</div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logging.html#a9257c89c04975aef4312f143b0330b66">   53</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_logging.html#a9257c89c04975aef4312f143b0330b66">__init__</a>(self, loggers):</div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">   54</a></span>&#160;        self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a> = loggers</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">if</span> <span class="keywordflow">not</span> hasattr(self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a>, <span class="stringliteral">&quot;__iter__&quot;</span>):</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a> = tuple(self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a>)</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">for</span> logger <span class="keywordflow">in</span> loggers:</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keyword">assert</span> isinstance(logger, LoggerAbstract)</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        oldFunc = sys.excepthook</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keyword">def </span>branchHook(exceptionClass, exceptionInstance, tracebackInstance):</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            oldFunc(exceptionClass, exceptionInstance, tracebackInstance)</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            self.notifyException(exceptionClass, exceptionInstance, tracebackInstance)</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        sys.excepthook = branchHook</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    </div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logging.html#af977ba2883863ef28ec4e8a8b439e4ea">   66</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_logging.html#af977ba2883863ef28ec4e8a8b439e4ea">__getattr__</a>(self, name):</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keyword">def </span>_run(*args, **kwargs):</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            found = <span class="keyword">False</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordflow">for</span> logger <span class="keywordflow">in</span> self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a>:</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                <span class="keywordflow">if</span> hasattr(logger, name):</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                    found = <span class="keyword">True</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                    getattr(logger, name)(*args, **kwargs)</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordflow">if</span> <span class="keywordflow">not</span> found:</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                <span class="keywordflow">if</span> name != <span class="stringliteral">&quot;notifyException&quot;</span>:</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                    <span class="keywordflow">raise</span> AttributeError</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">return</span> _run</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="comment">#       @param tracebackInstance:   Suitable for passing into the builtin python function traceback.format_tb</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="comment">#       </span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#ab5260ab13ed4d5afc3f529f33689daf6">   20</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#ab5260ab13ed4d5afc3f529f33689daf6">notifyException</a>(self, exceptionInstance, tracebackInstance):</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordflow">pass</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="comment">##</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment"># </span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment">#       Write a message to the log</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment">#       @param *args:   Additional arguments passed to _write() for subclasses</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="comment">#       </span></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#a5f53d7d59ed3bd7818b0a6230aa5284e">   28</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#a5f53d7d59ed3bd7818b0a6230aa5284e" title="Write a message to the log.">write</a>(self, message, severity, *args):</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">if</span> severity &gt;= self.<a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#a54073cf1ada4533b712ae491eb045fc2">minSeverity</a>:</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            self.<a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#adc7d898097c3d16acdac818faa021f50">_write</a>(message, severity, *args)</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    @abstractmethod</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">def </span>_write(self, message, severity, *args):</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">pass</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">##</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"># Logs messages to sys.stdout</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_stdout_logger.html">   37</a></span>&#160;<span class="keyword">class </span>StdoutLogger(LoggerAbstract):</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_stdout_logger.html#a04d442e8471a32e4e7f615546edaced2">   38</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_stdout_logger.html#a04d442e8471a32e4e7f615546edaced2">__init__</a>(self):</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        super(StdoutLogger, self).<a class="code" href="class_lang_1_1_logging_1_1_stdout_logger.html#a04d442e8471a32e4e7f615546edaced2">__init__</a>()</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_stdout_logger.html#a9afa962f5ef2d63b59d93de3ad7152b6">   40</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_stdout_logger.html#a9afa962f5ef2d63b59d93de3ad7152b6">write</a>(self, message, severity):</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        print(<span class="stringliteral">&quot;\t&quot;</span> * self.<a class="code" href="class_lang_1_1_logging_1_1_logger_abstract.html#af1c1d75d0f2354a637f9b54cb840985c">execLevel</a> + message)</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">##</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"># </span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">#   Provides logging messages to one or more loggers.</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">#   </span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">#   Just call this class with your event notification methods which are defined in your Logger subclasses. Every logger</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">#   will then be called with that method and its arguments.</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">#   </span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logging.html">   50</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_lang_1_1_logging_1_1_logging.html" title="Provides logging messages to one or more loggers.">Logging</a>:</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logging.html#a1f1c41b9efe2cc2e6a361e5386808d9a">   51</a></span>&#160;    Severity = Severity</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logging.html#a9257c89c04975aef4312f143b0330b66">   52</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_logging.html#a9257c89c04975aef4312f143b0330b66">__init__</a>(self, loggers):</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">   53</a></span>&#160;        self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a> = loggers</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordflow">if</span> <span class="keywordflow">not</span> hasattr(self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a>, <span class="stringliteral">&quot;__iter__&quot;</span>):</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a> = tuple(self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a>)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">for</span> logger <span class="keywordflow">in</span> loggers:</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keyword">assert</span> isinstance(logger, LoggerAbstract)</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        oldFunc = sys.excepthook</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">def </span>branchHook(exceptionClass, exceptionInstance, tracebackInstance):</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            oldFunc(exceptionClass, exceptionInstance, tracebackInstance)</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            self.notifyException(exceptionClass, exceptionInstance, tracebackInstance)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        sys.excepthook = branchHook</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="code" href="class_lang_1_1_logging_1_1_logging.html#af977ba2883863ef28ec4e8a8b439e4ea">   65</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_lang_1_1_logging_1_1_logging.html#af977ba2883863ef28ec4e8a8b439e4ea">__getattr__</a>(self, name):</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keyword">def </span>_run(*args, **kwargs):</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            found = <span class="keyword">False</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="keywordflow">for</span> logger <span class="keywordflow">in</span> self.<a class="code" href="class_lang_1_1_logging_1_1_logging.html#a744ac0e22ec9791795f3b2c29126e365">loggers</a>:</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                <span class="keywordflow">if</span> hasattr(logger, name):</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                    found = <span class="keyword">True</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                    getattr(logger, name)(*args, **kwargs)</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">if</span> <span class="keywordflow">not</span> found:</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                <span class="keywordflow">if</span> name != <span class="stringliteral">&quot;notifyException&quot;</span>:</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                    <span class="keywordflow">raise</span> AttributeError</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">return</span> _run</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_8c0cb69ef2063fa3564da4462eb195d1.html">Lang</a></li><li class="navelem"><a class="el" href="_logging_8py.html">Logging.py</a></li>
-    <li class="footer">Generated on Mon Feb 11 2013 14:24:03 for py.Lang by
+    <li class="footer">Generated on Wed Feb 27 2013 14:49:56 for py.Lang by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

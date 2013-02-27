@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_lang_1_1_arg_parser_1_1_bool3_way.html" title="3 way boolean &#45; can be True, False, or None" alt="" coords="5,5,179,32"/>
+<area shape="rect" id="node1" href="$classargparse_1_1_help_formatter.html" title="HelpFormatter" alt="" coords="5,5,104,32"/>
+<area shape="rect" id="node2" href="$class_lang_1_1_arg_parser_1_1___help_formatter.html" title="Man&#45;page&#45;like formatter for getting help of a python script." alt="" coords="152,5,349,32"/>
 </map>

@@ -1,10 +1,14 @@
 var searchData=
 [
-  ['abstractmethod',['abstractmethod',['../namespace_lang_1_1__lang.html#a5b98a21c7a3caf055382ad56d9b4cf2b',1,'Lang::_lang']]],
+  ['a',['a',['../class_lang_1_1_diff_1_1___two_side.html#af2b4c59fe1fcea72aeae026706dca36b',1,'Lang::Diff::_TwoSide']]],
+  ['abstraction_2epy',['Abstraction.py',['../_abstraction_8py.html',1,'']]],
+  ['abstractmethod',['abstractmethod',['../namespace_lang_1_1_func_tools_1_1_abstraction.html#ae9deb841c4767409ba7726ccb2699c06',1,'Lang::FuncTools::Abstraction']]],
   ['actionscontainer',['ActionsContainer',['../class_lang_1_1_arg_parser_1_1_actions_container.html',1,'Lang::ArgParser']]],
+  ['add',['add',['../class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a86ca893edaad1d4ac2dfee131550dc01',1,'Lang::Struct::_OrderedSet::OrderedSet']]],
   ['add_5fargument',['add_argument',['../class_lang_1_1_arg_parser_1_1___help_formatter.html#ae8f5f0117c1ccba79907879182e264d6',1,'Lang.ArgParser._HelpFormatter.add_argument()'],['../class_lang_1_1_arg_parser_1_1_actions_container.html#a7fd1539b202d224a96e744bb749ae738',1,'Lang.ArgParser.ActionsContainer.add_argument()']]],
   ['addrow',['addRow',['../class_lang_1_1_terminal_1_1_table.html#ac7e8fc8eb812dfca4b6b8af4ab5ff645',1,'Lang::Terminal::Table']]],
-  ['argdesc',['ArgDesc',['../class_lang_1_1_function_1_1_arg_desc.html',1,'Lang::Function']]],
+  ['append',['append',['../class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a621378ce8194a13c08d55f77f1b53059',1,'Lang::Struct::_OrderedSet::OrderedSet']]],
+  ['argdesc',['ArgDesc',['../class_lang_1_1_func_tools_1_1_abstraction_1_1_arg_desc.html',1,'Lang::FuncTools::Abstraction']]],
   ['argparser',['ArgParser',['../class_lang_1_1_arg_parser_1_1_arg_parser.html',1,'Lang::ArgParser']]],
   ['argparser_2epy',['ArgParser.py',['../_arg_parser_8py.html',1,'']]],
   ['argumentparser',['ArgumentParser',['../classargparse_1_1_argument_parser.html',1,'']]],
