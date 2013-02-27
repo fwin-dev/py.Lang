@@ -10,6 +10,10 @@ try:
 except ImportError, err:
 	requirements.append("argparse")
 
+import platform
+if platform.system().lower() == "windows":
+	requirements.append("colorama")
+
 setup(
 	name = "py.Lang",
 	version = "0.5.0",
@@ -22,5 +26,11 @@ setup(
 	packages = find_packages("src"),
 	zip_safe = False,
 	install_requires = requirements,
-#	dependency_links = ["http://projects.indigitaldev.net/master#egg=py.OS-0.5.0"],
+	classifiers = [
+		# http://pypi.python.org/pypi?%3Aaction=list_classifiers
+		"Development Status :: 4 - Beta",
+		"Programming Language :: Python :: 2.6",
+		"Programming Language :: Python :: 2.7",
+		"Operating System :: OS Independent",
+	],
 )

@@ -1,6 +1,10 @@
 from FuncTools import getArgs
 
 from termcolor import colored
+import platform
+if platform.system().lower() == "windows":
+	from colorama import init
+	init()
 
 def askYesNo(question):
 	"""Print a question to the terminal for the user. Expects a yes or no response. Returns True if yes, False if no."""
