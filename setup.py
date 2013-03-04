@@ -16,7 +16,7 @@ if platform.system().lower() == "windows":
 
 setup(
 	name = "py.Lang",
-	version = "0.5.0",
+	version = "0.5.1-dev1",
 	description = "Common modules that probably should have been included in the Python standard library but weren't",
 	author = "Jesse Cowles",
 	author_email = "jcowles@indigital.net",

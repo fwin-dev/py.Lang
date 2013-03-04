@@ -39,6 +39,9 @@ Use this abstract method decorator instead:
 	def myFunction(...):
 		asdf
 
+Make sure that `abstractmethod` comes after `classmethod`, else you will get:
+`AttributeError: 'classmethod' object has no attribute '__name__'`
+
 ### Timing execution of a function
 
 `timeIt` is a function decorator, so with the function you want to time, do:
