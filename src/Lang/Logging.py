@@ -55,7 +55,7 @@ class Logging:
 		oldFunc = sys.excepthook
 		def branchHook(exceptionClass, exceptionInstance, tracebackInstance):
 			oldFunc(exceptionClass, exceptionInstance, tracebackInstance)
-			self.notifyException(exceptionClass, exceptionInstance, tracebackInstance)
+			self.notifyException(exceptionInstance, tracebackInstance)
 		sys.excepthook = branchHook
 	
 	def __getattr__(self, name):
