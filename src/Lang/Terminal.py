@@ -17,7 +17,7 @@ class FormattedText(str):
 	
 	def __init__(self, text, color=None, background=None,
 				bold=None, dark=None, underline=None, blink=None, reverse=None, concealed=None):
-		self.rawText = text
+		self.rawText = str(text)
 		self.color = color
 		self.background = background
 		self.bold = bold
@@ -45,7 +45,7 @@ class FormattedText(str):
 		if self.color != None:
 			kwargs["color"] = self.color
 		if self.background != None:
-			kwargs["on_color"] = self.background
+			kwargs["on_color"] = "on_" + self.background
 		
 		for name, value in self._termcolorAttrs.iteritems():
 			if value != True:
