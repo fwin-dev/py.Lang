@@ -211,13 +211,13 @@ Several arguments are available here. See the source for more details.
 
 Python has decent built in logging, but it doesn't follow standard object-oriented concepts where methods represent
 actions, so the API is not ideal for recording different events in a heavily event based system, as there would need
-to be a special, separate call to the logging API for every event. The logging API in `Lang.Logging` fixes this.
+to be a special, separate call to the logging API for every event. The logging API in `Lang.Events.Logging` fixes this.
 
 ### Example using StdoutLogger
 
 This is a very simplistic example of logging to stdout:
 
-	from Lang.Logging import Logging, StdoutLogger
+	from Lang.Events.Logging import Logging, StdoutLogger
 	log = Logging(StdoutLogger)
 	log.notifyMyEvent("details", "in", "arguments", "here")
 
@@ -225,7 +225,7 @@ This is a very simplistic example of logging to stdout:
 
 When using multiple loggers, the function you call on the `Logging` instance will be called on every logger.
 
-	from Lang.Logging import Logging, LoggerAbstract, StdoutLogger
+	from Lang.Events.Logging import Logging, LoggerAbstract, StdoutLogger
 	class MyFileLog(LoggerAbstract):
 		def __init__(self, filePath):
 			super(MyLogger, self).__init__()
