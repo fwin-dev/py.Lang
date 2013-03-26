@@ -10,7 +10,8 @@ class Link(object):
 		self.key = key
 
 class OrderedSet(collections.MutableSet):
-	"""A set that remembers the order elements were added.
+	"""
+	A set that remembers the order elements were added.
 	
 	The internal self.__map dictionary maps keys to links in a doubly linked list.
 	The circular doubly linked list starts and ends with a sentinel element.
@@ -166,20 +167,17 @@ class OrderedSet(collections.MutableSet):
 				oldLinkAfter = self.__map[newElemBefore]
 		return allInserted
 	
-	def add(self, elem):
-		"""
-		If elem is not in the OrderedSet, append elem to the OrderedSet. If elem is in the OrderedSet, do nothing.
-		
-		Same as: append(elem, updateOnExist=False)
-		Returns True if elem was added, False otherwise.
-		"""
-		return self._insertBefore_link(elem, self.__root, updateOnExist=False)
+	def add(self, elem, updateOnExist=False):
+		"""Same as `append`"""
+		return self._insertBefore_link(elem, self.__root, updateOnExist=updateOnExist)
 	
-	def append(self, elem, updateOnExist=True):
+	def append(self, elem, updateOnExist=False):
 		"""
-		Append elem to the OrderedSet.
+		If elem is not in the OrderedSet, append elem to the OrderedSet. Same as `add`.
 		
-		Returns True if link was inserted, False if not inserted because it already exists and updateOnExist is False.
+		@param updateOnExist	bool:	If elem is already in the OrderedSet and this is `False`, do nothing. If this is `True`, the old element is removed and the new one is appended.
+		
+		@return bool: `True` if new elem was inserted, `False` if not inserted because it already exists and `updateOnExist` is `False`.
 		"""
 		return self._insertBefore_link(elem, self.__root, updateOnExist=updateOnExist)
 	
@@ -191,7 +189,7 @@ class OrderedSet(collections.MutableSet):
 	
 	def pop(self, last=True):
 		if not self:
-			raise KeyError('set is empty')
+			raise KeyError("set is empty")
 		elem = next(reversed(self)) if last else next(iter(self))
 		self.discard(elem)
 		return elem
