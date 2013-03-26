@@ -1,5 +1,5 @@
+from Proxy import EventReceiver, EventProxy
 from Lang.FuncTools.Abstraction import abstractmethod
-import sys
 
 class Severity:
 	INFO = 0
@@ -9,15 +9,11 @@ class Severity:
 	def asString(cls, numLevel):
 		return {cls.INFO:"Info", cls.WARNING:"Warning", cls.ERROR:"Error"}[numLevel]
 
-class LoggerAbstract(object):
+class LoggerAbstract(EventReceiver):
 	def __init__(self):
+		super(LoggerAbstract, self).__init__()
 		self.minSeverity = Severity.INFO
 		self.execLevel = 0
-	def notifyException(self, exceptionInstance, tracebackInstance):
-		"""
-		@param tracebackInstance:	Suitable for passing into the builtin python function traceback.format_tb
-		"""
-		pass
 	
 	def write(self, message, severity, *args):
 		"""
@@ -34,10 +30,10 @@ class StdoutLogger(LoggerAbstract):
 	"""Logs messages to sys.stdout"""
 	def __init__(self):
 		super(StdoutLogger, self).__init__()
-	def write(self, message, severity):
+	def _write(self, message, severity):
 		print("\t" * self.execLevel + message)
 
-class Logging:
+class Logging(EventProxy):
 	"""
 	Provides logging messages to one or more loggers.
 	
@@ -46,27 +42,12 @@ class Logging:
 	"""
 	Severity = Severity
 	def __init__(self, loggers):
-		self.loggers = loggers
-		if not hasattr(self.loggers, "__iter__"):
-			self.loggers = tuple(self.loggers)
+		super(Logging, self).__init__(errorOnMethodNotFound=False)
+		if not hasattr(loggers, "__iter__"):
+			loggers = tuple(loggers)
 		for logger in loggers:
-			assert isinstance(logger, LoggerAbstract)
-		
-		oldFunc = sys.excepthook
-		def branchHook(exceptionClass, exceptionInstance, tracebackInstance):
-			oldFunc(exceptionClass, exceptionInstance, tracebackInstance)
-			self.notifyException(exceptionInstance, tracebackInstance)
-		sys.excepthook = branchHook
-	
-	def __getattr__(self, name):
-		def _run(*args, **kwargs):
-			found = False
-			for logger in self.loggers:
-				if hasattr(logger, name):
-					found = True
-					getattr(logger, name)(*args, **kwargs)
-			if not found:
-				if name != "notifyException":
-					raise AttributeError
-		return _run
+			self.addReceiver(logger, errorOnDuplicate=True)
+	def addReceiver(self, receiver, errorOnDuplicate=True):
+		assert isinstance(receiver, LoggerAbstract)
+		super(Logging, self).addReceiver(receiver, errorOnDuplicate=errorOnDuplicate)
 
