@@ -23,7 +23,6 @@ var hierarchy =
       [ "Lang.ArgParser._HelpFormatter", "class_lang_1_1_arg_parser_1_1___help_formatter.html", null ]
     ] ],
     [ "Lang.Struct.QueueStacks.LIFOstack", "class_lang_1_1_struct_1_1_queue_stacks_1_1_l_i_f_ostack.html", null ],
-    [ "Lang.Logging.Logging", "class_lang_1_1_logging_1_1_logging.html", null ],
     [ "MutableSet", "classcollections_1_1_mutable_set.html", [
       [ "Lang.Struct._OrderedSet.OrderedSet", "class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html", null ]
     ] ],
@@ -41,16 +40,24 @@ var hierarchy =
         [ "Lang.Diff._ElemMismatch", "class_lang_1_1_diff_1_1___elem_mismatch.html", null ]
       ] ],
       [ "Lang.Diff.SequenceMatcher", "class_lang_1_1_diff_1_1_sequence_matcher.html", null ],
-      [ "Lang.Iter.PeekableIterable", "class_lang_1_1_iter_1_1_peekable_iterable.html", null ],
-      [ "Lang.Logging.LoggerAbstract", "class_lang_1_1_logging_1_1_logger_abstract.html", [
-        [ "Lang.Logging.StdoutLogger", "class_lang_1_1_logging_1_1_stdout_logger.html", null ]
+      [ "Lang.Events.Proxy.EventReceiver", "class_lang_1_1_events_1_1_proxy_1_1_event_receiver.html", [
+        [ "Lang.Events.Proxy.EventProxy", "class_lang_1_1_events_1_1_proxy_1_1_event_proxy.html", null ]
       ] ],
+      [ "Lang.Iter.PeekableIterable", "class_lang_1_1_iter_1_1_peekable_iterable.html", null ],
       [ "Lang.Struct._OrderedSet.Link", "class_lang_1_1_struct_1_1___ordered_set_1_1_link.html", null ]
     ] ],
     [ "Lang.PyPkgUtil.PkgUtil", "class_lang_1_1_py_pkg_util_1_1_pkg_util.html", null ],
-    [ "Lang.Logging.Severity", "class_lang_1_1_logging_1_1_severity.html", null ],
+    [ "Lang.Events.Logging.Severity", "class_lang_1_1_events_1_1_logging_1_1_severity.html", null ],
     [ "str", "classstr.html", [
       [ "Lang.Terminal.FormattedText", "class_lang_1_1_terminal_1_1_formatted_text.html", null ]
     ] ],
-    [ "Lang.Terminal.Table", "class_lang_1_1_terminal_1_1_table.html", null ]
+    [ "Lang.Terminal.Table", "class_lang_1_1_terminal_1_1_table.html", null ],
+    [ "EventProxy", null, [
+      [ "Lang.Events.Logging.Logging", "class_lang_1_1_events_1_1_logging_1_1_logging.html", null ]
+    ] ],
+    [ "EventReceiver", null, [
+      [ "Lang.Events.Logging.LoggerAbstract", "class_lang_1_1_events_1_1_logging_1_1_logger_abstract.html", [
+        [ "Lang.Events.Logging.StdoutLogger", "class_lang_1_1_events_1_1_logging_1_1_stdout_logger.html", null ]
+      ] ]
+    ] ]
 ];

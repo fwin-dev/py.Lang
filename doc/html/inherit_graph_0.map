@@ -1,6 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="node1" href="$classargparse_1_1___actions_container.html" title="_ActionsContainer" alt="" coords="6,5,130,32"/>
-<area shape="rect" id="node3" href="$class_lang_1_1_arg_parser_1_1_actions_container.html" title="Lang.ArgParser.ActionsContainer" alt="" coords="179,5,387,32"/>
-<area shape="rect" id="node5" href="$class_lang_1_1_arg_parser_1_1_arg_parser.html" title="Supports positional arguments, named required arguments, and named optional arguments, with help in man&#45;page&#45;like format." alt="" coords="435,31,605,57"/>
-<area shape="rect" id="node6" href="$classargparse_1_1_argument_parser.html" title="ArgumentParser" alt="" coords="227,56,339,83"/>
+<area shape="rect" id="node2" href="$class_lang_1_1_arg_parser_1_1_actions_container.html" title="Lang.ArgParser.ActionsContainer" alt="" coords="179,5,387,32"/>
+<area shape="rect" id="node3" href="$class_lang_1_1_arg_parser_1_1_arg_parser.html" title="Supports positional arguments, named required arguments, and named optional arguments, with help in man&#45;page&#45;like format." alt="" coords="435,31,605,57"/>
+<area shape="rect" id="node4" href="$classargparse_1_1_argument_parser.html" title="ArgumentParser" alt="" coords="227,56,339,83"/>
 </map>

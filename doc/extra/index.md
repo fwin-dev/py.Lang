@@ -18,9 +18,11 @@ library but weren't, including:
   * LIFO/Stack
   * Frozen dictionary
   * Ordered set
+* A peekable iterator
+* An improved differ, based on `difflib.SequenceMatcher`
 * An improved ArgParser for parsing command line arguments
 * A poor man's debug tracer when a better tracer isn't available (for example, when running a python script over ssh)
-* Easy event logging
+* Easy event handling with subscription/listening, including event logging
 * Terminal/user interaction improvements
 
 # Detailed functionality
@@ -171,14 +173,60 @@ except it cannot be modified.
 
 The built-in python `set` is just like a `list`, except for 2 things:
 
-* Sets can't contain duplicate elements
-* Sets are unordered
+- Sets can't contain duplicate elements
+- Sets are unordered
  
 However, there are some cases where an ordered set (aka a list with no duplicate elements) is desirable. For this, use
 the `OrderedSet` provided here, which provides a similar implementation compared to the built-in `set`:
 
 	from Lang.Struct import OrderedSet
 	set_ = OrderedSet(range(1,10))
+
+## Peekable iterator
+
+Want to use an iterator for RAM usage concerns, but need to know the next element sometimes without advancing the
+iterator? Then this "peekable iterator" implementation is for you! Just wrap any iterable inside a `PeekableIterable`.
+That inner iterable is most likely a pure iterator itself (such as a generator), but it could also be anything that
+implements `__iter__`.
+
+	from Lang.Iter import PeekableIterable
+	def asdf():
+		for i in range(0,10):
+			yield i
+	nums = PeekableIterable(asdf())
+	print(nums.next())		# advances the iterator
+	print(nums.peek())		# peeks without advancing
+	print(nums.hasNext())	# checks if there's a next element
+
+## Improved differ
+
+This differ builds upon `difflib.SequenceMatcher` which can diff any python objects with `__eq__` implemented, contained
+within a list, tuple, etc. However, the built in class only provides methods for getting matching sets of indicies which
+refer to matching elements, leaving you to infer which indicies don't match. It also doens't give you direct access to
+elements that do or don't match. This differ adds all of that functionality. It also fixes:
+
+- A bug in the built in differ where subsequent calls to `get_matching_blocks()` returns results in a different format
+- Calculating the similarity ratio: The built in differ calculates this ratio taking both diff sides into account, but what's usually wanted is how much one side is similar/different compared to the other side, i.e. `(1 - ratio) / 2 + ratio`
+
+	from Lang.Diff import SequenceMatcher
+	diff = SequenceMatcher(tuple("aebcdef"), tuple("abbcdgef"))
+	print(list(diff.get_matching_blocks()))
+	print(list(diff.get_mismatching_blocks()))
+	print(list(diff.get_matching_elems()))
+	print(list(diff.get_mismatching_elems()))
+
+	Prints the following:
+	[BlockMatch(a={index=0,size=1}, b={index=0,size=1}), BlockMatch(a={index=2,size=3}, b={index=2,size=3}), BlockMatch(a={index=5,size=2}, b={index=6,size=2})]
+	[BlockMismatch(a={index=1,size=1}, b={index=1,size=1}), BlockMismatch(a=None, b={index=5,size=1})]
+	[ElemMatch(a=('a',), b=('a',)), ElemMatch(a=('b', 'c', 'd'), b=('b', 'c', 'd')), ElemMatch(a=('e', 'f'), b=('e', 'f'))]
+	[ElemMismatch(a=('e',), b=('b',)), ElemMismatch(a=None, b=('g',))]
+
+More functions are available, including:
+
+- `getmatching()` and `getmismatching()`
+  - These return structures with `.block` and `.elems` attributes containing both block indicies and the elems which the block refers to
+- `get_matching_elems_useOnce()` and `get_mismatching_elems_useOnce()`
+  - These are the same as `get_matching_elems()` and `get_mismatching_elems()` except that they are generators instead of functions returning a list
 
 ## An improved ArgParser
 
@@ -207,13 +255,52 @@ Several arguments are available here. See the source for more details.
 	from Lang.DebugTracer import setTraceOn
 	setTraceOn()
 
-## Event logging
+## Event handling
+
+For general event handling with event subscription and listeners, there is a proxy API. The proxy receives an event
+(via a method call) and then calls any subscribers (aka receivers) to the event. In this implementation, a subscriber
+subscribes to all events, but only chooses to implement the methods for the events that it is interested in. The proxy
+checks each receiver to see if it has implemented the method, and if so, calls the method. All receivers can be
+forced to implement all methods by setting `errorOnMethodNotFound=True`.
+
+	from Lang.Events.Proxy import EventProxy, EventReceiver
+	proxy = EventProxy(errorOnMethodNotFound=False)
+	
+	class Foo(EventReceiver):
+		def someEvent(self, parametersOfEvent, moreParams=None):
+			print("I was called")
+	
+	foo = Foo()
+	proxy.addReceiver(foo)
+	proxy.someEvent("abc", moreParams=123)
+
+## Handling uncaught exceptions
+
+When an uncaught exception happens, a special `notifyException` method will be called on each EventReceiver
+automatically, if the method is implemented, with the exception instance and a traceback instance as parameters.
+What you do with these parameters is up to you, but here is an example:
+
+	class Foo(EventReceiver):
+		def notifyException(self, exceptionInstance, tracebackInstance):
+			import traceback
+			tracebackStr = "".join(traceback.format_tb(tracebackInstance))
+			exceptionStr = str(exceptionInstance)
+			print(tracebackStr)
+			print()
+			print(exceptionStr)
+
+This idea can be combined with event logging, shown below.
+Also note that `errorOnMethodNotFound` has no effect on `notifyException`, as it is a special case.
+
+### Event logging
 
 Python has decent built in logging, but it doesn't follow standard object-oriented concepts where methods represent
 actions, so the API is not ideal for recording different events in a heavily event based system, as there would need
 to be a special, separate call to the logging API for every event. The logging API in `Lang.Events.Logging` fixes this.
+It uses the event handling API shown above, where the `Logging` class is an `EventProxy`, and the loggers are
+`EventReceiver`s.
 
-### Example using StdoutLogger
+#### Example using StdoutLogger
 
 This is a very simplistic example of logging to stdout:
 
@@ -221,7 +308,7 @@ This is a very simplistic example of logging to stdout:
 	log = Logging(StdoutLogger)
 	log.notifyMyEvent("details", "in", "arguments", "here")
 
-### Example using a custom logger and/or multiple loggers
+#### Example using a custom logger and/or multiple loggers
 
 When using multiple loggers, the function you call on the `Logging` instance will be called on every logger.
 
@@ -237,23 +324,9 @@ When using multiple loggers, the function you call on the `Logging` instance wil
 	log = Logging((StdoutLogger, MyFileLog))
 	log.notifyFolderCheck("folder/path/here")
 
-### Logging uncaught exceptions
-
-When an uncaught exception happens, a special `notifyException` method will be called on each of your loggers
-automatically if it exists, with the exception instance and a traceback instance as parameters. What you do with
-these parameters is up to you, but here is an example:
-
-	def notifyException(self, exceptionInstance, tracebackInstance):
-		import traceback
-		tracebackStr = "".join(traceback.format_tb(tracebackInstance))
-		exceptionStr = str(exceptionInstance)
-		print(tracebackStr)
-		print()
-		print(exceptionStr)
-
 ## Terminal improvements
 
-### Asking a question to the user
+### Asking the user a question
 
 	from Lang import Terminal
 	if Terminal.askYesNo("Do you like Star Trek?") == True:

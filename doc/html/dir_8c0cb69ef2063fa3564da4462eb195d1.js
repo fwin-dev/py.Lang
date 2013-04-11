@@ -1,6 +1,7 @@
 var dir_8c0cb69ef2063fa3564da4462eb195d1 =
 [
     [ "ClassTools", "dir_f0a4421a5df6555086c69ac45e86d81a.html", "dir_f0a4421a5df6555086c69ac45e86d81a" ],
+    [ "Events", "dir_ad5ab5ad17b05cc8a295339dcb8da0f9.html", "dir_ad5ab5ad17b05cc8a295339dcb8da0f9" ],
     [ "FuncTools", "dir_dec94e5e6ec588c52760f05cabcec818.html", "dir_dec94e5e6ec588c52760f05cabcec818" ],
     [ "Struct", "dir_f4aa025d2533d5062ca446f3201e45fa.html", "dir_f4aa025d2533d5062ca446f3201e45fa" ],
     [ "__init__.py", "____init_____8py.html", null ],
@@ -11,6 +12,7 @@ var dir_8c0cb69ef2063fa3564da4462eb195d1 =
       [ "ArgParser", "class_lang_1_1_arg_parser_1_1_arg_parser.html", "class_lang_1_1_arg_parser_1_1_arg_parser" ]
     ] ],
     [ "DebugTracer.py", "_debug_tracer_8py.html", "_debug_tracer_8py" ],
+    [ "DescribeOS.py", "_describe_o_s_8py.html", "_describe_o_s_8py" ],
     [ "Diff.py", "_diff_8py.html", [
       [ "SequenceMatcher", "class_lang_1_1_diff_1_1_sequence_matcher.html", "class_lang_1_1_diff_1_1_sequence_matcher" ],
       [ "_BlockSide", "class_lang_1_1_diff_1_1___block_side.html", "class_lang_1_1_diff_1_1___block_side" ],
@@ -27,12 +29,6 @@ var dir_8c0cb69ef2063fa3564da4462eb195d1 =
     [ "Iter.py", "_iter_8py.html", [
       [ "PeekableIterable", "class_lang_1_1_iter_1_1_peekable_iterable.html", "class_lang_1_1_iter_1_1_peekable_iterable" ],
       [ "_PeekableIterator", "class_lang_1_1_iter_1_1___peekable_iterator.html", "class_lang_1_1_iter_1_1___peekable_iterator" ]
-    ] ],
-    [ "Logging.py", "_logging_8py.html", [
-      [ "Severity", "class_lang_1_1_logging_1_1_severity.html", "class_lang_1_1_logging_1_1_severity" ],
-      [ "LoggerAbstract", "class_lang_1_1_logging_1_1_logger_abstract.html", "class_lang_1_1_logging_1_1_logger_abstract" ],
-      [ "StdoutLogger", "class_lang_1_1_logging_1_1_stdout_logger.html", "class_lang_1_1_logging_1_1_stdout_logger" ],
-      [ "Logging", "class_lang_1_1_logging_1_1_logging.html", "class_lang_1_1_logging_1_1_logging" ]
     ] ],
     [ "PyPkgUtil.py", "_py_pkg_util_8py.html", "_py_pkg_util_8py" ],
     [ "shlex2.py", "shlex2_8py.html", "shlex2_8py" ],

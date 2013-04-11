@@ -1,3 +1,3 @@
 <map id="str" name="str">
-<area shape="rect" id="node3" href="$class_lang_1_1_terminal_1_1_formatted_text.html" title="{Lang.Terminal.FormattedText\n|+ rawText\l+ color\l+ background\l+ bold\l+ dark\l+ underline\l+ blink\l+ reverse\l+ concealed\l+ coloredText\l+ data\l|+ __new__()\l+ __init__()\l+ asColored()\l+ asUncolored()\l+ __str__()\l+ __repr__()\l+ __getattribute__()\l+ __add__()\l}" alt="" coords="5,131,187,458"/>
+<area shape="rect" id="node2" href="$class_lang_1_1_terminal_1_1_formatted_text.html" title="{Lang.Terminal.FormattedText\n|+ rawText\l+ color\l+ background\l+ bold\l+ dark\l+ underline\l+ blink\l+ reverse\l+ concealed\l+ coloredText\l+ data\l|+ __new__()\l+ __init__()\l+ asColored()\l+ asUncolored()\l+ __str__()\l+ __repr__()\l+ __getattribute__()\l+ __add__()\l}" alt="" coords="5,131,187,458"/>
 </map>
