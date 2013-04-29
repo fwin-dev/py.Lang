@@ -1,11 +1,9 @@
 import platform as __platform
 
 try:
-	__platform.linux_distribution
+	__DIST_FUNC = __platform.linux_distribution
 except AttributeError:
 	__DIST_FUNC = __platform.dist
-else:
-	__DIST_FUNC = __platform.linux_distribution
 
 flavor = __DIST_FUNC()[0].lower()
 """This will always be lower case. Examples: "centos", "darwin", "ubuntu"."""

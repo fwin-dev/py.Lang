@@ -177,7 +177,8 @@ The built-in python `set` is just like a `list`, except for 2 things:
 - Sets are unordered
  
 However, there are some cases where an ordered set (aka a list with no duplicate elements) is desirable. For this, use
-the `OrderedSet` provided here, which provides a similar implementation compared to the built-in `set`:
+the `OrderedSet` provided here, which provides a similar implementation compared to the built-in `set`, but also provides
+methods typically found in a list, such as `insert`/`insertAt`. Refer to the source and unit test for a list of all methods.
 
 	from Lang.Struct import OrderedSet
 	set_ = OrderedSet(range(1,10))

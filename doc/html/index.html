@@ -208,7 +208,7 @@ dict_ = FrozenDict({"asdf": 1, "jkl": 2})
 <li>Sets can't contain duplicate elements</li>
 <li>Sets are unordered</li>
 </ul>
-<p>However, there are some cases where an ordered set (aka a list with no duplicate elements) is desirable. For this, use the <code>OrderedSet</code> provided here, which provides a similar implementation compared to the built-in <code>set</code>: </p>
+<p>However, there are some cases where an ordered set (aka a list with no duplicate elements) is desirable. For this, use the <code>OrderedSet</code> provided here, which provides a similar implementation compared to the built-in <code>set</code>, but also provides methods typically found in a list, such as <code>insert</code>/<code>insertAt</code>. Refer to the source and unit test for a list of all methods. </p>
 <pre class="fragment">from Lang.Struct import OrderedSet
 set_ = OrderedSet(range(1,10))
 </pre><h2>Peekable iterator</h2>
@@ -333,7 +333,7 @@ table.printLive()                       # prints all rows (and headers) that hav
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Apr 11 2013 09:56:42 for py.Lang by
+    <li class="footer">Generated on Mon Apr 29 2013 11:41:45 for py.Lang by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

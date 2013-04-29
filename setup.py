@@ -20,7 +20,7 @@ if platform.system().lower() == "windows":
 
 setup(
 	name = "py.Lang",
-	version = "0.5.1",
+	version = "0.5.2.dev01",
 	description = "Common modules that probably should have been included in the Python standard library but weren't",
 	author = "Jesse Cowles",
 	author_email = "jcowles@indigital.net",
@@ -32,7 +32,7 @@ setup(
 	install_requires = requirements,
 	classifiers = [
 		# http://pypi.python.org/pypi?%3Aaction=list_classifiers
-		"Development Status :: 4 - Beta",
+		"Development Status :: 5 - Production/Stable",
 		"Programming Language :: Python :: 2.6",
 		"Programming Language :: Python :: 2.7",
 		"Operating System :: OS Independent",

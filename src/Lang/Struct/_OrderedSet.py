@@ -12,6 +12,7 @@ class Link(object):
 class OrderedSet(collections.MutableSet):
 	"""
 	A set that remembers the order elements were added.
+	Functions in `collections.MutableSet` are supported, such as `|=` (union/`__ior__`), etc.
 	
 	The internal self.__map dictionary maps keys to links in a doubly linked list.
 	The circular doubly linked list starts and ends with a sentinel element.
@@ -122,13 +123,21 @@ class OrderedSet(collections.MutableSet):
 					return curr
 				curr = curr.prev
 	
+	def insertAt(self, index, newElem, updateOnExist=True):
+		if index < len(self):
+			return self.insertBefore(newElem, self[index], updateOnExist=updateOnExist)
+		else:
+			return self.add(newElem, updateOnExist=updateOnExist)
+		
 	def insertBefore(self, newElemBefore, oldElemAfter, updateOnExist):
 		"""See _insertBefore_link(...) method."""
 		return self._insertBefore_link(newElemBefore, self.__map[oldElemAfter], updateOnExist)
+	
 	def insertMultiBefore(self, newElemsBefore, oldElemAfter, updateOnExist):
 		if oldElemAfter not in self.__map:
 			raise ValueError("oldElemAfter not in OrderedSet")
 		return self._insertBefore_links(newElemsBefore, self.__map[oldElemAfter], updateOnExist)
+	
 	def _insertBefore_link(self, newElemBefore, oldLinkAfter, updateOnExist):
 		"""
 		Inserts newElemBefore into the current position of oldLinkAfter. oldLinkAfter will then come after newElemBefore.

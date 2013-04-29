@@ -14,6 +14,7 @@ var class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set =
     [ "append", "class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a621378ce8194a13c08d55f77f1b53059", null ],
     [ "discard", "class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a0d96b91eb6a06a5725485bf0942646b5", null ],
     [ "index", "class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a498965bdd90c93236f177b94626c2839", null ],
+    [ "insertAt", "class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a94238708f5efdb3897b692900373f7ab", null ],
     [ "insertBefore", "class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#af876cf3bdae69173dff1374db440e1f2", null ],
     [ "insertMultiBefore", "class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#ae7575342d75192de3163730ee4a87559", null ],
     [ "pop", "class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a2ebbeca5626629ff8e9c4da52abb9567", null ],

@@ -1,4 +1,4 @@
-from Lang.OrderedSet import OrderedSet
+from Lang.Struct import OrderedSet
 
 import unittest
 
@@ -8,6 +8,19 @@ class Test_HELD(unittest.TestCase):
 		self.assertEqual(set_.index("a"), 0, "Failed to find element at beginning of set")
 		self.assertEqual(set_.index("e"), 4, "Failed to find element at end of set")
 		self.assertEqual(set_.index("c"), 2, "Failed to find element in middle of set")
+	
+	def test_insertAt(self):
+		set_ = OrderedSet("bcd")
+		set_.insertAt(0, "a")
+		self.assertEqual(set_, OrderedSet("abcd"), "insertAt failed when inserting at the beginning of the set")
+		
+		set_ = OrderedSet("bcd")
+		set_.insertAt(3, "e")
+		self.assertEqual(set_, OrderedSet("bcde"), "insertAt failed when inserting at the end of the set")
+		
+		set_ = OrderedSet("abd")
+		set_.insertAt(2, "c")
+		self.assertEqual(set_, OrderedSet("abcd"), "insertAt failed when inserting in the middle of the set")
 	
 	def test_insertBefore(self):
 		set_ = OrderedSet("bd")
