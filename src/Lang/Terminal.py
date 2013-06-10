@@ -123,13 +123,19 @@ class Table:
 				if self.autoResizeCols == True or self.autoResizeCols[i] == True:
 					self.colMaxLens[i] = max((self.colMaxLens[i], len(newRow[i])))
 	
+	def _computeColMaxLen(self, colNum):
+		"""On the fly computation for maximum length of columns"""
+# 		print([str(self.colHeaders[colNum])] + [str(row[colNum]) for row in self.rows])
+		return max([len(str(self.colHeaders[colNum]))] + [len(str(row[colNum])) for row in self.rows])
+	
 	def _fmtRow(self, row):
 		str_ = ""
 		for colNum in range(0, len(row)):
-			if self.colMaxLens[colNum] != None:
-				colStr = row[colNum].ljust(self.colMaxLens[colNum])
+			value = str(row[colNum])
+			if self.colMaxLens == None or self.colMaxLens[colNum] == None:
+				colStr = value.ljust(self._computeColMaxLen(colNum))
 			else:
-				colStr = row[colNum].ljust(max([len(col) for col in [self.colheaders] + self.rows]))
+				colStr = value.ljust(self.colMaxLens[colNum])
 			str_ += colStr + "  "
 		return str_[:-2]
 	def __str__(self):
