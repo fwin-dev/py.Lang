@@ -2,7 +2,7 @@ from Lang.Struct import OrderedSet
 
 import unittest
 
-class Test_HELD(unittest.TestCase):
+class Test_OrderedSet(unittest.TestCase):
 	def test_index(self):
 		set_ = OrderedSet("abcde")
 		self.assertEqual(set_.index("a"), 0, "Failed to find element at beginning of set")
@@ -67,7 +67,7 @@ class Test_HELD(unittest.TestCase):
 		set_.append("b", updateOnExist=False)
 		self.assertEqual(set_, OrderedSet("bcd"), "Set changed on append when updateOnExist=False")
 	
-	def test_getitem(self):
+	def test_getitem_index(self):
 		set_ = OrderedSet("abc")
 		self.assertEqual(set_[0], "a", "Lookup element by positive index failed")
 		self.assertEqual(set_[1], "b", "Lookup element by positive index failed")
@@ -77,12 +77,27 @@ class Test_HELD(unittest.TestCase):
 		self.assertEqual(set_[-2], "b", "Lookup element by negative index failed")
 		self.assertRaises(KeyError, set_.__getitem__, -4)
 	
-	def test_getitem_slice(self):
-		set_ = OrderedSet("abcdef")
-		self.assertEqual(set_[0:2], "ab", "Lookup elements by +:+ slice failed")
-		self.assertEqual(set_[1:-1], OrderedSet("bcde"), "Lookup elements by +:- slice failed")
-		self.assertEqual(set_[-3:-1], OrderedSet("de"), "Lookup elements by -:- slice failed")
-
+# 	def test_getitem_slice(self):
+# 		set_ = OrderedSet("abcdef")
+# 		self.assertEqual(set_[0:2], "ab", "Lookup elements by +:+ slice failed")
+# 		self.assertEqual(set_[1:-1], OrderedSet("bcde"), "Lookup elements by +:- slice failed")
+# 		self.assertEqual(set_[-3:-1], OrderedSet("de"), "Lookup elements by -:- slice failed")
+	
+	def test_setitem_index(self):
+		set_ = OrderedSet("abc")
+		set_[1] = "y"
+		self.assertEqual(set_, OrderedSet("ayc"), "Failed to change item in middle of set")
+		set_[0] = "x"
+		self.assertEqual(set_, OrderedSet("xyc"), "Failed to change item at beginning of set")
+		set_[2] = "z"
+		self.assertEqual(set_, OrderedSet("xyz"), "Failed to change item at end of set")
+	
+# 	def test_setitem_slice(self):
+# 		set_ = OrderedSet("abcd")
+# 		set_[0:1] = ("w", "x")
+# 		self.assertEqual(set_, OrderedSet("wxcd"), "Failed to change item in middle of set")
+# 		set_[2:4] = ("y", "z")
+# 		self.assertEqual(set_, OrderedSet("wxyz"), "Failed to change item at beginning of set")
 
 if __name__ == "__main__":
 	unittest.main()

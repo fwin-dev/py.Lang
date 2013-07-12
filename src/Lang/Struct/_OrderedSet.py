@@ -13,6 +13,7 @@ class OrderedSet(collections.MutableSet):
 	"""
 	A set that remembers the order elements were added.
 	Functions in `collections.MutableSet` are supported, such as `|=` (union/`__ior__`), etc.
+	*** NOTE THAT SLICE NOTATION IS BEING IMPLEMENTED ***
 	
 	The internal self.__map dictionary maps keys to links in a doubly linked list.
 	The circular doubly linked list starts and ends with a sentinel element.
@@ -38,7 +39,7 @@ class OrderedSet(collections.MutableSet):
 				else:
 					self._insertBefore_link(value, oldLinkAfter, updateOnExist=True)
 			else:	# replace mode with slice - different from python standard library
-				links = self._iterLinks(index)
+				links = set(self._iterLinks(index))
 				if len(links) != len(value):
 					raise ValueError("Length between indices does not match number of values given")
 				for link, newKey in zip(links, value):
@@ -46,10 +47,12 @@ class OrderedSet(collections.MutableSet):
 		else:	# replace mode with single - same as python standard library
 			return self._replace(self._getLink_byIndex(index), value)
 	
+	def __delitem__(self, index):
+		return self.discard(self[index])
+	
 	def _replace(self, link, newElem):
-		del self.__map[link.key]
-		link.key = newElem
-		self.__map[newElem] = link
+		self._insertBefore_link(newElem, link, updateOnExist=True)
+		self.discard(link.key)
 	def replace(self, oldElem, newElem):
 		if oldElem not in self.__map:
 			raise ValueError(str(oldElem) + " is not in OrderedList")
@@ -69,9 +72,13 @@ class OrderedSet(collections.MutableSet):
 	
 	def _iterLinks(self, index):
 		if isinstance(index, int):
+			if index == 0:
+				raise StopIteration()
 			index = self._getPositiveIndex(index)
 			yield self._getLink_byIndex(index)
 		elif isinstance(index, slice):
+			if index.start == index.stop == 0:
+				raise StopIteration()
 			index = self._convertSlice(index)
 			nextLink = self._getLink_byIndex(index.start)
 			betweenStep = 0		# if betweenStep, don't yield; 0 == False, > 0 == True
@@ -89,9 +96,9 @@ class OrderedSet(collections.MutableSet):
 	def _convertSlice(self, slice_):
 		"""
 		Does 2 things:
-		- Converts slice indicies from negative to positive.
-		- Converts from standard slice indicies (as used in other python data types, where indicies are
-		representative of the gaps between elements) to indicies that correspond to elements.
+		- Converts slice indices from negative to positive.
+		- Converts from standard slice indices (as used in other python data types, where indices are
+		representative of the gaps between elements) to indices that correspond to elements.
 		"""
 		return slice(self._getPositiveIndex(slice_.start) if slice_.start != None else 0,
 					 self._getPositiveIndex(self._getPositiveIndex(slice_.stop, checkLen=False) - 1),
