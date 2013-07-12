@@ -202,8 +202,8 @@ implements `__iter__`.
 ## Improved differ
 
 This differ builds upon `difflib.SequenceMatcher` which can diff any python objects with `__eq__` implemented, contained
-within a list, tuple, etc. However, the built in class only provides methods for getting matching sets of indicies which
-refer to matching elements, leaving you to infer which indicies don't match. It also doens't give you direct access to
+within a list, tuple, etc. However, the built in class only provides methods for getting matching sets of indices which
+refer to matching elements, leaving you to infer which indices don't match. It also doens't give you direct access to
 elements that do or don't match. This differ adds all of that functionality. It also fixes:
 
 - A bug in the built in differ where subsequent calls to `get_matching_blocks()` returns results in a different format
@@ -225,7 +225,7 @@ elements that do or don't match. This differ adds all of that functionality. It 
 More functions are available, including:
 
 - `getmatching()` and `getmismatching()`
-  - These return structures with `.block` and `.elems` attributes containing both block indicies and the elems which the block refers to
+  - These return structures with `.block` and `.elems` attributes containing both block indices and the elems which the block refers to
 - `get_matching_elems_useOnce()` and `get_mismatching_elems_useOnce()`
   - These are the same as `get_matching_elems()` and `get_mismatching_elems()` except that they are generators instead of functions returning a list
 
