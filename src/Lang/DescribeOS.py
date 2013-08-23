@@ -1,4 +1,5 @@
 import platform as __platform
+import re as __re
 
 try:
 	__DIST_FUNC = __platform.linux_distribution
@@ -27,3 +28,6 @@ def isDebianBased():
 	return flavor in ("ubuntu", "debian", "linuxmint")
 def isRedHatBased():
 	return flavor in ["fedora", "redhat", "centos", "mandrake", "yellowdog"]
+
+def getKernelVersion():
+	return [int(i) for i in __re.match("^(\d*)\.(\d*).(\d*)", __platform.release()).groups()]
