@@ -13,7 +13,7 @@ class OrderedSet(collections.MutableSet):
 	"""
 	A set that remembers the order elements were added.
 	Functions in `collections.MutableSet` are supported, such as `|=` (union/`__ior__`), etc.
-	*** NOTE THAT SLICE NOTATION IS BEING IMPLEMENTED ***
+	*** NOTE THAT SLICE NOTATION IS STILL BEING IMPLEMENTED ***
 	
 	The internal self.__map dictionary maps keys to links in a doubly linked list.
 	The circular doubly linked list starts and ends with a sentinel element.
