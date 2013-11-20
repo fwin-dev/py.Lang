@@ -6,10 +6,16 @@ try:
 	import argparse
 except ImportError:
 	requirements.append("argparse")
+
 try:
 	from collections import OrderedDict
 except ImportError:
 	requirements.append("ordereddict")
+
+try:
+	from weakref import WeakSet
+except ImportError:
+	requirements.append("weakrefset")
 
 import platform
 if platform.system().lower() == "windows":
