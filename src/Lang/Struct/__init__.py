@@ -3,6 +3,6 @@ from _FrozenDict import FrozenDict
 from QueueStacks import LIFOstack
 
 try:
-	from OrderedDict import OrderedDict
+	from collections import OrderedDict
 except ImportError:
 	from ordereddict import OrderedDict

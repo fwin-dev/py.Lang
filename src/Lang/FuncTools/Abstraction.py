@@ -1,6 +1,6 @@
 def abstractmethod(method):
 	"""
-	This implementation of @abstractmethod only to be used with @abc.classmethod to make an abstract class method
+	This implementation of @abstractmethod only to be used with @classmethod to make an abstract class method
 	because of bug: http://bugs.python.org/issue5867
 	"""
 	def default_abstract_method(*args, **kwargs):

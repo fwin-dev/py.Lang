@@ -1,22 +1,21 @@
 from setuptools import setup, find_packages
 from setuptools.command.install import install as _install
 
-import sys
-
 requirements = ["termcolor"]
 try:
 	import argparse
-except ImportError, err:
+except ImportError:
 	requirements.append("argparse")
 try:
-	from OrderedDict import OrderedDict
+	from collections import OrderedDict
 except ImportError:
-	requirements.append("OrderedDict")
+	requirements.append("ordereddict")
 
 import platform
 if platform.system().lower() == "windows":
 	requirements.append("colorama")
 
+import sys
 class InstallHook(_install):
 	def run(self):
 		self.preInstall()
@@ -28,7 +27,7 @@ class InstallHook(_install):
 setup(
 	cmdclass = {"install": InstallHook},
 	name = "py.Lang",
-	version = "1.0.2",
+	version = "1.0.2.dev04",
 	description = "Common modules that probably should have been included in the Python standard library but weren't",
 	author = "Jesse Cowles",
 	author_email = "jcowles@indigital.net",
