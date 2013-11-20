@@ -1,4 +1,4 @@
-from Lang.ClassTools import RegisteredInstances
+from Lang.ClassTools.Patterns import RegisteredInstances
 import unittest
 
 class Test_InstanceRegistration(unittest.TestCase):

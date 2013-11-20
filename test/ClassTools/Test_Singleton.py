@@ -1,4 +1,4 @@
-from Lang.ClassTools import Singleton
+from Lang.ClassTools.Patterns import Singleton
 import unittest
 
 class Test_Singleton(unittest.TestCase):
