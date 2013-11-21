@@ -1,4 +1,4 @@
-from _singleton_multiton_abstract import _SingletonMultitonAbstract
+from _singleton_multiton_abstract import _SingletonMultitonAbstract, DuplicateInstanceException
 
 from Lang.Struct import weakref
 from abc import ABCMeta, abstractmethod
@@ -43,7 +43,7 @@ class _Multiton_OneEquivalentInstance(_SingletonMultitonAbstract):
 
 class _Multiton_OneEquivalentInstance_OnDupRaiseException(_SingletonMultitonAbstract):
 	def _multiton_onDup(self, existingInstance, newInstance):
-		raise Exception("An equivalent instance has already been created")
+		raise DuplicateInstanceException("An equivalent instance has already been created")
 
 class _Multiton_OneEquivalentInstance_OnDupReturnExisting(_SingletonMultitonAbstract):
 	def _multiton_onDup(self, existingInstance, newInstance):

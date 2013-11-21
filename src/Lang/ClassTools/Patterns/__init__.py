@@ -1,3 +1,4 @@
+from _singleton_multiton_abstract import DuplicateInstanceException
 from _singleton import Singleton_OnDupRaiseException, Singleton_OnDupReturnExisting
 from _multiton import Multiton_OneEquivalentInstance_OnDupRaiseException, Multiton_OneEquivalentInstance_OnDupReturnExisting
 from _registered_instances import RegisteredInstances

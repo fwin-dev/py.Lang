@@ -1,5 +1,6 @@
 from Test_SingletonMultitonAbstract import _Test_SingletonMultiton_Abstract
-from Lang.ClassTools.Patterns import Multiton_OneEquivalentInstance_OnDupRaiseException, Multiton_OneEquivalentInstance_OnDupReturnExisting
+from Lang.ClassTools.Patterns import DuplicateInstanceException, Multiton_OneEquivalentInstance_OnDupRaiseException, \
+																Multiton_OneEquivalentInstance_OnDupReturnExisting
 import unittest
 
 class _Test_Multiton_OneEquivalentInstance_Abstract(_Test_SingletonMultiton_Abstract):
@@ -32,4 +33,4 @@ class Test_Multiton_OneEquivalentInstance_OnDupRaiseException(_Test_Multiton_One
 		class Bar(Foo):
 			pass
 		a = Bar(3)	# hold a reference here
-		self.assertRaises(Exception, lambda: Bar(3))
+		self.assertRaises(DuplicateInstanceException, lambda: Bar(3))
