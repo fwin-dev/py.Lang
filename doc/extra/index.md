@@ -109,13 +109,13 @@ A built in module is one who's source is not defined in a file.
 
 ### Getting all modules and packages imported by a module
 
-	PkgUtil.getSubs(moduleObj, isRecursive)
+	PkgUtil.getImported_all(moduleObj, isRecursive)
 
 Returns a flat list with all modules and packages.
 
 ### Getting all packages imported by a module
 
-	PkgUtil.getSubPackages(moduleObj, isRecursive)
+	PkgUtil.getImported_packages(moduleObj, isRecursive)
 
 Returns a flat list.
 

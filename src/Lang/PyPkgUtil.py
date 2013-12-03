@@ -1,3 +1,4 @@
+import pkgutil as _pkgutil
 from modulefinder import ModuleFinder
 import os.path, sys, imp
 
@@ -38,20 +39,20 @@ class PkgUtil:
 		return hasattr(moduleObj, "__path__") and moduleObj.__path__ != None
 	
 	@classmethod
-	def getSubs(cls, moduleObj, isRecursive):
+	def getImported_all(cls, moduleObj, isRecursive):
 		"""
 		@return list:	Modules and packages imported by moduleObj, in a flat list
 		"""
 		# first, must get all packages referenced by the imports
 		
 		#packageFolders = []
-		#for pkg in cls.getSubPackages(moduleObj, isRecursive):
+		#for pkg in cls.getImported_packages(moduleObj, isRecursive):
 		#	packageFolders.append(os.path.split(os.path.realpath(pkg.__file__))[0]) 
-		result = cls._getSubs(moduleObj, isRecursive, [])
+		result = cls._getImported_all(moduleObj, isRecursive, [])
 		return result
 	
 	@classmethod
-	def _getSubs(cls, moduleObj, isRecursive, allSubs=[]):
+	def _getImported_all(cls, moduleObj, isRecursive, allSubs=[]):
 		if cls.isBuiltin(moduleObj) or cls.isStock(moduleObj):
 			return
 		if moduleObj.__name__ == "__main__":
@@ -69,13 +70,13 @@ class PkgUtil:
 			finder.run_script(cls.convert_objectToFullPath(moduleObj))
 			for subModuleName, subModuleObj in finder.modules.iteritems():
 #				print("discovered " + str(subModuleObj))
-				cls._getSubs(subModuleObj, True, allSubs)
+				cls._getImported_all(subModuleObj, True, allSubs)
 		
 		return allSubs
 	
 	@classmethod
-	def getSubPackages(cls, moduleObj, isRecursive):
-		for sub in cls._getSubs(moduleObj, isRecursive):
+	def getImported_packages(cls, moduleObj, isRecursive):
+		for sub in cls._getImported_all(moduleObj, isRecursive):
 			if cls.isPackage(sub):
 				yield sub
 	
