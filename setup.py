@@ -17,6 +17,11 @@ try:
 except ImportError:
 	requirements.append("weakrefset")
 
+try:
+	import importlib
+except ImportError:
+	requirements.append("importlib")
+
 import platform
 if platform.system().lower() == "windows":
 	requirements.append("colorama")
@@ -33,7 +38,7 @@ class InstallHook(_install):
 setup(
 	cmdclass = {"install": InstallHook},
 	name = "py.Lang",
-	version = "1.0.2.dev04",
+	version = "2.0.0.dev02",
 	description = "Common modules that probably should have been included in the Python standard library but weren't",
 	author = "Jesse Cowles",
 	author_email = "jcowles@indigital.net",

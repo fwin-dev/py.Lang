@@ -1,7 +1,7 @@
+import importlib
 import pkgutil as _pkgutil
 from modulefinder import ModuleFinder
 import os.path, sys, imp
-
 
 # filters local file paths from system file paths (for python modules)
 from distutils.sysconfig import get_python_lib
@@ -37,6 +37,20 @@ class PkgUtil:
 	@classmethod
 	def isPackage(cls, moduleObj):
 		return hasattr(moduleObj, "__path__") and moduleObj.__path__ != None
+	
+	@classmethod
+	def getInPackage_modules(cls, packageObj, isRecursive):
+		"""Returns all modules in a package"""
+		return cls._getInPackage_modules(packageObj, isRecursive, [])
+	
+	@classmethod
+	def _getInPackage_modules(cls, packageObj, isRecursive, _all=[]):
+		for importer, modname, ispkg in _pkgutil.iter_modules(packageObj.__path__):
+			if not ispkg:
+				_all.append(importlib.import_module(modname))
+			elif isRecursive:
+				cls._getInPackage_modules(packageObj, True, _all)
+		return _all
 	
 	@classmethod
 	def getImported_all(cls, moduleObj, isRecursive):
