@@ -4,7 +4,7 @@ from Lang.ClassTools.Patterns import Multiton_OneEquivalentInstance_OnDupReturnE
 import fcntl
 import errno
 import tempfile
-from base64 import urlsafe_b64encode
+from urllib import quote
 from zlib import crc32
 import os.path
 import os
@@ -29,7 +29,7 @@ class FileLock_ByFCNTL(abstract.Lock, Multiton_OneEquivalentInstance_OnDupReturn
 		
 		self._pid = os.getpid()
 		self._in_checkForkSafety = False
-		_fileName = str(crc32(self.lockName)) + "=" + urlsafe_b64encode(self.lockName) + ".lock"
+		_fileName = str(self._pid) + "=" + str(crc32(self.lockName)) + "=" + quote(self.lockName, safe="_-+=^%$#@!.,/:;'\"|[]{}()") + ".lock"
 		self._filePath = os.path.join(self.lockFolder, _fileName)
 		self._file = None
 	
