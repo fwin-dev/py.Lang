@@ -1,4 +1,4 @@
-from Test_SingletonMultitonAbstract import _Test_SingletonMultiton_Abstract
+from test_SingletonMultitonAbstract import _Test_SingletonMultiton_Abstract
 from Lang.ClassTools.Patterns import Singleton_OnDupRaiseException, Singleton_OnDupReturnExisting, DuplicateInstanceException
 import unittest
 
