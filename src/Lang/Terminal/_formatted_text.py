@@ -23,7 +23,7 @@ class FormattedText(str):
 		self.reverse = reverse
 		self.concealed = concealed
 		
-		self._termcolorAttrs = getArgs(useKwargFormat=True, excludeList=["text", "color", "background"])
+		self._termcolorAttrs = getArgs(excludeList=["text", "color", "background"])
 		self.coloredText = self._generateColored()
 		self.data = self.rawText
 	

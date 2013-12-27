@@ -62,12 +62,17 @@ for IDEs and documentation generators to determine all possible arguments to the
 
 	from Lang.FuncTools import getArgs
 	def myFunc(arg1, arg2):
-		allArgs = getArgs()
+		allKwargs = getArgs()
 
 This method uses python's built in `inspect` module to go up the stack and inspect arguments.
 
-In the case above, `allArgs` will be a list of values, similar to as if `*args` was used. To get a dictionary of
-argument names and values instead, similar to `**kwargs`, use `getArgs(useKwargFormat=True)`.
+In the case above, `allKwargs` will be a dict of parameter names and associated values, similar to as if `**kwargs` was used.
+
+To get a list of positional values instead, similar to `*args`, use `getArgs(useKwargFormat=False)`.
+
+To get both kwargs and args, use:
+
+	args, kwargs = getArgs(useKwargFormat=None)
 
 Note that `cls` and `self` are automatically ignored for class methods and instance methods.
 
