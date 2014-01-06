@@ -20,8 +20,8 @@ def getArgs(useKwargFormat=True, includeVariableArgs=True, numFramesAgo=1, exclu
 	"""
 	frame = inspect.getouterframes(inspect.currentframe())[numFramesAgo][0]
 	argNames, varArgs_name, varKwargs_name, locals_ = inspect.getargvalues(frame)
-	varArgs = locals_[varArgs_name]
-	varKwargs = locals_[varKwargs_name]
+	varArgs = locals_[varArgs_name] if varArgs_name != None else tuple()
+	varKwargs = locals_[varKwargs_name] if varKwargs_name != None else {}
 	notArgs = set(locals_.iterkeys()) - set(argNames)
 	
 	for notArg in notArgs:	del locals_[notArg]
