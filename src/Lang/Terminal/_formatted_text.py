@@ -43,7 +43,7 @@ class FormattedText(str):
 		if self.background != None:
 			kwargs["on_color"] = "on_" + self.background
 		
-		for name, value in self._termcolorAttrs.iteritems():
+		for name, value in self._termcolorAttrs.items():
 			if value != True:
 				del self._termcolorAttrs[name]
 		return colored(attrs=self._termcolorAttrs, **kwargs)
