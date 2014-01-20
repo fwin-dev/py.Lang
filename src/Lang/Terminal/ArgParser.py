@@ -19,8 +19,7 @@ class Bool3Way:
 			self.index += 1
 			return value
 
-
-class _HelpFormatter(argparse.HelpFormatter):
+class _HelpFormatter(argparse.RawDescriptionHelpFormatter):
 	"""Man-page-like formatter for getting help of a python script"""
 	def __init__(self, prog, indent_increment=2, max_help_position=24):
 		size = [int(i) for i in os.popen("stty size", "r").read().split()]  # returns rows, columns when connected to a tty
