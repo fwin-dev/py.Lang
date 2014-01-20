@@ -23,7 +23,11 @@ class Bool3Way:
 class _HelpFormatter(argparse.HelpFormatter):
 	"""Man-page-like formatter for getting help of a python script"""
 	def __init__(self, prog, indent_increment=2, max_help_position=24):
-		rows, columns = [int(i) for i in os.popen("stty size", "r").read().split()]
+		size = [int(i) for i in os.popen("stty size", "r").read().split()]  # returns rows, columns when connected to a tty
+		if len(size) != 0:
+			columns = size[1]
+		else:   # when not connected to a tty
+			columns = 160
 		super(_HelpFormatter, self).__init__(prog=prog, indent_increment=indent_increment, max_help_position=max_help_position,
 							width=columns)
 	def _format_usage(self, usage, actions, groups, prefix):
