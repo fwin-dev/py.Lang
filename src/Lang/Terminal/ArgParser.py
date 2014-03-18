@@ -141,6 +141,8 @@ class ActionsContainer(argparse._ActionsContainer):
 				kwargs["choices"] = [True, False]
 			try:
 				kwargs["choices"] = [i for i in kwargs["type"]()]
+				if len(kwargs["choices"]) == 0:
+					del kwargs["choices"]
 			except TypeError:
 				pass
 		return super(ActionsContainer, self).add_argument(*args, **kwargs)
