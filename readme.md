@@ -6,28 +6,40 @@ Package description	{#mainpage}
 This package provides a lot of miscellaneous things that probably should have been included in python's built-in
 library but weren't, including:
 
-* Various function/method utilities/tools
-  * An abstract class method
-  * Timing execution of a function with a decorator
-  * A way to get the argument names and values of a function without using **kwargs or *args
-  * A way to describe the argument and return types of functions, kind of similar to a statically typed language
-* Various class utilities/tools
-  * Getting the variables of a class instance with __slots__
-* Various module and package utilities/tools (Is a module built in? In what file is it? etc.)
-* Implementation of various structures to hold data
-  * LIFO/Stack
-  * Frozen dictionary
-  * Ordered set
-* A peekable iterator
-* An improved differ, based on `difflib.SequenceMatcher`
-* An improved ArgParser for parsing command line arguments
-* A poor man's debug tracer when a better tracer isn't available (for example, when running a python script over ssh)
-* Easy event handling with subscription/listening, including event logging
-* Terminal/user interaction improvements
+* `FuncTools`: Various function/method utilities/tools
+	* `FuncTools.Abstraction.abstractmethod`: An abstract method that can be used with `@classmethod`
+	* `FuncTools.timeIt`: Timing execution of a function with a decorator
+	* `FuncTools.getArgs`: A way to get the argument names and values of a function without using `**kwargs` or `*args`
+* `ClassTools`: Various utilities/tools for working with classes. Also includes class patterns.
+	* `ClassTools.vars`: Getting the variables of a class instance with `__slots__`
+	* `ClassTools.Patterns.RegisteredInstances`: Easily keep track of all instances of a class
+	* `ClassTools.Patterns.Singleton`: Class bases (using metaclass) that implement the singleton pattern
+	* `ClassTools.Patterns.Multiton`: Class bases (using metaclass) that implement the multiton pattern
+	* `ClassTools.Patterns.StartEndWith`: Automatic support of the `with` statement by implementing only a start and end method
+* `PyPkgUtil`: Various module and package utilities/tools (Is a module built in? In what file is it? etc.)
+* `Struct`: Implementation of various structures to hold data
+	* `Struct.LIFOstack`: LIFO/Stack
+	* `Struct.FrozenDict`: Frozen dictionary
+	* `Struct.OrderedSet`: Ordered set
+* `Iter.PeekableIterable`: A peekable iterator
+* `Diff.SequenceMatcher`: An improved differ, based on python's builtin `difflib.SequenceMatcher`
+* `Concurrency`: Unified API for locks, semaphores, etc., along with some useful tools/utilities
+	* `Concurrency.Multiprocessing`: For dealing with multiple python processes
+		* `Concurrency.Multiprocessing.decorators.processify`: Run a function in a separate process
+	* `Concurrency.decorators.useLock`: Surround an entire function's execution in a lock
+	* `Concurrency.Threading`: A lock and semaphore using standard python threads
+	* `Concurrency.FileSystem.FileLock_ByFCNTL`: A lock using unix FCNTL file locking
+* `DebugTracer`: A poor man's debug tracer when a better tracer isn't available (for example, when running a python script over ssh without remote debugging)
+* `Events`: Easy event handling with subscriptions+callbacks, including an API for event logging
+* `Terminal`: Terminal/user interaction improvements
+	* `Terminal.askYesNo`: A simple way of asking user to respond with yes or no
+	* `Terminal.ArgParser`: An improved ArgParser for parsing command line arguments
+	* `Terminal.FormattedText`: Color text in the terminal. Also can do bold, underline, etc. depending on the terminal.
+	* `Terminal.Table`: Nicely prints column+row data in the terminal.
 
 # Detailed functionality
 
-## Function/method tools
+## Function/method utilities/tools
 
 ### An abstract class method
 
@@ -42,7 +54,8 @@ Use this abstract method decorator instead:
 		asdf
 
 Make sure that `abstractmethod` comes after `classmethod`, else you will get:
-`AttributeError: 'classmethod' object has no attribute '__name__'`
+
+	`AttributeError: 'classmethod' object has no attribute '__name__'`
 
 ### Timing execution of a function
 
@@ -75,11 +88,6 @@ To get both kwargs and args, use:
 	args, kwargs = getArgs(useKwargFormat=None)
 
 Note that `cls` and `self` are automatically ignored for class methods and instance methods.
-
-### Describing a function's argument and return types
-
-Some convenience classes are defined here that provide a thin, rough API for describing types. See the source in
-`Lang.Function` for details.
 
 ## Class tools
 
@@ -234,26 +242,6 @@ More functions are available, including:
 - `get_matching_elems_useOnce()` and `get_mismatching_elems_useOnce()`
   - These are the same as `get_matching_elems()` and `get_mismatching_elems()` except that they are generators instead of functions returning a list
 
-## An improved ArgParser
-
-In addition to the plethora of features in python's built in `ArgParser`, a few more are added in here:
-
-- Improved help formatting, similar to `man`
-- 3 way boolean (`True`, `False`, `None`)
-- Required named parameters - the built in ArgParser only supports required positional arguments and optional named parameters
-
-The new `ArgParser` uses the same interface as the old one, so see the built in `ArgParser` documentation.
-
-Example:
-
-	from Lang.ArgParser import ArgParser
-    parser = ArgParser(argument_default=None, add_help=True, description="Adds a user to a linux machine")
-    parser.add_argument("username")
-	parser.add_argument("-p", "--password", required=False, help="Prompt for password if this is not given")
-	parser.add_argument("-H", "--create-home", type=Bool3Way, required=True,
-		help="Controls home directory creation for user. None uses the default behavior which varies between machines.")
-	args = parser.parse_args()
-
 ## Poor man's debugger
 
 Several arguments are available here. See the source for more details.
@@ -372,4 +360,24 @@ Here is an example:
 	table.printLive()						# prints all rows (and headers) that haven't been printed before
 
 If another row is added to the table, another call to `printLive()` will only print only that new row.
+
+### An improved ArgParser
+
+In addition to the plethora of features in python's built in `ArgParser`, a few more are added in here:
+
+- Improved help formatting, similar to `man`
+- Addition of 3 way booleans (`True`, `False`, `None`) and handling of any other iterable type
+- Required named parameters - the built in ArgParser only supports required positional arguments and optional named parameters
+
+The new `ArgParser` uses the same interface as the old one, so see the built in `ArgParser` documentation.
+
+Example:
+
+	from Lang.ArgParser import ArgParser
+    parser = ArgParser(argument_default=None, add_help=True, description="Adds a user to a linux machine")
+    parser.add_argument("username")
+	parser.add_argument("-p", "--password", required=False, help="Prompt for password if this is not given")
+	parser.add_argument("-H", "--create-home", type=Bool3Way, required=True,
+		help="Controls home directory creation for user. None uses the default behavior which varies between machines.")
+	args = parser.parse_args()
 
