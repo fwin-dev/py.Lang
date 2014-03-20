@@ -1,4 +1,9 @@
-*.pyc
+.project
+.settings
 .DS_Store
+~*
+*.pyc
+.pydevproject
 *.egg-info
+*.egg
 /dist
