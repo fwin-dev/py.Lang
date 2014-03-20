@@ -13,6 +13,7 @@ class EventReceiver(object):
 	be called when an exception happens. The `tracebackInstance` argument is suitable for passing into the
 	builtin python function `traceback.format_tb`.
 	"""
+	pass
 
 class EventProxy(EventReceiver):
 	"""
@@ -37,6 +38,12 @@ class EventProxy(EventReceiver):
 		sys.excepthook = branchHook
 	
 	def __getattr__(self, name):
+		# __getattr__ (instead of __getattribute__) won't work because it doesn't work with super
+# 		if hasattr(super(EventProxy, self), name):
+# 			return super(EventProxy, self).__getattribute__(name)
+# 		if name in self.__dict__:
+# 			return self.__dict__
+		
 		def _run(*args, **kwargs):
 			found = False
 			for receiver in self._receivers:

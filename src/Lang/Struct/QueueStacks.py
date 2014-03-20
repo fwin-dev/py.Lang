@@ -1,4 +1,4 @@
-class LIFOstack:
+class LIFOstack(object):
 	"""Standard LIFO stack based on a list."""
 	def __init__(self):
 		self._list = []
