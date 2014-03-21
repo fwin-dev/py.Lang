@@ -12,10 +12,11 @@ library but weren't, including:
 	* `FuncTools.getArgs`: A way to get the argument names and values of a function without using `**kwargs` or `*args`
 * `ClassTools`: Various utilities/tools for working with classes. Also includes class patterns.
 	* `ClassTools.vars`: Getting the variables of a class instance with `__slots__`
-	* `ClassTools.Patterns.RegisteredInstances`: Easily keep track of all instances of a class
-	* `ClassTools.Patterns.Singleton`: Class bases (using metaclass) that implement the singleton pattern
-	* `ClassTools.Patterns.Multiton`: Class bases (using metaclass) that implement the multiton pattern
-	* `ClassTools.Patterns.StartEndWith`: Automatic support of the `with` statement by implementing only a start and end method
+	* `ClassTools.Patterns`: A package with implementations of [class patterns](http://en.wikipedia.org/wiki/Software_design_pattern)
+		* `ClassTools.Patterns.RegisteredInstances`: Easily keep track of all instances of a class
+		* `ClassTools.Patterns.Singleton`: Class bases (using metaclass) that implement the singleton pattern
+		* `ClassTools.Patterns.Multiton`: Class bases (using metaclass) that implement the multiton pattern
+		* `ClassTools.Patterns.StartEndWith`: Automatic support of the `with` statement by implementing only a start and end method
 * `PyPkgUtil`: Various module and package utilities/tools (Is a module built in? In what file is it? etc.)
 * `Struct`: Implementation of various structures to hold data
 	* `Struct.LIFOstack`: LIFO/Stack
@@ -71,7 +72,7 @@ Make sure that `abstractmethod` comes after `classmethod`, else you will get:
 
 Python provides `**kwargs` and `*args` to get a dictionary or list of a function's arguments, but this makes it hard
 for IDEs and documentation generators to determine all possible arguments to the function. As an alternative to
-`**kwargs` or `*args`, you can use the `getArgs()` method:
+`**kwargs` or `*args`, you can specify all arguments explicitly and then use the `getArgs()` method:
 
 	from Lang.FuncTools import getArgs
 	def myFunc(arg1, arg2):
@@ -87,7 +88,8 @@ To get both kwargs and args, use:
 
 	args, kwargs = getArgs(useKwargFormat=None)
 
-Note that `cls` and `self` are automatically ignored for class methods and instance methods.
+* Note that `cls` and `self` are automatically ignored for class methods and instance methods.
+* Note that if there is a question of whether an argument is an arg or a kwarg, then kwarg is preferred.
 
 ## Class tools
 
@@ -97,6 +99,73 @@ This works the same as the built-in python function `vars()`, except it also wor
 
 	from Lang.ClassTools import vars
 	myClassVars = vars(MyClass())
+
+### Patterns
+
+#### Keeping track of class instances
+
+A common pattern in programming is the need to access all instantiations of a class for some reason. In static languages, this is
+often done in a factory, but in python, we can use metaclasses to implement this, and it gives a nicer interface for the programmer.
+For example:
+
+	from Lang.ClassTools.Patterns import RegisteredInstances
+	
+	class Foo(RegisteredInstances):
+		def __init__(self, value):
+			super(Foo, self).__init__()
+			self.value = value
+	
+	a = Foo("asdf")
+	b = Foo("kjlh")
+	
+Now we can use the following to get an OrderedSet of all instances created:
+
+	fooInstances = Foo.getAllInstances()
+
+The `RegisteredInstances` superclass also aims to support subclasses of your `Foo` in a nice way. For example, if we additionally define:
+
+	class Bar(Foo):
+		pass
+
+And then instantiate:
+
+	c = Bar("iuhl")
+
+We'll get the following results:
+* A call to `Foo.getAllInstances()` will return an OrderedSet of all 3 instances (2 of `Foo`, 1 of `Bar`) instantiated up to this point.
+* A call to `Foo.getAllClasses()` will return an iterable of 2 classes, `Foo` and `Bar`.
+* A call to `Bar.getAllInstances()` will return an OrderedSet of 1 instance of `Bar`.
+* A call to `Bar.getAllClasses()` will return an iterable of 1 class, `Bar`.
+
+#### Singleton pattern
+
+A well known pattern is [the singleton pattern](http://en.wikipedia.org/wiki/Singleton_pattern). There are two implementations available
+in this package, depending on wanted behavior when your class's constructor is (incorrectly) called multiple times (aka `duplicate` instances);
+one implementation will raise an exception for the second instantiation attempt, and the other will simply ignore and discard the second attempt, and give the
+originally instantiated object back. Let's see these in action:
+
+	class Foo(Singleton_OnDupRaiseException):
+		def __init__(self, value):
+			super(Foo, self).__init__()
+			self.value = value
+	a = Foo(1)
+	b = Foo(2)	# an exception is raised
+
+And the other singleton implementation:
+
+	class Foo(_Singleton_OnDupReturnExisting):
+		def __init__(self, value):
+			super(Foo, self).__init__()
+			self.value = value
+	a = Foo(1)
+	b = Foo(2)	# b actually holds the Foo(1) instance, and Foo(2) is not created
+
+Note: Make sure the singleton superclass is the **first** in your MRO heirarchy.
+
+The following methods would be available on `Foo`, similar to the "instance tracking" pattern, above. (See there for more details.)
+Differences are noted here:
+* `Foo.getAllClasses()`: Same behavior as above.
+* `Foo.getAllInstances()`: Will return a dictionary with the key being the class, and the value being the singleton instance.
 
 ## Details about python packages
 
