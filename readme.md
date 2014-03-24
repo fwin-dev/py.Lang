@@ -428,6 +428,43 @@ More functions are available, including:
 - `get_matching_elems_useOnce()` and `get_mismatching_elems_useOnce()`
   - These are the same as `get_matching_elems()` and `get_mismatching_elems()` except that they are generators instead of functions returning a list
 
+## Concurrency
+
+The `Concurrency` package provides a unified API for locks and semaphores, in addition to some useful utilities.
+
+### @processify
+
+Using this function decorator will automatically cause the function to run inside a new python process:
+
+	from Concurrency.Multiprocessing.decorators import processify
+	
+	@processify
+	def foo():
+		<do something>
+
+* Note that the code is not run in parallel to the current process, so this is not for gaining any speed.
+* Note that every argument and the return value must be picklable.
+
+### The unified API
+
+Different threading APIs and similar will generally have `lock` and `release` methods, along with possibly some other methods and functionality.
+A unified API was made in order to smooth over these differences and fill in functionality that was missing. This includes:
+
+* Standardized method names
+* Standardized parameters for `lock` and `release` methods
+* Standardized parameters for lock/semaphore constructor
+
+#### @useLock
+
+Using this function decorator will automatically cause a lock to be acquired before executing the function, and released after the function exits:
+
+	from Concurrency.decorators import useLock
+	
+	lockInstance = 
+	@useLock(lockInstance)
+	def foo():
+		<do something>
+
 ## Poor man's debugger
 
 Several arguments are available here. See the source for more details.
