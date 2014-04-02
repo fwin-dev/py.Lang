@@ -17,26 +17,30 @@ library but weren't, including:
 		* `ClassTools.Patterns.Singleton`: Class bases (using metaclass) that implement the singleton pattern
 		* `ClassTools.Patterns.Multiton`: Class bases (using metaclass) that implement the multiton pattern
 		* `ClassTools.Patterns.StartEndWith`: Automatic support of the `with` statement by implementing only a start and end method
-* `PyPkgUtil`: Various module and package utilities/tools (Is a module built in? In what file is it? etc.)
-* `Struct`: Implementation of various structures to hold data
+* [PyPkgUtil](readme.md#pypkgutil): Various module and package utilities/tools (Is a module built in? In what file is it? etc.)
+* [Struct](readme.md#struct): Implementation of various structures to hold data
 	* `Struct.LIFOstack`: LIFO/Stack
 	* `Struct.FrozenDict`: Frozen dictionary
 	* `Struct.OrderedSet`: Ordered set
-* `Iter.PeekableIterable`: A peekable iterator
-* `Diff.SequenceMatcher`: An improved differ, based on python's builtin `difflib.SequenceMatcher`
-* `Concurrency`: Unified API for locks, semaphores, etc., along with some useful tools/utilities
+* [Iter](readme.md#iter)
+	* `Iter.PeekableIterable`: A peekable iterator
+* [Diff](readme.md#diff)
+	* `Diff.SequenceMatcher`: An improved differ, based on python's builtin `difflib.SequenceMatcher`
+* [Concurrency](readme.md#concurrency): Unified API for locks, semaphores, etc., along with some useful tools/utilities
 	* `Concurrency.Multiprocessing`: For dealing with multiple python processes
 		* `Concurrency.Multiprocessing.decorators.processify`: Run a function in a separate process
 	* `Concurrency.decorators.useLock`: Surround an entire function's execution in a lock
 	* `Concurrency.Threading`: A lock and semaphore using standard python threads
 	* `Concurrency.FileSystem.FileLock_ByFCNTL`: A lock using unix FCNTL file locking
-* `DebugTracer`: A poor man's debug tracer when a better tracer isn't available (for example, when running a python script over ssh without remote debugging)
-* `Events`: Easy event handling with subscriptions+callbacks, including an API for event logging
-* `Terminal`: Terminal/user interaction improvements
+* [Terminal](readme.md#terminal): Utilities for improving terminal interaction with the user
 	* `Terminal.askYesNo`: A simple way of asking user to respond with yes or no
-	* `Terminal.ArgParser`: An improved ArgParser for parsing command line arguments
 	* `Terminal.FormattedText`: Color text in the terminal. Also can do bold, underline, etc. depending on the terminal.
 	* `Terminal.Table`: Nicely prints column+row data in the terminal.
+	* `Terminal.ArgParser`: An improved ArgParser for parsing command line arguments
+* [Events](readme.md#events): Easy event handling with subscriptions+callbacks, including an API for event logging
+	* `Events.Proxy`: Provides a super easy API for event subscription and callbacks
+	* `Events.Logging`: Skeleton classes for logging events to different destinations
+* [DebugTracer](readme.md#debugtracer): A poor man's debug tracer when a better tracer isn't available (for example, when running a python script over ssh without remote debugging)
 
 # Detailed functionality
 
@@ -93,7 +97,9 @@ To get both kwargs and args, use:
 * Note that `cls` and `self` are automatically ignored for class methods and instance methods.
 * Note that if there is a question of whether an argument is an arg or a kwarg, then kwarg is preferred.
 
-## Class tools
+## ClassTools
+
+Various utilities/tools for working with classes. Also includes class patterns.
 
 ### Getting the variables of a class instance with __slots__
 
@@ -286,10 +292,11 @@ If you only want to be able to call your start and end code (either via explicit
 	with a:		# exception is raised
 		<do something>
 
-## Details about python packages
+## PyPkgUtil
 
-Python can provide a lot of information about a package and a lot of different ways of loading packages, but
-the functions and code to accomplish this is scattered. This `PkgUtil` module provides everything in one location.
+Provides details about python packages and modules. Python can provide a lot of information about a package and a lot of
+different ways of loading packages, but the functions and code to accomplish this is scattered and sometimes not obvious.
+This `PkgUtil` module provides everything in one location.
 
 	from PyPkgUtil import PkgUtil
 
@@ -350,7 +357,9 @@ Get the name of a module or package:
 
 	name = PkgUtil.convert_objectToName(obj)
 
-## Structures
+## Struct
+
+Various structures for holding data.
 
 ### LIFO/Stack
 
@@ -374,8 +383,8 @@ except it cannot be modified.
 
 The built-in python `set` is just like a `list`, except for 2 things:
 
-- Sets can't contain duplicate elements
-- Sets are unordered
+* Sets can't contain duplicate elements
+* Sets are unordered
  
 However, there are some cases where an ordered set (aka a list with no duplicate elements) is desirable. For this, use
 the `OrderedSet` provided here, which provides a similar implementation compared to the built-in `set`, but also provides
@@ -384,7 +393,9 @@ methods typically found in a list, such as `insert`/`insertAt`. Refer to the sou
 	from Lang.Struct import OrderedSet
 	set_ = OrderedSet(range(1,10))
 
-## Peekable iterator
+## Iter
+
+### Peekable iterator
 
 Want to use an iterator for RAM usage concerns, but need to know the next element sometimes without advancing the
 iterator? Then this "peekable iterator" implementation is for you! Just wrap any iterable inside a `PeekableIterable`.
@@ -400,15 +411,17 @@ implements `__iter__`.
 	print(nums.peek())		# peeks without advancing
 	print(nums.hasNext())	# checks if there's a next element
 
-## Improved differ
+## Diff
+
+### An improved differ
 
 This differ builds upon `difflib.SequenceMatcher` which can diff any python objects with `__eq__` implemented, contained
 within a list, tuple, etc. However, the built in class only provides methods for getting matching sets of indices which
 refer to matching elements, leaving you to infer which indices don't match. It also doens't give you direct access to
 elements that do or don't match. This differ adds all of that functionality. It also fixes:
 
-- A bug in the built in differ where subsequent calls to `get_matching_blocks()` returns results in a different format
-- Calculating the similarity ratio: The built in differ calculates this ratio taking both diff sides into account, but what's usually wanted is how much one side is similar/different compared to the other side, i.e. `(1 - ratio) / 2 + ratio`
+* A bug: In the built in differ, subsequent calls to `get_matching_blocks()` will return results in a different format due to caching
+* Calculating the similarity ratio: The built in differ calculates this ratio taking both diff sides into account, but what's usually wanted is how much one side is similar/different compared to the other side, i.e. `(1 - ratio) / 2 + ratio`
 
 	from Lang.Diff import SequenceMatcher
 	diff = SequenceMatcher(tuple("aebcdef"), tuple("abbcdgef"))
@@ -425,10 +438,10 @@ elements that do or don't match. This differ adds all of that functionality. It 
 
 More functions are available, including:
 
-- `getmatching()` and `getmismatching()`
-  - These return structures with `.block` and `.elems` attributes containing both block indices and the elems which the block refers to
-- `get_matching_elems_useOnce()` and `get_mismatching_elems_useOnce()`
-  - These are the same as `get_matching_elems()` and `get_mismatching_elems()` except that they are generators instead of functions returning a list
+* `getmatching()` and `getmismatching()`
+  * These return structures with `.block` and `.elems` attributes containing both block indices and the elems which the block refers to
+* `get_matching_elems_useOnce()` and `get_mismatching_elems_useOnce()`
+  * These are the same as `get_matching_elems()` and `get_mismatching_elems()` except that they are generators instead of functions returning a list
 
 ## Concurrency
 
@@ -467,16 +480,13 @@ Using this function decorator will automatically cause a lock to be acquired bef
 	def foo():
 		<do something>
 
-## Poor man's debugger
+## Events
 
-Several arguments are available here. See the source for more details.
+Easy event handling with subscriptions+callbacks, including an API for event logging.
 
-	from Lang.DebugTracer import setTraceOn
-	setTraceOn()
+### Events.Proxy
 
-## Event handling
-
-For general event handling with event subscription and listeners, there is a proxy API. The proxy receives an event
+For general event handling involving event subscription and listeners, there is a proxy API. The proxy receives an event
 (via a method call) and then calls any subscribers (aka receivers) to the event. In this implementation, a subscriber
 subscribes to all events, but only chooses to implement the methods for the events that it is interested in. The proxy
 checks each receiver to see if it has implemented the method, and if so, calls the method. All receivers can be
@@ -543,7 +553,9 @@ When using multiple loggers, the function you call on the `Logging` instance wil
 	log = Logging((StdoutLogger, MyFileLog))
 	log.notifyFolderCheck("folder/path/here")
 
-## Terminal improvements
+## Terminal
+
+Utilities for improving terminal interaction with the user.
 
 ### Asking the user a question
 
@@ -588,11 +600,11 @@ If another row is added to the table, another call to `printLive()` will only pr
 
 ### An improved ArgParser
 
-In addition to the plethora of features in python's built in `ArgParser`, a few more are added in here:
+In addition to the plethora of features in [python's built-in argparse module](https://docs.python.org/2.7/library/argparse.html), a few more are added in here:
 
-- Improved help formatting, similar to `man`
-- Addition of 3 way booleans (`True`, `False`, `None`) and handling of any other iterable type
-- Required named parameters - the built in ArgParser only supports required positional arguments and optional named parameters
+* Improved help formatting, similar to `man`
+* Addition of 3 way booleans (`True`, `False`, `None`) and automatic handling of any other iterable type
+* Required named parameters - the built in ArgParser only supports required positional arguments and optional named parameters
 
 The new `ArgParser` uses the same interface as the old one, so see the built in `ArgParser` documentation.
 
@@ -606,3 +618,9 @@ Example:
 		help="Controls home directory creation for user. None uses the default behavior which varies between machines.")
 	args = parser.parse_args()
 
+## DebugTracer
+
+A poor man's debugger. Several arguments are available here. See the source for more details.
+
+	from Lang.DebugTracer import setTraceOn
+	setTraceOn()
