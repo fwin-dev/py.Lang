@@ -6,11 +6,11 @@ Package description	{#mainpage}
 This package provides a lot of miscellaneous things that probably should have been included in python's built-in
 library but weren't, including:
 
-* [`FuncTools`](#FuncTools): Various function/method utilities/tools
+* [FuncTools](readme.md#functools): Various function/method utilities/tools
 	* `FuncTools.Abstraction.abstractmethod`: An abstract method that can be used with `@classmethod`
 	* `FuncTools.timeIt`: Timing execution of a function with a decorator
 	* `FuncTools.getArgs`: A way to get the argument names and values of a function without using `**kwargs` or `*args`
-* `ClassTools`: Various utilities/tools for working with classes. Also includes class patterns.
+* [ClassTools](readme.md#classtools): Various utilities/tools for working with classes. Also includes class patterns.
 	* `ClassTools.vars`: Getting the variables of a class instance with `__slots__`
 	* `ClassTools.Patterns`: A package with implementations of [class patterns](http://en.wikipedia.org/wiki/Software_design_pattern)
 		* `ClassTools.Patterns.RegisteredInstances`: Easily keep track of all instances of a class
