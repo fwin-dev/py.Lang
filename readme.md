@@ -6,7 +6,7 @@ Package description	{#mainpage}
 This package provides a lot of miscellaneous things that probably should have been included in python's built-in
 library but weren't, including:
 
-* `FuncTools`: Various function/method utilities/tools
+* [`FuncTools`](#FuncTools): Various function/method utilities/tools
 	* `FuncTools.Abstraction.abstractmethod`: An abstract method that can be used with `@classmethod`
 	* `FuncTools.timeIt`: Timing execution of a function with a decorator
 	* `FuncTools.getArgs`: A way to get the argument names and values of a function without using `**kwargs` or `*args`
@@ -40,7 +40,9 @@ library but weren't, including:
 
 # Detailed functionality
 
-## Function/method utilities/tools
+## FuncTools
+
+A collection of function/method utilities/tools.
 
 ### An abstract class method
 
