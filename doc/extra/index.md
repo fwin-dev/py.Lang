@@ -6,28 +6,47 @@ Package description	{#mainpage}
 This package provides a lot of miscellaneous things that probably should have been included in python's built-in
 library but weren't, including:
 
-* Various function/method utilities/tools
-  * An abstract class method
-  * Timing execution of a function with a decorator
-  * A way to get the argument names and values of a function without using **kwargs or *args
-  * A way to describe the argument and return types of functions, kind of similar to a statically typed language
-* Various class utilities/tools
-  * Getting the variables of a class instance with __slots__
-* Various module and package utilities/tools (Is a module built in? In what file is it? etc.)
-* Implementation of various structures to hold data
-  * LIFO/Stack
-  * Frozen dictionary
-  * Ordered set
-* A peekable iterator
-* An improved differ, based on `difflib.SequenceMatcher`
-* An improved ArgParser for parsing command line arguments
-* A poor man's debug tracer when a better tracer isn't available (for example, when running a python script over ssh)
-* Easy event handling with subscription/listening, including event logging
-* Terminal/user interaction improvements
+* [FuncTools](readme.md#functools): Various function/method utilities/tools
+	* `FuncTools.Abstraction.abstractmethod`: An abstract method that can be used with `@classmethod`
+	* `FuncTools.timeIt`: Timing execution of a function with a decorator
+	* `FuncTools.getArgs`: A way to get the argument names and values of a function without using `**kwargs` or `*args`
+* [ClassTools](readme.md#classtools): Various utilities/tools for working with classes. Also includes class patterns.
+	* `ClassTools.vars`: Getting the variables of a class instance with `__slots__`
+	* `ClassTools.Patterns`: A package with implementations of [class patterns](http://en.wikipedia.org/wiki/Software_design_pattern)
+		* `ClassTools.Patterns.RegisteredInstances`: Easily keep track of all instances of a class
+		* `ClassTools.Patterns.Singleton`: Class bases (using metaclass) that implement the singleton pattern
+		* `ClassTools.Patterns.Multiton`: Class bases (using metaclass) that implement the multiton pattern
+		* `ClassTools.Patterns.StartEndWith`: Automatic support of the `with` statement by implementing only a start and end method
+* [PyPkgUtil](readme.md#pypkgutil): Various module and package utilities/tools (Is a module built in? In what file is it? etc.)
+* [Struct](readme.md#struct): Implementation of various structures to hold data
+	* `Struct.LIFOstack`: LIFO/Stack
+	* `Struct.FrozenDict`: Frozen dictionary
+	* `Struct.OrderedSet`: Ordered set
+* [Iter](readme.md#iter)
+	* `Iter.PeekableIterable`: A peekable iterator
+* [Diff](readme.md#diff)
+	* `Diff.SequenceMatcher`: An improved differ, based on python's builtin `difflib.SequenceMatcher`
+* [Concurrency](readme.md#concurrency): Unified API for locks, semaphores, etc., along with some useful tools/utilities
+	* `Concurrency.Multiprocessing`: For dealing with multiple python processes
+		* `Concurrency.Multiprocessing.decorators.processify`: Run a function in a separate process
+	* `Concurrency.decorators.useLock`: Surround an entire function's execution in a lock
+	* `Concurrency.Threading`: A lock and semaphore using standard python threads
+	* `Concurrency.FileSystem.FileLock_ByFCNTL`: A lock using unix FCNTL file locking
+* [Terminal](readme.md#terminal): Utilities for improving terminal interaction with the user
+	* `Terminal.askYesNo`: A simple way of asking user to respond with yes or no
+	* `Terminal.FormattedText`: Color text in the terminal. Also can do bold, underline, etc. depending on the terminal.
+	* `Terminal.Table`: Nicely prints column+row data in the terminal.
+	* `Terminal.ArgParser`: An improved ArgParser for parsing command line arguments
+* [Events](readme.md#events): Easy event handling with subscriptions+callbacks, including an API for event logging
+	* `Events.Proxy`: Provides a super easy API for event subscription and callbacks
+	* `Events.Logging`: Skeleton classes for logging events to different destinations
+* [DebugTracer](readme.md#debugtracer): A poor man's debug tracer when a better tracer isn't available (for example, when running a python script over ssh without remote debugging)
 
 # Detailed functionality
 
-## Function/method tools
+## FuncTools
+
+A collection of function/method utilities/tools.
 
 ### An abstract class method
 
@@ -42,7 +61,8 @@ Use this abstract method decorator instead:
 		asdf
 
 Make sure that `abstractmethod` comes after `classmethod`, else you will get:
-`AttributeError: 'classmethod' object has no attribute '__name__'`
+
+	`AttributeError: 'classmethod' object has no attribute '__name__'`
 
 ### Timing execution of a function
 
@@ -58,7 +78,7 @@ Make sure that `abstractmethod` comes after `classmethod`, else you will get:
 
 Python provides `**kwargs` and `*args` to get a dictionary or list of a function's arguments, but this makes it hard
 for IDEs and documentation generators to determine all possible arguments to the function. As an alternative to
-`**kwargs` or `*args`, you can use the `getArgs()` method:
+`**kwargs` or `*args`, you can specify all arguments explicitly and then use the `getArgs()` method:
 
 	from Lang.FuncTools import getArgs
 	def myFunc(arg1, arg2):
@@ -74,14 +94,12 @@ To get both kwargs and args, use:
 
 	args, kwargs = getArgs(useKwargFormat=None)
 
-Note that `cls` and `self` are automatically ignored for class methods and instance methods.
+* Note that `cls` and `self` are automatically ignored for class methods and instance methods.
+* Note that if there is a question of whether an argument is an arg or a kwarg, then kwarg is preferred.
 
-### Describing a function's argument and return types
+## ClassTools
 
-Some convenience classes are defined here that provide a thin, rough API for describing types. See the source in
-`Lang.Function` for details.
-
-## Class tools
+Various utilities/tools for working with classes. Also includes class patterns.
 
 ### Getting the variables of a class instance with __slots__
 
@@ -90,10 +108,195 @@ This works the same as the built-in python function `vars()`, except it also wor
 	from Lang.ClassTools import vars
 	myClassVars = vars(MyClass())
 
-## Details about python packages
+### Patterns
 
-Python can provide a lot of information about a package and a lot of different ways of loading packages, but
-the functions and code to accomplish this is scattered. This `PkgUtil` module provides everything in one location.
+#### Keeping track of class instances
+
+A common pattern in programming is the need to access all instantiations of a class for some reason. In static languages, this is
+often done in a factory, but in python, we can use metaclasses to implement this, and it gives a nicer interface for the programmer.
+For example:
+
+	from Lang.ClassTools.Patterns import RegisteredInstances
+	
+	class Foo(RegisteredInstances):
+		def __init__(self, value):
+			super(Foo, self).__init__()
+			self.value = value
+	
+	a = Foo("asdf")
+	b = Foo("kjlh")
+	
+Now we can use the following to get an OrderedSet of all instances created:
+
+	fooInstances = Foo.getAllInstances()
+
+The `RegisteredInstances` superclass also aims to support subclasses of your `Foo` in a nice way. For example, if we additionally define:
+
+	class Bar(Foo):
+		pass
+
+And then instantiate:
+
+	c = Bar("iuhl")
+
+We'll get the following results:
+* A call to `Foo.getAllInstances()` will return an OrderedSet of all 3 instances (2 of `Foo`, 1 of `Bar`) instantiated up to this point.
+* A call to `Foo.getAllClasses()` will return an iterable of 2 classes, `Foo` and `Bar`.
+* A call to `Bar.getAllInstances()` will return an OrderedSet of 1 instance of `Bar`.
+* A call to `Bar.getAllClasses()` will return an iterable of 1 class, `Bar`.
+
+#### Singleton pattern
+
+A well known pattern is [the singleton pattern](http://en.wikipedia.org/wiki/Singleton_pattern). There are two implementations available
+in this package, depending on wanted behavior when your class's constructor is (incorrectly) called multiple times (aka `duplicate` instances);
+one implementation will raise an exception for the second instantiation attempt, and the other will simply ignore and discard the second
+attempt, and give the originally instantiated object back. Let's see these in action:
+
+	from Lang.ClassTools.Patterns import Singleton_OnDupRaiseException
+	
+	class Foo(Singleton_OnDupRaiseException):
+		def __init__(self, value):
+			super(Foo, self).__init__()
+			self.value = value
+	a = Foo(1)
+	b = Foo(2)	# an exception is raised
+
+And the other singleton implementation:
+
+	from Lang.ClassTools.Patterns import Singleton_OnDupReturnExisting
+	
+	class Foo(Singleton_OnDupReturnExisting):
+		def __init__(self, value):
+			super(Foo, self).__init__()
+			self.value = value
+	a = Foo(1)
+	b = Foo(2)	# b actually holds the Foo(1) instance, and Foo(2) is not created
+
+Note: Make sure the singleton superclass is the **first** in your MRO heirarchy.
+
+The following methods would be available on `Foo`, similar to the "instance tracking" pattern, above. (See there for more details.)
+Differences are noted here:
+* `Foo.getAllClasses()`: Same behavior as above.
+* `Foo.getAllInstances()`: Will return a dictionary with the key being the class, and the value being the singleton instance.
+
+#### Multiton pattern
+
+There are two implementations of [the multiton pattern](http://en.wikipedia.org/wiki/Multiton_pattern) aka "registry of singletons",
+similar to the singleton pattern above. Although wikipedia says a multiton is simply a singleton that keeps track of instances via key+value
+storage, this is very vague. In the py.Lang multiton implementation, each instance of the class must not be equal to another instance of the class
+(hence the name `Multiton_OneEquivalentInstance`), else either an exception is raised, or the existing instance, which is equal, is returned
+(hence the names `OnDupRaiseException`/`OnDupReturnExisting`, same as the singleton pattern). The uniqueness of the instance can be defined by
+the `__eq__` method. However, unlike the singleton pattern, since the instance must be created in order to compare using `__eq__`, be careful
+because the object's `__init__` method will always be called, regardless of whether the new instance is equal to an already-created instance.
+This could introduce an unintended side effect if not known in advance. If the new instance is not in fact valid, then it will be deleted
+(actually garbage collected because it will fall out of scope) after `__init__` and `__eq__` have been called.
+
+The classes which can be inherited from are `Multiton_OneEquivalentInstance_OnDupRaiseException` and `Multiton_OneEquivalentInstance_OnDupReturnExisting`.  
+Here is an example 2 instances allowed because the comparison is done by memory address, not using `__eq__`:
+
+	class Foo(Multiton_OneEquivalentInstance_OnDupRaiseException):
+		def __init__(self, value):
+			super(Foo, self).__init__()
+			self.value = value
+	a = Foo(3)
+	b = Foo(3)
+	self.assertNotEqual(id(a), id(b))
+
+And here's an example using `__eq__`:
+
+	class Foo(Multiton_OneEquivalentInstance_OnDupRaiseException):
+		def __init__(self, value):
+			super(Foo, self).__init__()
+			self.value = value
+		def __eq__(self, other):
+			return isinstance(other, self.__class__) and self.value == other.value
+	a = Foo(3)
+	b = Foo(3)	# will raise a DuplicateInstanceException
+
+#### StartEndWith pattern
+
+This pattern provides some nice functionality that just implementing `__enter__` and `__exit__` doesn't provide.
+
+##### Needing to manually enter and exit
+
+Find yourself implementing `__enter__` and `__exit__`, but still needing to manually call the entrance method and exit method sometimes?
+Yes, you can manually call `__enter__` or `__exit__` without using `with`, or you can define other methods like `start` and `end`
+which call `__enter__` and `__exit__`. The StartEndWith pattern gives you those nice looking `start` and `end` methods. You can even rename the
+methods by passing different method names into the constructor:
+
+	class Foo(StartEndWith):
+		def __init__(self):
+			super(Foo, self).__init__(methodName_start="begin", methodName_end="end")
+		def _start(self, *args, **kwargs):
+			<your code to start something>
+		def _end(self, *args, **kwargs):
+			<your code to end something>
+	
+	a = Foo()
+	a.begin()
+	<do something>
+	a.end()
+
+##### Telling whether you've began or not
+
+StartEndWith defines an `isActive()` method, which returns whether or not you're inside the `with` statement (or have called `start()`).
+Continuing from the example above:
+
+	print(a.isActive())		# False
+	a.begin()
+	<do something>
+	print(a.isActive())		# True
+	a.end()
+	print(a.isActive())		# False
+
+Or, using `with`:
+
+	with Foo() as a:
+		print(a.isActive())		# True
+
+##### Starting more than once without ending
+
+If you'd like to be able to start something more than once without ending it, use `allowStartWhileRunning=True`. (Otherwise, an exception will be raised.)
+
+	class Foo(StartEndWith):
+		def __init__(self):
+			super(Foo, self).__init__(allowStartWhileRunning=True)
+		def _start(self, *args, **kwargs):
+			<your code to start something>
+		def _end(self, *args, **kwargs):
+			<your code to end something>
+	
+	a.start()
+	a.start()
+	# this is also valid
+	a.end()	# only need to call once
+
+##### Disposable resource
+
+If you only want to be able to call your start and end code (either via explicit calls or using `with`) once and never again, use `useOnce=True`:
+
+	class Foo(StartEndWith):
+		def __init__(self):
+			super(Foo, self).__init__(useOnce=True)
+		def _start(self, *args, **kwargs):
+			<your code to start something>
+		def _end(self, *args, **kwargs):
+			<your code to end something>
+	
+	a = Foo()
+	a.begin()
+	<do something>
+	a.end()
+	a.begin()	# exception is raised
+	
+	with a:		# exception is raised
+		<do something>
+
+## PyPkgUtil
+
+Provides details about python packages and modules. Python can provide a lot of information about a package and a lot of
+different ways of loading packages, but the functions and code to accomplish this is scattered and sometimes not obvious.
+This `PkgUtil` module provides everything in one location.
 
 	from PyPkgUtil import PkgUtil
 
@@ -154,7 +357,9 @@ Get the name of a module or package:
 
 	name = PkgUtil.convert_objectToName(obj)
 
-## Structures
+## Struct
+
+Various structures for holding data.
 
 ### LIFO/Stack
 
@@ -178,8 +383,8 @@ except it cannot be modified.
 
 The built-in python `set` is just like a `list`, except for 2 things:
 
-- Sets can't contain duplicate elements
-- Sets are unordered
+* Sets can't contain duplicate elements
+* Sets are unordered
  
 However, there are some cases where an ordered set (aka a list with no duplicate elements) is desirable. For this, use
 the `OrderedSet` provided here, which provides a similar implementation compared to the built-in `set`, but also provides
@@ -188,7 +393,9 @@ methods typically found in a list, such as `insert`/`insertAt`. Refer to the sou
 	from Lang.Struct import OrderedSet
 	set_ = OrderedSet(range(1,10))
 
-## Peekable iterator
+## Iter
+
+### Peekable iterator
 
 Want to use an iterator for RAM usage concerns, but need to know the next element sometimes without advancing the
 iterator? Then this "peekable iterator" implementation is for you! Just wrap any iterable inside a `PeekableIterable`.
@@ -204,15 +411,17 @@ implements `__iter__`.
 	print(nums.peek())		# peeks without advancing
 	print(nums.hasNext())	# checks if there's a next element
 
-## Improved differ
+## Diff
+
+### An improved differ
 
 This differ builds upon `difflib.SequenceMatcher` which can diff any python objects with `__eq__` implemented, contained
 within a list, tuple, etc. However, the built in class only provides methods for getting matching sets of indices which
 refer to matching elements, leaving you to infer which indices don't match. It also doens't give you direct access to
 elements that do or don't match. This differ adds all of that functionality. It also fixes:
 
-- A bug in the built in differ where subsequent calls to `get_matching_blocks()` returns results in a different format
-- Calculating the similarity ratio: The built in differ calculates this ratio taking both diff sides into account, but what's usually wanted is how much one side is similar/different compared to the other side, i.e. `(1 - ratio) / 2 + ratio`
+* A bug: In the built in differ, subsequent calls to `get_matching_blocks()` will return results in a different format due to caching
+* Calculating the similarity ratio: The built in differ calculates this ratio taking both diff sides into account, but what's usually wanted is how much one side is similar/different compared to the other side, i.e. `(1 - ratio) / 2 + ratio`
 
 	from Lang.Diff import SequenceMatcher
 	diff = SequenceMatcher(tuple("aebcdef"), tuple("abbcdgef"))
@@ -229,41 +438,55 @@ elements that do or don't match. This differ adds all of that functionality. It 
 
 More functions are available, including:
 
-- `getmatching()` and `getmismatching()`
-  - These return structures with `.block` and `.elems` attributes containing both block indices and the elems which the block refers to
-- `get_matching_elems_useOnce()` and `get_mismatching_elems_useOnce()`
-  - These are the same as `get_matching_elems()` and `get_mismatching_elems()` except that they are generators instead of functions returning a list
+* `getmatching()` and `getmismatching()`
+  * These return structures with `.block` and `.elems` attributes containing both block indices and the elems which the block refers to
+* `get_matching_elems_useOnce()` and `get_mismatching_elems_useOnce()`
+  * These are the same as `get_matching_elems()` and `get_mismatching_elems()` except that they are generators instead of functions returning a list
 
-## An improved ArgParser
+## Concurrency
 
-In addition to the plethora of features in python's built in `ArgParser`, a few more are added in here:
+The `Concurrency` package provides a unified API for locks and semaphores, in addition to some useful utilities.
 
-- Improved help formatting, similar to `man`
-- 3 way boolean (`True`, `False`, `None`)
-- Required named parameters - the built in ArgParser only supports required positional arguments and optional named parameters
+### @processify
 
-The new `ArgParser` uses the same interface as the old one, so see the built in `ArgParser` documentation.
+Using this function decorator will automatically cause the function to run inside a new python process:
 
-Example:
+	from Concurrency.Multiprocessing.decorators import processify
+	
+	@processify
+	def foo():
+		<do something>
 
-	from Lang.ArgParser import ArgParser
-    parser = ArgParser(argument_default=None, add_help=True, description="Adds a user to a linux machine")
-    parser.add_argument("username")
-	parser.add_argument("-p", "--password", required=False, help="Prompt for password if this is not given")
-	parser.add_argument("-H", "--create-home", type=Bool3Way, required=True,
-		help="Controls home directory creation for user. None uses the default behavior which varies between machines.")
-	args = parser.parse_args()
+* Note that the code is not run in parallel to the current process, so this is not for gaining any speed.
+* Note that every argument and the return value must be picklable.
 
-## Poor man's debugger
+### The unified API
 
-Several arguments are available here. See the source for more details.
+Different threading APIs and similar will generally have `lock` and `release` methods, along with possibly some other methods and functionality.
+A unified API was made in order to smooth over these differences and fill in functionality that was missing. This includes:
 
-	from Lang.DebugTracer import setTraceOn
-	setTraceOn()
+* Standardized method names
+* Standardized parameters for `lock` and `release` methods
+* Standardized parameters for lock/semaphore constructor
 
-## Event handling
+#### @useLock
 
-For general event handling with event subscription and listeners, there is a proxy API. The proxy receives an event
+Using this function decorator will automatically cause a lock to be acquired before executing the function, and released after the function exits:
+
+	from Concurrency.decorators import useLock
+	
+	lockInstance = 
+	@useLock(lockInstance)
+	def foo():
+		<do something>
+
+## Events
+
+Easy event handling with subscriptions+callbacks, including an API for event logging.
+
+### Events.Proxy
+
+For general event handling involving event subscription and listeners, there is a proxy API. The proxy receives an event
 (via a method call) and then calls any subscribers (aka receivers) to the event. In this implementation, a subscriber
 subscribes to all events, but only chooses to implement the methods for the events that it is interested in. The proxy
 checks each receiver to see if it has implemented the method, and if so, calls the method. All receivers can be
@@ -330,7 +553,9 @@ When using multiple loggers, the function you call on the `Logging` instance wil
 	log = Logging((StdoutLogger, MyFileLog))
 	log.notifyFolderCheck("folder/path/here")
 
-## Terminal improvements
+## Terminal
+
+Utilities for improving terminal interaction with the user.
 
 ### Asking the user a question
 
@@ -373,3 +598,29 @@ Here is an example:
 
 If another row is added to the table, another call to `printLive()` will only print only that new row.
 
+### An improved ArgParser
+
+In addition to the plethora of features in [python's built-in argparse module](https://docs.python.org/2.7/library/argparse.html), a few more are added in here:
+
+* Improved help formatting, similar to `man`
+* Addition of 3 way booleans (`True`, `False`, `None`) and automatic handling of any other iterable type
+* Required named parameters - the built in ArgParser only supports required positional arguments and optional named parameters
+
+The new `ArgParser` uses the same interface as the old one, so see the built in `ArgParser` documentation.
+
+Example:
+
+	from Lang.ArgParser import ArgParser
+    parser = ArgParser(argument_default=None, add_help=True, description="Adds a user to a linux machine")
+    parser.add_argument("username")
+	parser.add_argument("-p", "--password", required=False, help="Prompt for password if this is not given")
+	parser.add_argument("-H", "--create-home", type=Bool3Way, required=True,
+		help="Controls home directory creation for user. None uses the default behavior which varies between machines.")
+	args = parser.parse_args()
+
+## DebugTracer
+
+A poor man's debugger. Several arguments are available here. See the source for more details.
+
+	from Lang.DebugTracer import setTraceOn
+	setTraceOn()
