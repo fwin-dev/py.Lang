@@ -1,0 +1,5 @@
+var namespace_lang_1_1_class_tools_1_1_patterns_1_1__singleton__multiton__abstract =
+[
+    [ "_SingletonMultitonAbstract", "class_lang_1_1_class_tools_1_1_patterns_1_1__singleton__multiton__abstract_1_1___singleton_multiton_abstract.html", "class_lang_1_1_class_tools_1_1_patterns_1_1__singleton__multiton__abstract_1_1___singleton_multiton_abstract" ],
+    [ "DuplicateInstanceException", "class_lang_1_1_class_tools_1_1_patterns_1_1__singleton__multiton__abstract_1_1_duplicate_instance_exception.html", null ]
+];

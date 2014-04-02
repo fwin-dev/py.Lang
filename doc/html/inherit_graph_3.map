@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_lang_1_1_arg_parser_1_1_bool3_way.html" title="3 way boolean &#45; can be True, False, or None" alt="" coords="5,5,179,32"/>
+<area shape="rect" id="node2" href="$class_lang_1_1_events_1_1_logging_1_1_logger_abstract.html" title="Lang.Events.Logging.Logger\lAbstract" alt="" coords="163,5,355,46"/>
+<area shape="rect" id="node3" href="$class_lang_1_1_events_1_1_logging_1_1_stdout_logger.html" title="Logs messages to sys.stdout. " alt="" coords="403,5,592,46"/>
 </map>

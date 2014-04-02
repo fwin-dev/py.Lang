@@ -1,4 +1,8 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classargparse_1_1_help_formatter.html" title="HelpFormatter" alt="" coords="5,5,104,32"/>
-<area shape="rect" id="node2" href="$class_lang_1_1_arg_parser_1_1___help_formatter.html" title="Man&#45;page&#45;like formatter for getting help of a python script." alt="" coords="152,5,349,32"/>
+<area shape="rect" id="node2" href="$class_lang_1_1_class_tools_1_1_patterns_1_1__multiton_1_1___multiton___one_equivalent_instance.html" title="Lang.ClassTools.Patterns.\l_multiton._Multiton_OneEquivalent\lInstance" alt="" coords="235,85,464,141"/>
+<area shape="rect" id="node5" href="$class_lang_1_1_class_tools_1_1_patterns_1_1__singleton_1_1___singleton___abstract.html" title="Lang.ClassTools.Patterns.\l_singleton._Singleton_Abstract" alt="" coords="247,173,452,214"/>
+<area shape="rect" id="node3" href="$class_lang_1_1_class_tools_1_1_patterns_1_1__multiton_1_1___multiton___one_equivalent_instance___on_dup_raise_exception.html" title="Lang.ClassTools.Patterns.\l_multiton._Multiton_OneEquivalent\lInstance_OnDupRaiseException" alt="" coords="517,5,747,61"/>
+<area shape="rect" id="node4" href="$class_lang_1_1_class_tools_1_1_patterns_1_1__multiton_1_1___multiton___one_equivalent_instance___on_dup_return_existing.html" title="Lang.ClassTools.Patterns.\l_multiton._Multiton_OneEquivalent\lInstance_OnDupReturnExisting" alt="" coords="517,85,747,141"/>
+<area shape="rect" id="node6" href="$class_lang_1_1_class_tools_1_1_patterns_1_1__singleton_1_1___singleton___on_dup_raise_exception.html" title="Lang.ClassTools.Patterns.\l_singleton._Singleton_OnDupRaise\lException" alt="" coords="515,165,749,221"/>
+<area shape="rect" id="node7" href="$class_lang_1_1_class_tools_1_1_patterns_1_1__singleton_1_1___singleton___on_dup_return_existing.html" title="Lang.ClassTools.Patterns.\l_singleton._Singleton_OnDupReturn\lExisting" alt="" coords="513,245,751,301"/>
 </map>

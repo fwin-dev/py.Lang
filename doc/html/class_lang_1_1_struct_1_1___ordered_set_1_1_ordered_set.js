@@ -2,6 +2,7 @@ var class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set =
 [
     [ "__init__", "class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a6087669516385c9b283662cefac8c9b6", null ],
     [ "__contains__", "class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#aaf4fee872372683e817f9c120dfeab90", null ],
+    [ "__delitem__", "class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#ac0b7ea0819787a1ac35a19e7b800251e", null ],
     [ "__eq__", "class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a645761973d570a4475dbd76ca95e916d", null ],
     [ "__getitem__", "class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a05c76fe14d132beca330d0bba02691c4", null ],
     [ "__iter__", "class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a0e37c1d39c3775b296c2af50f99f5df1", null ],

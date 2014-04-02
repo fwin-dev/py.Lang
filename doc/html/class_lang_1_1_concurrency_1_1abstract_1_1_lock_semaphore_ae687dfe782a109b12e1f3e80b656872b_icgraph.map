@@ -1,0 +1,9 @@
+<map id="Lang.Concurrency.abstract.LockSemaphore.getSlotsTakenBySelf" name="Lang.Concurrency.abstract.LockSemaphore.getSlotsTakenBySelf">
+<area shape="rect" id="node2" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html#a31255a440b39f26cb9128e5039921cd9" title="Lang.Concurrency.abstract.\lLockSemaphore.__str__" alt="" coords="342,5,527,46"/>
+<area shape="rect" id="node3" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html#af10cec6f3a635f9d414f253b4c226482" title="Lang.Concurrency.abstract.\lLockSemaphore.__getstate__" alt="" coords="335,70,535,111"/>
+<area shape="rect" id="node4" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html#a463c3352f2c02af5edad3a7d0bcc5e1b" title="*args and **kwargs are for optional/implementation specific parameters. " alt="" coords="342,135,527,177"/>
+<area shape="rect" id="node6" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock.html#ab6f4da9edb98ea85ee4cef74b6156312" title="Lang.Concurrency.abstract.\lLock.isAcquiredBySelf" alt="" coords="342,201,527,242"/>
+<area shape="rect" id="node7" href="$class_lang_1_1_concurrency_1_1_file_system_1_1___lock_1_1_file_lock___by_f_c_n_t_l.html#a0ef2142785de8b6889807523e0354c04" title="Lang.Concurrency.FileSystem.\l_Lock.FileLock_ByFCNTL._\l_getattribute__" alt="" coords="333,267,537,323"/>
+<area shape="rect" id="node8" href="$class_lang_1_1_concurrency_1_1_file_system_1_1___lock_1_1_file_lock___by_f_c_n_t_l.html#abff160265c49010985950f4a6bd6b841" title="Lang.Concurrency.FileSystem.\l_Lock.FileLock_ByFCNTL.getSlotsTaken\lByAnyone" alt="" coords="302,347,567,403"/>
+<area shape="rect" id="node5" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html#a5c679f6bc455607a0ac44066df631426" title="Lang.Concurrency.abstract.\lLockSemaphore.__exit__" alt="" coords="617,135,802,177"/>
+</map>

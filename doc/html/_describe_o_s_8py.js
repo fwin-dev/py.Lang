@@ -1,5 +1,6 @@
 var _describe_o_s_8py =
 [
+    [ "getKernelVersion", "_describe_o_s_8py.html#abe7108f3851c9c2ed08f20fcda16bde6", null ],
     [ "isDebianBased", "_describe_o_s_8py.html#a9d480e6736c8f1597b19427b4bec20a7", null ],
     [ "isRedHatBased", "_describe_o_s_8py.html#a8a840e4e2bcf237eb0ad7d09f89fcae3", null ],
     [ "isUnix", "_describe_o_s_8py.html#ad1ca9c548a79e5453d71986ef35644a1", null ],

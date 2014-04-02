@@ -1,0 +1,5 @@
+<map id="Exception" name="Exception">
+<area shape="rect" id="node2" href="$class_lang_1_1_class_tools_1_1_patterns_1_1__singleton__multiton__abstract_1_1_duplicate_instance_exception.html" title="{Lang.ClassTools.Patterns.\l_singleton_multiton_abstract.Duplicate\lInstanceException\n||}" alt="" coords="5,131,256,237"/>
+<area shape="rect" id="node3" href="$class_lang_1_1_concurrency_1_1_resource_already_released_exception.html" title="{Lang.Concurrency.Resource\lAlreadyReleasedException\n||}" alt="" coords="280,138,472,230"/>
+<area shape="rect" id="node4" href="$class_lang_1_1_concurrency_1_1_resource_is_full_exception.html" title="{Lang.Concurrency.Resource\lIsFullException\n||}" alt="" coords="496,138,688,230"/>
+</map>

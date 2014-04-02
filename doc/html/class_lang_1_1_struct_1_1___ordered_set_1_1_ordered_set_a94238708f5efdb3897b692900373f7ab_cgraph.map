@@ -1,5 +1,5 @@
 <map id="Lang.Struct._OrderedSet.OrderedSet.insertAt" name="Lang.Struct._OrderedSet.OrderedSet.insertAt">
-<area shape="rect" id="node2" href="$class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#af876cf3bdae69173dff1374db440e1f2" title="See _insertBefore_link(...) method." alt="" coords="216,5,379,46"/>
-<area shape="rect" id="node4" href="$class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a86ca893edaad1d4ac2dfee131550dc01" title="Same as append" alt="" coords="216,70,379,111"/>
-<area shape="rect" id="node3" href="$class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a3b5b0f278022d362913215cc21961b4e" title="Inserts newElemBefore into the current position of oldLinkAfter." alt="" coords="427,38,613,79"/>
+<area shape="rect" id="node2" href="$class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#af876cf3bdae69173dff1374db440e1f2" title="See _insertBefore_link(...) method. " alt="" coords="227,5,400,46"/>
+<area shape="rect" id="node4" href="$class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a86ca893edaad1d4ac2dfee131550dc01" title="Same as append " alt="" coords="227,70,400,111"/>
+<area shape="rect" id="node3" href="$class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a3b5b0f278022d362913215cc21961b4e" title="Inserts newElemBefore into the current position of oldLinkAfter. " alt="" coords="449,38,650,79"/>
 </map>

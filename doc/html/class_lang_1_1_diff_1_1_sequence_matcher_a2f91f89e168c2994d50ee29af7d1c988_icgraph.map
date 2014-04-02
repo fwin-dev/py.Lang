@@ -1,5 +1,5 @@
 <map id="Lang.Diff.SequenceMatcher.get_mismatching_blocks" name="Lang.Diff.SequenceMatcher.get_mismatching_blocks">
-<area shape="rect" id="node2" href="$class_lang_1_1_diff_1_1_sequence_matcher.html#ad39d03c930490265c4cd1c85ae3e706c" title="Generators will be returned which can only be iterated over once." alt="" coords="251,5,448,46"/>
-<area shape="rect" id="node4" href="$class_lang_1_1_diff_1_1_sequence_matcher.html#a3c53dfe69d35f922ad4e4b61d11f7ff5" title="Lang.Diff.SequenceMatcher.get\l_mismatching" alt="" coords="251,70,448,111"/>
-<area shape="rect" id="node3" href="$class_lang_1_1_diff_1_1_sequence_matcher.html#ae5b602b7de355769e231792c131eac5b" title="Tuples and lists are used here instead of generators." alt="" coords="496,5,693,46"/>
+<area shape="rect" id="node2" href="$class_lang_1_1_diff_1_1_sequence_matcher.html#ad39d03c930490265c4cd1c85ae3e706c" title="Generators will be returned which can only be iterated over once. " alt="" coords="265,5,474,46"/>
+<area shape="rect" id="node4" href="$class_lang_1_1_diff_1_1_sequence_matcher.html#a3c53dfe69d35f922ad4e4b61d11f7ff5" title="Lang.Diff.SequenceMatcher.get\l_mismatching" alt="" coords="265,70,474,111"/>
+<area shape="rect" id="node3" href="$class_lang_1_1_diff_1_1_sequence_matcher.html#ae5b602b7de355769e231792c131eac5b" title="Tuples and lists are used here instead of generators. " alt="" coords="523,5,733,46"/>
 </map>

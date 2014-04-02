@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['_5fblock',['_Block',['../class_lang_1_1_diff_1_1___block.html',1,'Lang::Diff']]],
+  ['_5fblockmatch',['_BlockMatch',['../class_lang_1_1_diff_1_1___block_match.html',1,'Lang::Diff']]],
+  ['_5fblockmismatch',['_BlockMismatch',['../class_lang_1_1_diff_1_1___block_mismatch.html',1,'Lang::Diff']]],
+  ['_5fblockside',['_BlockSide',['../class_lang_1_1_diff_1_1___block_side.html',1,'Lang::Diff']]],
+  ['_5felemblockmatch',['_ElemBlockMatch',['../class_lang_1_1_diff_1_1___elem_block_match.html',1,'Lang::Diff']]],
+  ['_5felemblockmismatch',['_ElemBlockMismatch',['../class_lang_1_1_diff_1_1___elem_block_mismatch.html',1,'Lang::Diff']]],
+  ['_5felemmatch',['_ElemMatch',['../class_lang_1_1_diff_1_1___elem_match.html',1,'Lang::Diff']]],
+  ['_5felemmismatch',['_ElemMismatch',['../class_lang_1_1_diff_1_1___elem_mismatch.html',1,'Lang::Diff']]],
+  ['_5felemsblockside',['_ElemsBlockSide',['../class_lang_1_1_diff_1_1___elems_block_side.html',1,'Lang::Diff']]],
+  ['_5fhelpformatter',['_HelpFormatter',['../class_lang_1_1_terminal_1_1_arg_parser_1_1___help_formatter.html',1,'Lang::Terminal::ArgParser']]],
+  ['_5fmultiton_5foneequivalentinstance',['_Multiton_OneEquivalentInstance',['../class_lang_1_1_class_tools_1_1_patterns_1_1__multiton_1_1___multiton___one_equivalent_instance.html',1,'Lang::ClassTools::Patterns::_multiton']]],
+  ['_5fmultiton_5foneequivalentinstance_5fondupraiseexception',['_Multiton_OneEquivalentInstance_OnDupRaiseException',['../class_lang_1_1_class_tools_1_1_patterns_1_1__multiton_1_1___multiton___one_equivalent_instance___on_dup_raise_exception.html',1,'Lang::ClassTools::Patterns::_multiton']]],
+  ['_5fmultiton_5foneequivalentinstance_5fondupreturnexisting',['_Multiton_OneEquivalentInstance_OnDupReturnExisting',['../class_lang_1_1_class_tools_1_1_patterns_1_1__multiton_1_1___multiton___one_equivalent_instance___on_dup_return_existing.html',1,'Lang::ClassTools::Patterns::_multiton']]],
+  ['_5fpeekableiterator',['_PeekableIterator',['../class_lang_1_1_iter_1_1___peekable_iterator.html',1,'Lang::Iter']]],
+  ['_5fsequencematcher',['_SequenceMatcher',['../class___sequence_matcher.html',1,'']]],
+  ['_5fsingleton_5fabstract',['_Singleton_Abstract',['../class_lang_1_1_class_tools_1_1_patterns_1_1__singleton_1_1___singleton___abstract.html',1,'Lang::ClassTools::Patterns::_singleton']]],
+  ['_5fsingleton_5fondupraiseexception',['_Singleton_OnDupRaiseException',['../class_lang_1_1_class_tools_1_1_patterns_1_1__singleton_1_1___singleton___on_dup_raise_exception.html',1,'Lang::ClassTools::Patterns::_singleton']]],
+  ['_5fsingleton_5fondupreturnexisting',['_Singleton_OnDupReturnExisting',['../class_lang_1_1_class_tools_1_1_patterns_1_1__singleton_1_1___singleton___on_dup_return_existing.html',1,'Lang::ClassTools::Patterns::_singleton']]],
+  ['_5fsingletonmultitonabstract',['_SingletonMultitonAbstract',['../class_lang_1_1_class_tools_1_1_patterns_1_1__singleton__multiton__abstract_1_1___singleton_multiton_abstract.html',1,'Lang::ClassTools::Patterns::_singleton_multiton_abstract']]],
+  ['_5fthreadingadapter',['_ThreadingAdapter',['../class_lang_1_1_concurrency_1_1___threading_1_1___threading_adapter.html',1,'Lang::Concurrency::_Threading']]],
+  ['_5ftwoside',['_TwoSide',['../class_lang_1_1_diff_1_1___two_side.html',1,'Lang::Diff']]]
+];

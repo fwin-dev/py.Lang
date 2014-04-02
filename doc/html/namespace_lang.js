@@ -1,7 +1,7 @@
 var namespace_lang =
 [
-    [ "ArgParser", "namespace_lang_1_1_arg_parser.html", "namespace_lang_1_1_arg_parser" ],
-    [ "ClassTools", "namespace_lang_1_1_class_tools.html", null ],
+    [ "ClassTools", "namespace_lang_1_1_class_tools.html", "namespace_lang_1_1_class_tools" ],
+    [ "Concurrency", "namespace_lang_1_1_concurrency.html", "namespace_lang_1_1_concurrency" ],
     [ "DebugTracer", "namespace_lang_1_1_debug_tracer.html", null ],
     [ "DescribeOS", "namespace_lang_1_1_describe_o_s.html", null ],
     [ "Diff", "namespace_lang_1_1_diff.html", "namespace_lang_1_1_diff" ],

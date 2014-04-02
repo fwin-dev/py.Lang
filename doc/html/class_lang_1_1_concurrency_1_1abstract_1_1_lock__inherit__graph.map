@@ -1,0 +1,6 @@
+<map id="Lang.Concurrency.abstract.Lock" name="Lang.Concurrency.abstract.Lock">
+<area shape="rect" id="node4" href="$class_lang_1_1_concurrency_1_1___threading_1_1_lock.html" title="{Lang.Concurrency._Threading.Lock\n||}" alt="" coords="5,676,237,753"/>
+<area shape="rect" id="node5" href="$class_lang_1_1_concurrency_1_1_file_system_1_1___lock_1_1_file_lock___by_f_c_n_t_l.html" title="Pros of this solution: " alt="" coords="262,632,465,797"/>
+<area shape="rect" id="node2" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html" title="There are multiple ways to use subclasses of this class: " alt="" coords="149,131,336,413"/>
+<area shape="rect" id="node3" href="$classobject.html" title="{object\n||}" alt="" coords="214,5,271,83"/>
+</map>

@@ -1,5 +1,5 @@
 <map id="Lang.Diff.SequenceMatcher.get_mismatching_blocks" name="Lang.Diff.SequenceMatcher.get_mismatching_blocks">
-<area shape="rect" id="node2" href="$class_lang_1_1_diff_1_1_sequence_matcher.html#aae18597b82d486839e6b1b9e1d850438" title="Lang.Diff.SequenceMatcher.get\l_matching_blocks" alt="" coords="251,5,448,46"/>
-<area shape="rect" id="node3" href="$class_lang_1_1_diff_1_1_sequence_matcher.html#a7d87778dba05d7442659d922584994ea" title="Lang.Diff.SequenceMatcher.\l_diffSingleSide" alt="" coords="259,70,439,111"/>
-<area shape="rect" id="node4" href="$class_lang_1_1_diff_1_1_sequence_matcher.html#a180307710206ac883b8f7236bc8ef93a" title="Lang.Diff.SequenceMatcher.\l_blocksToElems" alt="" coords="259,135,439,177"/>
+<area shape="rect" id="node2" href="$class_lang_1_1_diff_1_1_sequence_matcher.html#aae18597b82d486839e6b1b9e1d850438" title="Lang.Diff.SequenceMatcher.get\l_matching_blocks" alt="" coords="265,5,474,46"/>
+<area shape="rect" id="node3" href="$class_lang_1_1_diff_1_1_sequence_matcher.html#a7d87778dba05d7442659d922584994ea" title="Lang.Diff.SequenceMatcher.\l_diffSingleSide" alt="" coords="274,70,465,111"/>
+<area shape="rect" id="node4" href="$class_lang_1_1_diff_1_1_sequence_matcher.html#a180307710206ac883b8f7236bc8ef93a" title="Lang.Diff.SequenceMatcher.\l_blocksToElems" alt="" coords="274,135,465,177"/>
 </map>

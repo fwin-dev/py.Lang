@@ -1,0 +1,6 @@
+<map id="Lang.Concurrency.abstract.LockSemaphore.__exit__" name="Lang.Concurrency.abstract.LockSemaphore.__exit__">
+<area shape="rect" id="node2" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html#a463c3352f2c02af5edad3a7d0bcc5e1b" title="*args and **kwargs are for optional/implementation specific parameters. " alt="" coords="241,70,426,111"/>
+<area shape="rect" id="node3" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html#ae687dfe782a109b12e1f3e80b656872b" title="Lang.Concurrency.abstract.\lLockSemaphore.getSlotsTakenBySelf" alt="" coords="475,5,722,46"/>
+<area shape="rect" id="node4" href="$class_lang_1_1_concurrency_1_1___threading_1_1___threading_adapter.html#ae1f8a05015754cecd7f392156803a692" title="http://docs.python.org/2/library/threading.html#threading.Lock.release " alt="" coords="496,70,701,111"/>
+<area shape="rect" id="node5" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html#a9dfb7b72008620bfa9a1e2ee454140d7" title="Lang.Concurrency.abstract.\lLockSemaphore._release" alt="" coords="506,135,691,177"/>
+</map>

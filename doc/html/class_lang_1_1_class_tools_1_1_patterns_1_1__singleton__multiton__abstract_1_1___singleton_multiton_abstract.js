@@ -1,0 +1,5 @@
+var class_lang_1_1_class_tools_1_1_patterns_1_1__singleton__multiton__abstract_1_1___singleton_multiton_abstract =
+[
+    [ "getAllClasses", "class_lang_1_1_class_tools_1_1_patterns_1_1__singleton__multiton__abstract_1_1___singleton_multiton_abstract.html#ab644518318a3c5f14a6611706d785dfc", null ],
+    [ "getAllInstances", "class_lang_1_1_class_tools_1_1_patterns_1_1__singleton__multiton__abstract_1_1___singleton_multiton_abstract.html#a7175e6f30e63e78946378fb49822d16d", null ]
+];

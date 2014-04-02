@@ -1,0 +1,4 @@
+<map id="Lang.ClassTools.Patterns._multiton._Multiton_OneEquivalentInstance" name="Lang.ClassTools.Patterns._multiton._Multiton_OneEquivalentInstance">
+<area shape="rect" id="node4" href="$class_lang_1_1_class_tools_1_1_patterns_1_1__multiton_1_1___multiton___one_equivalent_instance___on_dup_raise_exception.html" title="{Lang.ClassTools.Patterns.\l_multiton._Multiton_OneEquivalent\lInstance_OnDupRaiseException\n||}" alt="" coords="5,315,235,421"/>
+<area shape="rect" id="node5" href="$class_lang_1_1_class_tools_1_1_patterns_1_1__multiton_1_1___multiton___one_equivalent_instance___on_dup_return_existing.html" title="{Lang.ClassTools.Patterns.\l_multiton._Multiton_OneEquivalent\lInstance_OnDupReturnExisting\n||}" alt="" coords="259,315,488,421"/>
+</map>

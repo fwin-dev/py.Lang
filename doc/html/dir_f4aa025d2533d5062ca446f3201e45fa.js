@@ -8,6 +8,7 @@ var dir_f4aa025d2533d5062ca446f3201e45fa =
       [ "Link", "class_lang_1_1_struct_1_1___ordered_set_1_1_link.html", "class_lang_1_1_struct_1_1___ordered_set_1_1_link" ],
       [ "OrderedSet", "class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html", "class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set" ]
     ] ],
+    [ "_weakref.py", "__weakref_8py.html", null ],
     [ "QueueStacks.py", "_queue_stacks_8py.html", [
       [ "LIFOstack", "class_lang_1_1_struct_1_1_queue_stacks_1_1_l_i_f_ostack.html", "class_lang_1_1_struct_1_1_queue_stacks_1_1_l_i_f_ostack" ]
     ] ]

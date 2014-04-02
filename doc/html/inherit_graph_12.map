@@ -1,3 +1,34 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_lang_1_1_struct_1_1_queue_stacks_1_1_l_i_f_ostack.html" title="Standard LIFO stack based on a list." alt="" coords="6,5,175,46"/>
+<area shape="rect" id="node2" href="$class_lang_1_1_concurrency_1_1_file_system_1_1___lock_1_1_file_lock___by_f_c_n_t_l.html" title="Pros of this solution: " alt="" coords="749,393,953,434"/>
+<area shape="rect" id="node3" href="$class___sequence_matcher.html" title="_SequenceMatcher" alt="" coords="6,5,143,32"/>
+<area shape="rect" id="node4" href="$class_lang_1_1_diff_1_1_sequence_matcher.html" title="Improved difflib.SequenceMatcher. " alt="" coords="215,5,401,32"/>
+<area shape="rect" id="node5" href="$classobject.html" title="object" alt="" coords="46,516,103,543"/>
+<area shape="rect" id="node6" href="$class_lang_1_1_class_tools_1_1_patterns_1_1__multiton_1_1_multiton___one_equivalent_instance___on_dup_raise_exception.html" title="Only one instance of this class is allowed per equivalent instance. " alt="" coords="197,341,419,397"/>
+<area shape="rect" id="node7" href="$class_lang_1_1_class_tools_1_1_patterns_1_1__multiton_1_1_multiton___one_equivalent_instance___on_dup_return_existing.html" title="Only one instance of this class is allowed per equivalent instance. " alt="" coords="197,421,419,477"/>
+<area shape="rect" id="node8" href="$class_lang_1_1_class_tools_1_1_patterns_1_1__registered__instances_1_1_registered_instances.html" title="Maintains a record of every created instance of a class. " alt="" coords="198,501,418,557"/>
+<area shape="rect" id="node9" href="$class_lang_1_1_class_tools_1_1_patterns_1_1__singleton_1_1_singleton___on_dup_raise_exception.html" title="A singleton allows only one instance per class. " alt="" coords="195,581,421,637"/>
+<area shape="rect" id="node10" href="$class_lang_1_1_class_tools_1_1_patterns_1_1__singleton_1_1_singleton___on_dup_return_existing.html" title="A singleton allows only one instance per class. " alt="" coords="192,661,424,717"/>
+<area shape="rect" id="node11" href="$class_lang_1_1_class_tools_1_1_patterns_1_1__start_end_with_1_1_start_end_with.html" title="Automatic with statement support, once _start and _end are overridden/implemented. " alt="" coords="214,742,402,783"/>
+<area shape="rect" id="node12" href="$class_lang_1_1_concurrency_1_1___threading_1_1___threading_adapter.html" title="Lang.Concurrency._Threading.\l_ThreadingAdapter" alt="" coords="476,283,681,325"/>
+<area shape="rect" id="node15" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html" title="There are multiple ways to use subclasses of this class: " alt="" coords="215,225,401,266"/>
+<area shape="rect" id="node18" href="$class_lang_1_1_diff_1_1___block_side.html" title="Lang.Diff._BlockSide" alt="" coords="235,808,381,835"/>
+<area shape="rect" id="node19" href="$class_lang_1_1_diff_1_1___elems_block_side.html" title="elems attribute is guaranteed to be an iterable, not indexable " alt="" coords="217,859,399,885"/>
+<area shape="rect" id="node20" href="$class_lang_1_1_diff_1_1___two_side.html" title="Lang.Diff._TwoSide" alt="" coords="239,909,377,936"/>
+<area shape="rect" id="node28" href="$class_lang_1_1_events_1_1_proxy_1_1_event_receiver.html" title="Feel free to use this class as a mixin for receiving specific events. " alt="" coords="196,960,420,987"/>
+<area shape="rect" id="node30" href="$class_lang_1_1_iter_1_1_peekable_iterable.html" title="Lang.Iter.PeekableIterable" alt="" coords="219,1011,397,1037"/>
+<area shape="rect" id="node31" href="$class_lang_1_1_struct_1_1___ordered_set_1_1_link.html" title="Lang.Struct._OrderedSet.Link" alt="" coords="209,56,407,83"/>
+<area shape="rect" id="node32" href="$class_lang_1_1_struct_1_1_queue_stacks_1_1_l_i_f_ostack.html" title="Standard LIFO stack based on a list. " alt="" coords="219,107,397,149"/>
+<area shape="rect" id="node33" href="$class_lang_1_1_terminal_1_1__table_1_1_table.html" title="Prints data in a table format to the terminal. " alt="" coords="216,173,400,200"/>
+<area shape="rect" id="node13" href="$class_lang_1_1_concurrency_1_1___threading_1_1_lock.html" title="Lang.Concurrency._Threading.Lock" alt="" coords="734,327,967,353"/>
+<area shape="rect" id="node14" href="$class_lang_1_1_concurrency_1_1___threading_1_1_semaphore.html" title="Lang.Concurrency._Threading.\lSemaphore" alt="" coords="748,254,953,295"/>
+<area shape="rect" id="node16" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock.html" title="Lang.Concurrency.abstract.Lock" alt="" coords="472,349,685,376"/>
+<area shape="rect" id="node17" href="$class_lang_1_1_concurrency_1_1abstract_1_1_semaphore.html" title="Lang.Concurrency.abstract.\lSemaphore" alt="" coords="486,218,671,259"/>
+<area shape="rect" id="node21" href="$class_lang_1_1_diff_1_1___block.html" title="Lang.Diff._Block" alt="" coords="519,783,638,809"/>
+<area shape="rect" id="node24" href="$class_lang_1_1_diff_1_1___elem_block_match.html" title="Lang.Diff._ElemBlockMatch" alt="" coords="486,833,671,860"/>
+<area shape="rect" id="node25" href="$class_lang_1_1_diff_1_1___elem_block_mismatch.html" title="Lang.Diff._ElemBlockMismatch" alt="" coords="475,884,682,911"/>
+<area shape="rect" id="node26" href="$class_lang_1_1_diff_1_1___elem_match.html" title="Lang.Diff._ElemMatch" alt="" coords="502,935,655,961"/>
+<area shape="rect" id="node27" href="$class_lang_1_1_diff_1_1___elem_mismatch.html" title="Lang.Diff._ElemMismatch" alt="" coords="492,985,665,1012"/>
+<area shape="rect" id="node22" href="$class_lang_1_1_diff_1_1___block_match.html" title="Lang.Diff._BlockMatch" alt="" coords="773,808,929,835"/>
+<area shape="rect" id="node23" href="$class_lang_1_1_diff_1_1___block_mismatch.html" title="Lang.Diff._BlockMismatch" alt="" coords="763,757,939,784"/>
+<area shape="rect" id="node29" href="$class_lang_1_1_events_1_1_proxy_1_1_event_proxy.html" title="Any method called on this class (besides reserved functions declared in this class) will be proxied o..." alt="" coords="476,1036,681,1063"/>
 </map>

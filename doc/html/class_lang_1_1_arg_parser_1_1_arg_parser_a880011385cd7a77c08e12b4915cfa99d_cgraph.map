@@ -1,7 +1,0 @@
-<map id="Lang.ArgParser.ArgParser.__init__" name="Lang.ArgParser.ArgParser.__init__">
-<area shape="rect" id="node2" href="$class_lang_1_1_arg_parser_1_1___help_formatter.html#ae8f5f0117c1ccba79907879182e264d6" title="Lang.ArgParser._HelpFormatter.add\l_argument" alt="" coords="233,70,455,111"/>
-<area shape="rect" id="node6" href="$class_lang_1_1_arg_parser_1_1_actions_container.html#a7fd1539b202d224a96e744bb749ae738" title="Lang.ArgParser.ActionsContainer.add\l_argument" alt="" coords="227,135,461,177"/>
-<area shape="rect" id="node3" href="$class_lang_1_1_arg_parser_1_1___help_formatter.html#ad20b94e7fb6273a3ac0575ee62e07baf" title="Lang.ArgParser._HelpFormatter.\l_format_action_invocation" alt="" coords="509,5,709,46"/>
-<area shape="rect" id="node4" href="$class_lang_1_1_arg_parser_1_1___help_formatter.html#ac916c76497dc59bdf474df5a651fe6ff" title="Lang.ArgParser._HelpFormatter.\l_format_action" alt="" coords="509,70,709,111"/>
-<area shape="rect" id="node5" href="$class_lang_1_1_arg_parser_1_1___help_formatter.html#a4b6e2138a7d4906627575b0e785db604" title="Lang.ArgParser._HelpFormatter.\l_format_action_calcWidths" alt="" coords="509,135,709,177"/>
-</map>

@@ -1,0 +1,4 @@
+<map id="Lang.ClassTools.Patterns._singleton._Singleton_Abstract" name="Lang.ClassTools.Patterns._singleton._Singleton_Abstract">
+<area shape="rect" id="node3" href="$class_lang_1_1_class_tools_1_1_patterns_1_1__singleton_1_1___singleton___on_dup_raise_exception.html" title="{Lang.ClassTools.Patterns.\l_singleton._Singleton_OnDupRaise\lException\n||+ __call__()\l}" alt="" coords="5,272,237,379"/>
+<area shape="rect" id="node4" href="$class_lang_1_1_class_tools_1_1_patterns_1_1__singleton_1_1___singleton___on_dup_return_existing.html" title="{Lang.ClassTools.Patterns.\l_singleton._Singleton_OnDupReturn\lExisting\n||+ __call__()\l}" alt="" coords="262,272,500,379"/>
+</map>

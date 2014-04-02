@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_lang_1_1_terminal_1_1_table.html" title="Prints data in a table format to the terminal." alt="" coords="6,5,141,32"/>
+<area shape="rect" id="node1" href="$classstr.html" title="str" alt="" coords="6,12,45,39"/>
+<area shape="rect" id="node2" href="$class_lang_1_1_terminal_1_1__formatted__text_1_1_formatted_text.html" title="Lang.Terminal._formatted\l_text.FormattedText" alt="" coords="94,5,269,46"/>
 </map>
