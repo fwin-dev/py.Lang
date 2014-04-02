@@ -6,45 +6,45 @@ Package description	{#mainpage}
 This package provides a lot of miscellaneous things that probably should have been included in python's built-in
 library but weren't, including:
 
-* [FuncTools](readme.md#functools): Various function/method utilities/tools
+* [FuncTools](#functools): Various function/method utilities/tools
 	* `FuncTools.Abstraction.abstractmethod`: An abstract method that can be used with `@classmethod`
 	* `FuncTools.timeIt`: Timing execution of a function with a decorator
 	* `FuncTools.getArgs`: A way to get the argument names and values of a function without using `**kwargs` or `*args`
-* [ClassTools](readme.md#classtools): Various utilities/tools for working with classes. Also includes class patterns.
+* [ClassTools](#classtools): Various utilities/tools for working with classes. Also includes class patterns.
 	* `ClassTools.vars`: Getting the variables of a class instance with `__slots__`
 	* `ClassTools.Patterns`: A package with implementations of [class patterns](http://en.wikipedia.org/wiki/Software_design_pattern)
 		* `ClassTools.Patterns.RegisteredInstances`: Easily keep track of all instances of a class
 		* `ClassTools.Patterns.Singleton`: Class bases (using metaclass) that implement the singleton pattern
 		* `ClassTools.Patterns.Multiton`: Class bases (using metaclass) that implement the multiton pattern
 		* `ClassTools.Patterns.StartEndWith`: Automatic support of the `with` statement by implementing only a start and end method
-* [PyPkgUtil](readme.md#pypkgutil): Various module and package utilities/tools (Is a module built in? In what file is it? etc.)
-* [Struct](readme.md#struct): Implementation of various structures to hold data
+* [PyPkgUtil](#pypkgutil): Various module and package utilities/tools (Is a module built in? In what file is it? etc.)
+* [Struct](#struct): Implementation of various structures to hold data
 	* `Struct.LIFOstack`: LIFO/Stack
 	* `Struct.FrozenDict`: Frozen dictionary
 	* `Struct.OrderedSet`: Ordered set
-* [Iter](readme.md#iter)
+* [Iter](#iter)
 	* `Iter.PeekableIterable`: A peekable iterator
-* [Diff](readme.md#diff)
+* [Diff](#diff)
 	* `Diff.SequenceMatcher`: An improved differ, based on python's builtin `difflib.SequenceMatcher`
-* [Concurrency](readme.md#concurrency): Unified API for locks, semaphores, etc., along with some useful tools/utilities
+* [Concurrency](#concurrency): Unified API for locks, semaphores, etc., along with some useful tools/utilities
 	* `Concurrency.Multiprocessing`: For dealing with multiple python processes
 		* `Concurrency.Multiprocessing.decorators.processify`: Run a function in a separate process
 	* `Concurrency.decorators.useLock`: Surround an entire function's execution in a lock
 	* `Concurrency.Threading`: A lock and semaphore using standard python threads
 	* `Concurrency.FileSystem.FileLock_ByFCNTL`: A lock using unix FCNTL file locking
-* [Terminal](readme.md#terminal): Utilities for improving terminal interaction with the user
+* [Terminal](#terminal): Utilities for improving terminal interaction with the user
 	* `Terminal.askYesNo`: A simple way of asking user to respond with yes or no
 	* `Terminal.FormattedText`: Color text in the terminal. Also can do bold, underline, etc. depending on the terminal.
 	* `Terminal.Table`: Nicely prints column+row data in the terminal.
 	* `Terminal.ArgParser`: An improved ArgParser for parsing command line arguments
-* [Events](readme.md#events): Easy event handling with subscriptions+callbacks, including an API for event logging
+* [Events](#events): Easy event handling with subscriptions+callbacks, including an API for event logging
 	* `Events.Proxy`: Provides a super easy API for event subscription and callbacks
 	* `Events.Logging`: Skeleton classes for logging events to different destinations
-* [DebugTracer](readme.md#debugtracer): A poor man's debug tracer when a better tracer isn't available (for example, when running a python script over ssh without remote debugging)
+* [DebugTracer](#debugtracer): A poor man's debug tracer when a better tracer isn't available (for example, when running a python script over ssh without remote debugging)
 
 # Detailed functionality
 
-## FuncTools
+## <a name="functools"></a>FuncTools
 
 A collection of function/method utilities/tools.
 
@@ -97,7 +97,7 @@ To get both kwargs and args, use:
 * Note that `cls` and `self` are automatically ignored for class methods and instance methods.
 * Note that if there is a question of whether an argument is an arg or a kwarg, then kwarg is preferred.
 
-## ClassTools
+## <a name="classtools"></a>ClassTools
 
 Various utilities/tools for working with classes. Also includes class patterns.
 
@@ -292,7 +292,7 @@ If you only want to be able to call your start and end code (either via explicit
 	with a:		# exception is raised
 		<do something>
 
-## PyPkgUtil
+## <a name="pypkgutil"></a>PyPkgUtil
 
 Provides details about python packages and modules. Python can provide a lot of information about a package and a lot of
 different ways of loading packages, but the functions and code to accomplish this is scattered and sometimes not obvious.
@@ -357,7 +357,7 @@ Get the name of a module or package:
 
 	name = PkgUtil.convert_objectToName(obj)
 
-## Struct
+## <a name="struct"></a>Struct
 
 Various structures for holding data.
 
@@ -393,7 +393,7 @@ methods typically found in a list, such as `insert`/`insertAt`. Refer to the sou
 	from Lang.Struct import OrderedSet
 	set_ = OrderedSet(range(1,10))
 
-## Iter
+## <a name="iter"></a>Iter
 
 ### Peekable iterator
 
@@ -411,7 +411,7 @@ implements `__iter__`.
 	print(nums.peek())		# peeks without advancing
 	print(nums.hasNext())	# checks if there's a next element
 
-## Diff
+## <a name="diff"></a>Diff
 
 ### An improved differ
 
@@ -421,7 +421,9 @@ refer to matching elements, leaving you to infer which indices don't match. It a
 elements that do or don't match. This differ adds all of that functionality. It also fixes:
 
 * A bug: In the built in differ, subsequent calls to `get_matching_blocks()` will return results in a different format due to caching
-* Calculating the similarity ratio: The built in differ calculates this ratio taking both diff sides into account, but what's usually wanted is how much one side is similar/different compared to the other side, i.e. `(1 - ratio) / 2 + ratio`
+* Calculating the similarity ratio: The built in differ calculates this ratio taking both diff sides into account, but what's usually wanted is how much one side is similar/different compared to the other side: `(1 - ratio) / 2 + ratio`
+
+Examples:
 
 	from Lang.Diff import SequenceMatcher
 	diff = SequenceMatcher(tuple("aebcdef"), tuple("abbcdgef"))
@@ -429,8 +431,9 @@ elements that do or don't match. This differ adds all of that functionality. It 
 	print(list(diff.get_mismatching_blocks()))
 	print(list(diff.get_matching_elems()))
 	print(list(diff.get_mismatching_elems()))
-
+	
 	Prints the following:
+	
 	[BlockMatch(a={index=0,size=1}, b={index=0,size=1}), BlockMatch(a={index=2,size=3}, b={index=2,size=3}), BlockMatch(a={index=5,size=2}, b={index=6,size=2})]
 	[BlockMismatch(a={index=1,size=1}, b={index=1,size=1}), BlockMismatch(a=None, b={index=5,size=1})]
 	[ElemMatch(a=('a',), b=('a',)), ElemMatch(a=('b', 'c', 'd'), b=('b', 'c', 'd')), ElemMatch(a=('e', 'f'), b=('e', 'f'))]
@@ -443,7 +446,7 @@ More functions are available, including:
 * `get_matching_elems_useOnce()` and `get_mismatching_elems_useOnce()`
   * These are the same as `get_matching_elems()` and `get_mismatching_elems()` except that they are generators instead of functions returning a list
 
-## Concurrency
+## <a name="concurrency"></a>Concurrency
 
 The `Concurrency` package provides a unified API for locks and semaphores, in addition to some useful utilities.
 
@@ -480,7 +483,7 @@ Using this function decorator will automatically cause a lock to be acquired bef
 	def foo():
 		<do something>
 
-## Events
+## <a name="events"></a>Events
 
 Easy event handling with subscriptions+callbacks, including an API for event logging.
 
@@ -503,7 +506,7 @@ forced to implement all methods by setting `errorOnMethodNotFound=True`.
 	proxy.addReceiver(foo)
 	proxy.someEvent("abc", moreParams=123)
 
-## Handling uncaught exceptions
+#### Handling uncaught exceptions
 
 When an uncaught exception happens, a special `notifyException` method will be called on each EventReceiver
 automatically, if the method is implemented, with the exception instance and a traceback instance as parameters.
@@ -553,7 +556,7 @@ When using multiple loggers, the function you call on the `Logging` instance wil
 	log = Logging((StdoutLogger, MyFileLog))
 	log.notifyFolderCheck("folder/path/here")
 
-## Terminal
+## <a name="terminal"></a>Terminal
 
 Utilities for improving terminal interaction with the user.
 
@@ -618,7 +621,7 @@ Example:
 		help="Controls home directory creation for user. None uses the default behavior which varies between machines.")
 	args = parser.parse_args()
 
-## DebugTracer
+## <a name="debugtracer"></a>DebugTracer
 
 A poor man's debugger. Several arguments are available here. See the source for more details.
 
