@@ -1,4 +1,0 @@
-var class_lang_1_1_class_tools_1_1_patterns_1_1__singleton_1_1___singleton___on_dup_raise_exception =
-[
-    [ "__call__", "class_lang_1_1_class_tools_1_1_patterns_1_1__singleton_1_1___singleton___on_dup_raise_exception.html#a2d0746b79df10b25cc0fa81d81d9b148", null ]
-];

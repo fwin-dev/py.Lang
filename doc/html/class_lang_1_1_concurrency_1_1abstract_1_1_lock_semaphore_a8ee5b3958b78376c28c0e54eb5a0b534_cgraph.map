@@ -1,8 +1,0 @@
-<map id="Lang.Concurrency.abstract.LockSemaphore.acquire" name="Lang.Concurrency.abstract.LockSemaphore.acquire">
-<area shape="rect" id="node2" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html#a1a48c3f86e145ca6e6bba4b8b9b126ab" title="Lang.Concurrency.abstract.\lLockSemaphore.hasAvailableSlot" alt="" coords="240,38,461,79"/>
-<area shape="rect" id="node6" href="$class_lang_1_1_concurrency_1_1___threading_1_1___threading_adapter.html#ac470982a3ad9bb7834850c351f270293" title="http://docs.python.org/2/library/threading.html#threading.Lock.acquire " alt="" coords="248,103,453,145"/>
-<area shape="rect" id="node7" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html#a252560d171d768f5e501419e2f496572" title="Lang.Concurrency.abstract.\lLockSemaphore._acquire" alt="" coords="258,169,443,210"/>
-<area shape="rect" id="node3" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html#afa66446fed0a299bb0fa6764fff0491f" title="Lang.Concurrency.abstract.\lLockSemaphore.getSlotsAvailable" alt="" coords="510,38,735,79"/>
-<area shape="rect" id="node4" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html#aaa6946939da1ab97dfab3f19bde29a83" title="Lang.Concurrency.abstract.\lLockSemaphore.getMaxSlots" alt="" coords="821,5,1017,46"/>
-<area shape="rect" id="node5" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html#a7d464e01bf7681e74ad8190af1c362f2" title="Lang.Concurrency.abstract.\lLockSemaphore.getSlotsTakenByAnyone" alt="" coords="784,70,1053,111"/>
-</map>

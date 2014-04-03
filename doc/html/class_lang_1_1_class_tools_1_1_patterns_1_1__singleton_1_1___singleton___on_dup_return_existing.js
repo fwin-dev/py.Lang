@@ -1,4 +1,0 @@
-var class_lang_1_1_class_tools_1_1_patterns_1_1__singleton_1_1___singleton___on_dup_return_existing =
-[
-    [ "__call__", "class_lang_1_1_class_tools_1_1_patterns_1_1__singleton_1_1___singleton___on_dup_return_existing.html#a3edd637019410909a45cf775d25cc2fd", null ]
-];

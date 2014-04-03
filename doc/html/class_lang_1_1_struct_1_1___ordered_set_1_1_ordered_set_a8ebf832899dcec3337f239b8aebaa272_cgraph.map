@@ -1,7 +1,0 @@
-<map id="Lang.Struct._OrderedSet.OrderedSet.__setitem__" name="Lang.Struct._OrderedSet.OrderedSet.__setitem__">
-<area shape="rect" id="node2" href="$class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#ab742d8d2e00b307db1314f9d3780f08f" title="Lang.Struct._OrderedSet.\lOrderedSet._getLink_byIndex" alt="" coords="231,5,430,46"/>
-<area shape="rect" id="node3" href="$class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a3d77225d0613232e8c9106025376660c" title="Returns True if all links were inserted, False otherwise. " alt="" coords="227,70,435,111"/>
-<area shape="rect" id="node4" href="$class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#a3b5b0f278022d362913215cc21961b4e" title="Inserts newElemBefore into the current position of oldLinkAfter. " alt="" coords="230,135,431,177"/>
-<area shape="rect" id="node5" href="$class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#ab0705d1a0100c1d113ddb52fbddc5152" title="Lang.Struct._OrderedSet.\lOrderedSet._iterLinks" alt="" coords="244,201,417,242"/>
-<area shape="rect" id="node6" href="$class_lang_1_1_struct_1_1___ordered_set_1_1_ordered_set.html#af8d153315a4e2afb5659e7e78a9c7520" title="Lang.Struct._OrderedSet.\lOrderedSet._replace" alt="" coords="244,266,417,307"/>
-</map>

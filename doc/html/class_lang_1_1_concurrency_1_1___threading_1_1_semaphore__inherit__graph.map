@@ -1,6 +1,0 @@
-<map id="Lang.Concurrency._Threading.Semaphore" name="Lang.Concurrency._Threading.Semaphore">
-<area shape="rect" id="node2" href="$class_lang_1_1_concurrency_1_1___threading_1_1___threading_adapter.html" title="{Lang.Concurrency._Threading.\l_ThreadingAdapter\n||+ __init__()\l+ __getattr__()\l}" alt="" coords="5,461,211,568"/>
-<area shape="rect" id="node3" href="$classobject.html" title="{object\n||}" alt="" coords="199,5,256,83"/>
-<area shape="rect" id="node5" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html" title="There are multiple ways to use subclasses of this class: " alt="" coords="211,131,399,413"/>
-<area shape="rect" id="node4" href="$class_lang_1_1_concurrency_1_1abstract_1_1_semaphore.html" title="{Lang.Concurrency.abstract.\lSemaphore\n||}" alt="" coords="235,469,420,561"/>
-</map>

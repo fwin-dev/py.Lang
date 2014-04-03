@@ -1,7 +1,0 @@
-<map id="Lang.Concurrency.FileSystem._Lock.FileLock_ByFCNTL.getSlotsTakenByAnyone" name="Lang.Concurrency.FileSystem._Lock.FileLock_ByFCNTL.getSlotsTakenByAnyone">
-<area shape="rect" id="node2" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html#ae687dfe782a109b12e1f3e80b656872b" title="Lang.Concurrency.abstract.\lLockSemaphore.getSlotsTakenBySelf" alt="" coords="321,5,567,46"/>
-<area shape="rect" id="node3" href="$class_lang_1_1_concurrency_1_1___threading_1_1___threading_adapter.html#ac470982a3ad9bb7834850c351f270293" title="http://docs.python.org/2/library/threading.html#threading.Lock.acquire " alt="" coords="341,70,547,111"/>
-<area shape="rect" id="node4" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html#a252560d171d768f5e501419e2f496572" title="Lang.Concurrency.abstract.\lLockSemaphore._acquire" alt="" coords="351,135,537,177"/>
-<area shape="rect" id="node5" href="$class_lang_1_1_concurrency_1_1___threading_1_1___threading_adapter.html#ae1f8a05015754cecd7f392156803a692" title="http://docs.python.org/2/library/threading.html#threading.Lock.release " alt="" coords="341,201,547,242"/>
-<area shape="rect" id="node6" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html#a9dfb7b72008620bfa9a1e2ee454140d7" title="Lang.Concurrency.abstract.\lLockSemaphore._release" alt="" coords="351,266,537,307"/>
-</map>

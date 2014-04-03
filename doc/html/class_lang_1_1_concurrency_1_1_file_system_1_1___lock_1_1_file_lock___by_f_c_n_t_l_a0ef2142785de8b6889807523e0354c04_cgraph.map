@@ -1,4 +1,0 @@
-<map id="Lang.Concurrency.FileSystem._Lock.FileLock_ByFCNTL.__getattribute__" name="Lang.Concurrency.FileSystem._Lock.FileLock_ByFCNTL.__getattribute__">
-<area shape="rect" id="node2" href="$class_lang_1_1_concurrency_1_1_file_system_1_1___lock_1_1_file_lock___by_f_c_n_t_l.html#a3354219d59c5b378c8bb3059d63f4460" title="Lang.Concurrency.FileSystem.\l_Lock.FileLock_ByFCNTL._checkFork\lSafety" alt="" coords="259,5,509,61"/>
-<area shape="rect" id="node3" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html#ae687dfe782a109b12e1f3e80b656872b" title="Lang.Concurrency.abstract.\lLockSemaphore.getSlotsTakenBySelf" alt="" coords="261,86,507,127"/>
-</map>

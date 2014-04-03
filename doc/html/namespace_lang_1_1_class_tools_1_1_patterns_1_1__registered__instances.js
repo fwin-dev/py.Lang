@@ -1,4 +1,0 @@
-var namespace_lang_1_1_class_tools_1_1_patterns_1_1__registered__instances =
-[
-    [ "RegisteredInstances", "class_lang_1_1_class_tools_1_1_patterns_1_1__registered__instances_1_1_registered_instances.html", "class_lang_1_1_class_tools_1_1_patterns_1_1__registered__instances_1_1_registered_instances" ]
-];

@@ -1,5 +1,0 @@
-<map id="Lang.Concurrency.abstract.LockSemaphore.hasAvailableSlot" name="Lang.Concurrency.abstract.LockSemaphore.hasAvailableSlot">
-<area shape="rect" id="node2" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html#afa66446fed0a299bb0fa6764fff0491f" title="Lang.Concurrency.abstract.\lLockSemaphore.getSlotsAvailable" alt="" coords="275,38,501,79"/>
-<area shape="rect" id="node3" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html#aaa6946939da1ab97dfab3f19bde29a83" title="Lang.Concurrency.abstract.\lLockSemaphore.getMaxSlots" alt="" coords="586,5,782,46"/>
-<area shape="rect" id="node4" href="$class_lang_1_1_concurrency_1_1abstract_1_1_lock_semaphore.html#a7d464e01bf7681e74ad8190af1c362f2" title="Lang.Concurrency.abstract.\lLockSemaphore.getSlotsTakenByAnyone" alt="" coords="549,70,819,111"/>
-</map>
