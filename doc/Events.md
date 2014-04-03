@@ -41,7 +41,7 @@ Also note that `errorOnMethodNotFound` has no effect on `notifyException`, as it
 
 ## Event logging
 
-Python has decent built in logging, but it doesn't follow standard object-oriented concepts where methods represent
+Python has decent built-in logging, but it doesn't follow standard object-oriented concepts where methods represent
 actions, so the API is not ideal for recording different events in a heavily event based system, as there would need
 to be a special, separate call to the logging API for every event. The logging API in `Lang.Events.Logging` fixes this.
 It uses the event handling API shown above, where the `Logging` class is an `EventProxy`, and the loggers are

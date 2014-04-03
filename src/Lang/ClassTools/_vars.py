@@ -1,6 +1,6 @@
 from Lang.Struct import OrderedSet
 
-_vars_ = vars	# backup reference to built in function
+_vars_ = vars	# backup reference to built-in function
 
 def vars(cls):
 	"""Like the built-in function `vars`, but also works with slotted classes"""

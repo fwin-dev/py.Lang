@@ -6,9 +6,9 @@ This `PkgUtil` module provides everything in one location.
 
 	from PyPkgUtil import PkgUtil
 
-## Is it built in?
+## Is it built-in?
 
-A built in module is one who's source is not defined in a file.
+A built-in module is one who's source is not defined in a `.py` file.
 
 	PkgUtil.isBuiltin(moduleObj)
 

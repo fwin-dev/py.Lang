@@ -2,7 +2,7 @@
 
 Various utilities/tools for working with classes. Also includes class patterns.
 
-## Getting the variables of a class instance with __slots__
+## Getting the variables of a class instance with `__slots__`
 
 This works the same as the built-in python function `vars()`, except it also works on slotted classes:
 
@@ -92,8 +92,11 @@ because the object's `__init__` method will always be called, regardless of whet
 This could introduce an unintended side effect if not known in advance. If the new instance is not in fact valid, then it will be deleted
 (actually garbage collected because it will fall out of scope) after `__init__` and `__eq__` have been called.
 
-The classes which can be inherited from are `Multiton_OneEquivalentInstance_OnDupRaiseException` and `Multiton_OneEquivalentInstance_OnDupReturnExisting`.  
-Here is an example 2 instances allowed because the comparison is done by memory address, not using `__eq__`:
+The classes which can be inherited from are:
+* `Multiton_OneEquivalentInstance_OnDupRaiseException`
+* `Multiton_OneEquivalentInstance_OnDupReturnExisting`
+  
+Here is an example of 2 instances, which are both allowed because the comparison is done by memory address, not using `__eq__`:
 
 	class Foo(Multiton_OneEquivalentInstance_OnDupRaiseException):
 		def __init__(self, value):

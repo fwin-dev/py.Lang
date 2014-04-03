@@ -4,7 +4,7 @@ A collection of function/method utilities/tools.
 
 ## An abstract class method
 
-The built in `abc.abstractmethod` decorator won't work if used in conjunction with a `classmethod` decorator.
+The built-in `abc.abstractmethod` decorator won't work if used in conjunction with a `classmethod` decorator.
 Use this abstract method decorator instead:
 
 	from Lang.FuncTools.Abstraction import abstractmethod
@@ -38,7 +38,7 @@ for IDEs and documentation generators to determine all possible arguments to the
 	def myFunc(arg1, arg2):
 		allKwargs = getArgs()
 
-This method uses python's built in `inspect` module to go up the stack and inspect arguments.
+This method uses python's built-in `inspect` module to go up the stack and inspect arguments.
 
 In the case above, `allKwargs` will be a dict of parameter names and associated values, similar to as if `**kwargs` was used.
 

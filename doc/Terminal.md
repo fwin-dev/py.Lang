@@ -14,7 +14,7 @@ Utilities for improving terminal interaction with the user.
 
 	from Lang.Terminal import FormattedText
 
-`FormattedText` returns a subclass of the built in python `str` type. It adds terminal formatting codes when
+`FormattedText` returns a subclass of the built-in python `str` type. It adds terminal formatting codes when
 the `str` function is called on it:
 
 	boldStr = str(FormattedText("I'm in bold", bold=True))
@@ -49,9 +49,9 @@ In addition to the plethora of features in [python's built-in argparse module](h
 
 * Improved help formatting, similar to `man`
 * Addition of 3 way booleans (`True`, `False`, `None`) and automatic handling of any other iterable type
-* Required named parameters - the built in ArgParser only supports required positional arguments and optional named parameters
+* Required named parameters - the built-in ArgParser only supports required positional arguments and optional named parameters
 
-The new `ArgParser` uses the same interface as the old one, so see the built in `ArgParser` documentation.
+The new `ArgParser` uses the same interface as the old one, so see the built-in `ArgParser` documentation.
 
 Example:
 

@@ -17,7 +17,7 @@ library but weren't, including:
 		* `ClassTools.Patterns.Singleton`: Class bases (using metaclass) that implement the singleton pattern
 		* `ClassTools.Patterns.Multiton`: Class bases (using metaclass) that implement the multiton pattern
 		* `ClassTools.Patterns.StartEndWith`: Automatic support of the `with` statement by implementing only a start and end method
-* [PyPkgUtil](PyPkgUtil.md): Various module and package utilities/tools (Is a module built in? In what file is it? etc.)
+* [PyPkgUtil](PyPkgUtil.md): Various module and package utilities/tools (Is a module built-in? In what file is it? etc.)
 * [Struct](Struct.md): Implementation of various structures to hold data
 	* `Struct.LIFOstack`: LIFO/Stack
 	* `Struct.FrozenDict`: Frozen dictionary
