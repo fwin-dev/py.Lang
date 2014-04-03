@@ -179,11 +179,11 @@ class Lock(LockSemaphore):
 	def getMaxSlots(self):
 		return 1
 	
-	def isAcquiredByAnyone(self):
+	def isTakenByAnyone(self):
 		slotsTaken = self.getSlotsTakenByAnyone()
 		assert 0 <= slotsTaken <= 1
 		return (slotsTaken == 1)
-	def isAcquiredBySelf(self):
+	def isTakenBySelf(self):
 		slotsTaken = self.getSlotsTakenBySelf()
 		assert 0 <= slotsTaken <= 1
 		return (slotsTaken == 1)

@@ -30,8 +30,8 @@ class Concurrency_LockSemaphore_Abstract(object):
 		self.assertEqual(lockSem.getSlotsTakenByAnyone(), slotsTakenByAnyone)
 		self.assertEqual(lockSem.getSlotsTakenBySelf(), slotsTakenBySelf)
 		self.assertEqual(lockSem.hasAvailableSlot(), numAvailable > 0)
-		self.assertEqual(lockSem.isAcquiredByAnyone(), (slotsTakenByAnyone >= 1))
-		self.assertEqual(lockSem.isAcquiredBySelf(), (slotsTakenBySelf >= 1))
+		self.assertEqual(lockSem.isTakenByAnyone(), (slotsTakenByAnyone >= 1))
+		self.assertEqual(lockSem.isTakenBySelf(), (slotsTakenBySelf >= 1))
 	
 	def testDecorator_basic(self):
 		@self.decoratorFunc(self._lockSemInstance_paramsPreAcquire)
