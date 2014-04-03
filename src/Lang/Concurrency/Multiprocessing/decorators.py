@@ -12,9 +12,9 @@ def processify(func):
 	
 	Usage:
 	
-	@processify
-	def test_function():
-		return os.getpid()
+		@processify
+		def test_function():
+			return os.getpid()
 	
 	Found at:
 	https://gist.github.com/schlamar/2311116

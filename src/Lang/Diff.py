@@ -10,7 +10,8 @@ class SequenceMatcher(_SequenceMatcher, object):
 	
 	Can return non-matching blocks of objects, in addition to matching blocks of objects. It also provides an easier interface.
 	
-	Example:
+	Examples:
+	
 		diff = SequenceMatcher(tuple("aebcdef"), tuple("abbcdgef"))
 		print(list(diff.get_matching_blocks()))
 		print(list(diff.get_mismatching_blocks()))
@@ -18,6 +19,7 @@ class SequenceMatcher(_SequenceMatcher, object):
 		print(list(diff.get_mismatching_elems()))
 		
 		Prints the following:
+		
 		[BlockMatch(a={index=0,size=1}, b={index=0,size=1}), BlockMatch(a={index=2,size=3}, b={index=2,size=3}), BlockMatch(a={index=5,size=2}, b={index=6,size=2})]
 		[BlockMismatch(a={index=1,size=1}, b={index=1,size=1}), BlockMismatch(a=None, b={index=5,size=1})]
 		[ElemMatch(a=('a',), b=('a',)), ElemMatch(a=('b', 'c', 'd'), b=('b', 'c', 'd')), ElemMatch(a=('e', 'f'), b=('e', 'f'))]

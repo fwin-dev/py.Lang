@@ -1,5 +1,3 @@
-
-
 class Table(object):
 	"""Prints data in a table format to the terminal."""
 	def __init__(self):

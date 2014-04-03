@@ -32,15 +32,15 @@ class Singleton_OnDupRaiseException(object):
 	This class (actually the metaclass behind it) also maintains a dictionary of all created classes and the associated instance,
 	thereby also providing a "class registration" mechanism. To see which classes have been registered:
 	
-	class Foo(Singleton_OnDupRaiseException):
-		def __init__(self):
-			super(Foo, self).__init__()
-			...
-	Foo()
-	Foo.getAllClasses()
-	# [<class '__main__.Foo'>]
-	Foo.getAllInstances()
-	# {<class '__main__.Foo'>: <__main__.Foo object at 0x1062a9210>}
+		class Foo(Singleton_OnDupRaiseException):
+			def __init__(self):
+				super(Foo, self).__init__()
+				...
+		Foo()
+		Foo.getAllClasses()
+		# [<class '__main__.Foo'>]
+		Foo.getAllInstances()
+		# {<class '__main__.Foo'>: <__main__.Foo object at 0x1062a9210>}
 	
 	http://stackoverflow.com/questions/6760685/creating-a-singleton-in-python
 	http://stackoverflow.com/questions/392160/what-are-your-concrete-use-cases-for-metaclasses-in-python
@@ -57,15 +57,15 @@ class Singleton_OnDupReturnExisting(object):
 	This class (actually the metaclass behind it) also maintains a dictionary of all created classes and the associated instance,
 	thereby also providing a "class registration" mechanism. To see which classes have been registered:
 	
-	class Foo(Singleton_OnDupReturnExisting):
-		def __init__(self):
-			super(Foo, self).__init__()
-			...
-	Foo()
-	Foo.getAllClasses()
-	# [<class '__main__.Foo'>]
-	Foo.getAllInstances()
-	# {<class '__main__.Foo'>: <__main__.Foo object at 0x1062a9210>}
+		class Foo(Singleton_OnDupReturnExisting):
+			def __init__(self):
+				super(Foo, self).__init__()
+				...
+		Foo()
+		Foo.getAllClasses()
+		# [<class '__main__.Foo'>]
+		Foo.getAllInstances()
+		# {<class '__main__.Foo'>: <__main__.Foo object at 0x1062a9210>}
 	
 	http://stackoverflow.com/questions/6760685/creating-a-singleton-in-python
 	http://stackoverflow.com/questions/392160/what-are-your-concrete-use-cases-for-metaclasses-in-python

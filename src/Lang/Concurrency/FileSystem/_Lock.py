@@ -12,15 +12,16 @@ import os
 class FileLock_ByFCNTL(abstract.Lock, Multiton_OneEquivalentInstance_OnDupReturnExisting):
 	"""
 	Pros of this solution:
-	- Lock is automatically released by kernel if program quits without releasing it
-	- Simple implementation compared to some others
+	* The lock is automatically released by kernel if program quits without releasing it.
+	* It's a simple implementation compared to some others.
 	
 	Cons:
-	- Forks of the current process have access to the current process' file handles, but the forked process does NOT keep the locks associated with the files. So be careful when forking!
+	* It does not provide a full semaphore implementation (it's only a lock) due to underlying implementation
+	* Forks of the current process have access to the current process' file handles, but the forked process does NOT keep the locks associated with the files. So be careful when forking!
 	
 	This is implemented by using `lockf` in python, which corresponds to `fcntl` in C:
-	- http://docs.python.org/2/library/fcntl.html#fcntl.lockf
-	- http://oilq.org/fr/node/13344
+	* http://docs.python.org/2/library/fcntl.html#fcntl.lockf
+	* http://oilq.org/fr/node/13344
 	"""
 	def __init__(self, lockName, lockFolder=tempfile.gettempdir(), *args, **kwargs):
 		super(FileLock_ByFCNTL, self).__init__(*args, **kwargs)
