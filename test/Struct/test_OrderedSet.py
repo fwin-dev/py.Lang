@@ -9,6 +9,28 @@ class Test_OrderedSet(unittest.TestCase):
 		self.assertEqual(set_.index("e"), 4, "Failed to find element at end of set")
 		self.assertEqual(set_.index("c"), 2, "Failed to find element in middle of set")
 	
+	def test_toString(self):
+		"""This is for code coverage only"""
+		str(OrderedSet("abcde"))
+		repr(OrderedSet("abcde"))
+		str(OrderedSet())
+	
+	def test_reversed(self):
+		set_ = OrderedSet("bcd")
+		self.assertEqual([i for i in reversed(set_)], ["d", "c", "b"])
+	
+	def test_contains(self):
+		set_ = OrderedSet("bcd")
+		self.assertTrue("b" in set_)
+		self.assertTrue("a" not in set_)
+	
+	def test_pop(self):
+		set_ = OrderedSet("bcd")
+		self.assertEqual(set_.pop(), "d")
+		self.assertEqual(set_.pop(), "c")
+		self.assertEqual(set_.pop(), "b")
+		self.assertRaises(KeyError, set_.pop)
+	
 	def test_insertAt(self):
 		set_ = OrderedSet("bcd")
 		set_.insertAt(0, "a")

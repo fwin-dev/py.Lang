@@ -21,26 +21,17 @@ class StartEndWith(object):
 		setattr(self, self._methodName_isActive, self.__method_isActive)
 	
 	def __enter__(self):
-		self._useWith = True
 		self._common_start()
 		return self
 	def __exit__(self, *args, **kwargs):
 		self._common_end()
-		self._useWith = False
 		return False
 	
 	def __method_isActive(self):
 		return self.__isActive
 	def _public_start(self, *args, **kwargs):
-		if self._useWith == True:
-			raise Exception("Either a with statement or " + self._methodName_start + "(...)" + " and " + self._methodName_end + \
-						"(...) methods can be used on " + self.__class__.__name__ + " classes, but not both")
-		self._useWith = False
 		return self._common_start(*args, **kwargs)
 	def _public_end(self, *args, **kwargs):
-		if self._useWith == True:
-			raise Exception("Either a with statement or " + self._methodName_start + "(...)" + " and " + self._methodName_end + \
-						"(...) methods can be used on " + self.__class__.__name__ + " classes, but not both")
 		return self._common_end(*args, **kwargs)
 	
 	def _common_start(self, *args, **kwargs):

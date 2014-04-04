@@ -203,10 +203,10 @@ class OrderedSet(collections.MutableSet):
 			link.prev.next = link.next
 			link.next.prev = link.prev
 	
-	def pop(self, last=True):
-		if not self:
+	def pop(self):
+		if len(self) == 0:
 			raise KeyError("set is empty")
-		elem = next(reversed(self)) if last else next(iter(self))
+		elem = next(reversed(self)) if len(self) > 1 else next(iter(self))
 		self.discard(elem)
 		return elem
 	
@@ -229,18 +229,14 @@ class OrderedSet(collections.MutableSet):
 			yield link.key
 	
 	def __repr__(self):
-		if not self:
+		"""
+		Same format as OrderedDict.
+		For the empty set, it returns: `OrderedSet()`
+		Otherwise, it returns the values inside square brackets: `OrderedSet(["a", "b", "c"])`
+		"""
+		if len(self) == 0:
 			return self.__class__.__name__ + "()"
 		return self.__class__.__name__ + "(" + str(list(self)) + ")"
-
-	def __str__(self):
-		str_ = "OrderedSet("
-		sep = ", "
-		for key in self:
-			str_ += str(key) + sep
-		if len(self) > 0:
-			str_ = str_[:-len(sep)]
-		return str_ + ")"
 
 	def __len__(self):
 		return len(self.__map)
