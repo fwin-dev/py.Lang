@@ -15,9 +15,9 @@ class Test_OrderedSet(unittest.TestCase):
 		repr(OrderedSet("abcde"))
 		str(OrderedSet())
 	
-	def test_reversed(self):
-		set_ = OrderedSet("bcd")
-		self.assertEqual([i for i in reversed(set_)], ["d", "c", "b"])
+# 	def test_reversed(self):
+# 		set_ = OrderedSet("bcd")
+# 		self.assertEqual([i for i in reversed(set_)], ["d", "c", "b"])
 	
 	def test_contains(self):
 		set_ = OrderedSet("bcd")
@@ -107,19 +107,21 @@ class Test_OrderedSet(unittest.TestCase):
 	
 	def test_setitem_index(self):
 		set_ = OrderedSet("abc")
-		set_[1] = "y"
-		self.assertEqual(set_, OrderedSet("ayc"), "Failed to change item in middle of set")
 		set_[0] = "x"
-		self.assertEqual(set_, OrderedSet("xyc"), "Failed to change item at beginning of set")
+		self.assertEqual(set_, OrderedSet("xbc"), "Failed to change item at beginning of set")
 		set_[2] = "z"
-		self.assertEqual(set_, OrderedSet("xyz"), "Failed to change item at end of set")
+		self.assertEqual(set_, OrderedSet("xbz"), "Failed to change item at end of set")
+		set_[1] = "y"
+		self.assertEqual(set_, OrderedSet("xyz"), "Failed to change item in middle of set")
 	
-# 	def test_setitem_slice(self):
+# 	def test_setitems_slice(self):
 # 		set_ = OrderedSet("abcd")
-# 		set_[0:1] = ("w", "x")
-# 		self.assertEqual(set_, OrderedSet("wxcd"), "Failed to change item in middle of set")
-# 		set_[2:4] = ("y", "z")
-# 		self.assertEqual(set_, OrderedSet("wxyz"), "Failed to change item at beginning of set")
+# 		set_[0:2] = ("w", "k")
+# 		self.assertEqual(set_, OrderedSet("wkcd"), "Failed to change items, at beginning of set, by slice")
+# 		set_[2:4] = ("l", "z")
+# 		self.assertEqual(set_, OrderedSet("wklz"), "Failed to change items, at end of set, by slice")
+# 		set_[1:3] = ("x", "y")
+# 		self.assertEqual(set_, OrderedSet("wxyz"), "Failed to change items, in middle of set, by slice")
 
 if __name__ == "__main__":
 	unittest.main()
