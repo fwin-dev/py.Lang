@@ -70,6 +70,21 @@ class OrderedSet(collections.MutableSet):
 			if elem == link_key:
 				return i
 	
+	def _getIndexSize(self, indexOrSlice):
+		"""
+		@param indexOrSlice: An integer or positive normalized slice (a slice without `None`s in it, with positive start and stop)
+		"""
+		if isinstance(indexOrSlice, int):
+			return 1
+		elif isinstance(indexOrSlice, slice):
+			assert indexOrSlice.start >= 0 and indexOrSlice.stop >= 0
+			if slice.step >= 0:
+				diff = indexOrSlice.stop - indexOrSlice.start
+				return diff / indexOrSlice.step + (1 if diff % indexOrSlice.step > 0 else 0)
+			else:
+				self._preAction_getPositiveIndex(indexOrSlice)
+		else:
+			raise TypeError("Incorrect indexOrSlice type for OrderedSet")
 	def _iterLinks(self, indexOrSlice):
 		if isinstance(indexOrSlice, int):
 			if indexOrSlice == 0:
@@ -99,21 +114,12 @@ class OrderedSet(collections.MutableSet):
 		- Converts from standard slice indices (as used in other python data types, where indices are
 		representative of the gaps between elements) to indices that correspond to elements.
 		"""
-		return slice(self._getPositiveIndex(slice_.start) if slice_.start != None else 0,
-					 self._getPositiveIndex(self._getPositiveIndex(slice_.stop, checkLen=False) - 1),
+		return slice(self._preAction_getPositiveIndex(slice_.start) if slice_.start != None else 0,
+					 self._preAction_getPositiveIndex(self._preAction_getPositiveIndex(slice_.stop, checkLen=False) - 1),
 					 slice_.step if slice_.step != None else 1)
 	
-	def _getPositiveIndex(self, index, checkLen=True):
-		if not isinstance(index, int):
-			raise TypeError("Incorrect index type for OrderedSet")
-		if index < 0:
-			index = len(self) + index	# convert to positive index
-		if checkLen and (index >= len(self) or index < 0):
-			raise KeyError("Index out of range")
-		return index
-	
 	def _getLink_byIndex(self, index):
-		index = self._getPositiveIndex(index)
+		index = self._preAction_getPositiveIndex(index)
 		root = self.__root
 		if abs(index) < len(self) / 2:	# faster to iterate in forward order
 			curr = root.next
@@ -128,6 +134,33 @@ class OrderedSet(collections.MutableSet):
 				if i == index:
 					return curr
 				curr = curr.prev
+	
+	def _preAction_getPositiveIndex(self, indexOrSlice, checkLen=True):
+		if self._preAction_getIndexType(indexOrSlice) == int:
+			if indexOrSlice < 0:
+				indexOrSlice = len(self) + indexOrSlice		# convert to positive indexOrSlice
+			if checkLen and (indexOrSlice >= len(self) or indexOrSlice < 0):
+				raise KeyError("Index out of range")
+			return indexOrSlice
+		return slice(self._preAction_getPositiveIndex(indexOrSlice.start, checkLen), self._preAction_getPositiveIndex(indexOrSlice.stop, checkLen), indexOrSlice.step)
+	
+	def _preAction_assertCorrectLen(self, indexOrSlice):
+		if self._preAction_getIndexType(indexOrSlice) == int:
+			if indexOrSlice < 0:
+				indexOrSlice = self._preAction_getPositiveIndex(indexOrSlice)
+			if indexOrSlice >= len(self) or indexOrSlice < 0:
+				raise KeyError("Index out of range")
+		else:
+			self._preAction_checkLen(indexOrSlice.start)
+			self._preAction_checkLen(indexOrSlice.stop)
+	
+	def _preAction_getIndexType(self, indexOrSlice):
+		if isinstance(indexOrSlice, int):
+			return int
+		elif isinstance(indexOrSlice, slice):
+			return slice
+		else:
+			raise TypeError("Incorrect indexOrSlice type for OrderedSet")
 	
 	def insertAt(self, index, newElem, updateOnExist=True):
 		if index < len(self):
@@ -224,6 +257,8 @@ class OrderedSet(collections.MutableSet):
 	
 	def __reversed__(self):
 		"""Traverse the linked list in reverse order."""
+		print(len(self))
+		print(slice(len(self)-1, 0, -1))
 		for link in self._iterLinks(slice(len(self)-1, 0, -1)):
 			yield link.key
 	
