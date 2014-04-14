@@ -82,7 +82,7 @@ class OrderedSet(collections.MutableSet):
 			index = self._convertSlice(index)
 			nextLink = self._getLink_byIndex(index.start)
 			betweenStep = 0		# if betweenStep, don't yield; 0 == False, > 0 == True
-			iterAll_step = max(1, min(-1, index.step))	# -1 if negative step, +1 if positive step
+			iterAll_step = max(1, min(-1, index.step))	#   = -1 if negative step, +1 if positive step
 			iterAll_stop = index.stop - index.start + iterAll_step		# + iterAll_step because range stops 1 short of last number
 			for _ in range(0, iterAll_stop, iterAll_step):
 				if betweenStep == 0:
@@ -225,7 +225,7 @@ class OrderedSet(collections.MutableSet):
 	
 	def __reversed__(self):
 		"""Traverse the linked list in reverse order."""
-		for link in self._iterLinks(slice(step=-1)):
+		for link in self._iterLinks(slice(len(self)-1, 0, -1)):
 			yield link.key
 	
 	def __repr__(self):
