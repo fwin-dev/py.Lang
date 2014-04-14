@@ -29,23 +29,11 @@ class OrderedSet(collections.MutableSet):
 		if iterable is not None:
 			self |= iterable
 	
-	def __setitem__(self, index, value):
-		if isinstance(index, slice):
-			index_start = index.start if index.start != None else 0
-			if index_start == index.stop:	# insertion mode - same as python standard library
-				oldLinkAfter = self._getLink_byIndex(index_start)
-				if hasattr(value, "__iter__"):
-					self._insertBefore_links(value, oldLinkAfter, updateOnExist=True)
-				else:
-					self._insertBefore_link(value, oldLinkAfter, updateOnExist=True)
-			else:	# replace mode with slice - different from python standard library
-				links = set(self._iterLinks(index))
-				if len(links) != len(value):
-					raise ValueError("Length between indices does not match number of values given")
-				for link, newKey in zip(links, value):
-					self._replace(link, newKey)
+	def __setitem__(self, indexOrSlice, value):
+		if isinstance(indexOrSlice, slice):
+			raise NotImplemented
 		else:	# replace mode with single - same as python standard library
-			return self._replace(self._getLink_byIndex(index), value)
+			return self._replace(self._getLink_byIndex(indexOrSlice), value)
 	
 	def __delitem__(self, index):
 		return self.discard(self[index])
@@ -58,11 +46,11 @@ class OrderedSet(collections.MutableSet):
 			raise ValueError(str(oldElem) + " is not in OrderedList")
 		self._replace(self.__map[oldElem], newElem)
 	
-	def __getitem__(self, index):
-		if isinstance(index, slice):
-			return OrderedSet(link.key for link in self._iterLinks(index))
+	def __getitem__(self, indexOrSlice):
+		if isinstance(indexOrSlice, slice):
+			return OrderedSet(link.key for link in self._iterLinks(indexOrSlice))
 		else:
-			return self._getLink_byIndex(index).key
+			return self._getLink_byIndex(indexOrSlice).key
 	def index(self, elem):
 		if elem not in self.__map:
 			raise ValueError(str(elem) + " is not in OrderedList")
@@ -70,26 +58,25 @@ class OrderedSet(collections.MutableSet):
 			if elem == link_key:
 				return i
 	
-	def _iterLinks(self, index):
-		if isinstance(index, int):
-			if index == 0:
+	def _iterLinks(self, indexOrSlice):
+		if isinstance(indexOrSlice, int):
+			if indexOrSlice == 0:
 				raise StopIteration()
-			index = self._getPositiveIndex(index)
-			yield self._getLink_byIndex(index)
-		elif isinstance(index, slice):
-			if index.start == index.stop == 0:
+			yield self._getLink_byIndex(indexOrSlice)
+		elif isinstance(indexOrSlice, slice):
+			if indexOrSlice.start == indexOrSlice.stop == 0:
 				raise StopIteration()
-			index = self._convertSlice(index)
-			nextLink = self._getLink_byIndex(index.start)
+			indexOrSlice = self._convertSlice(indexOrSlice)
+			nextLink = self._getLink_byIndex(indexOrSlice.start)
 			betweenStep = 0		# if betweenStep, don't yield; 0 == False, > 0 == True
-			iterAll_step = max(1, min(-1, index.step))	#   = -1 if negative step, +1 if positive step
-			iterAll_stop = index.stop - index.start + iterAll_step		# + iterAll_step because range stops 1 short of last number
+			iterAll_step = max(1, min(-1, indexOrSlice.step))	#   = -1 if negative step, +1 if positive step
+			iterAll_stop = indexOrSlice.stop - indexOrSlice.start + iterAll_step		# + iterAll_step because range stops 1 short of last number
 			for _ in range(0, iterAll_stop, iterAll_step):
 				if betweenStep == 0:
 					yield nextLink
-				betweenStep %= abs(index.step)
-				if index.step > 0:	nextLink = nextLink.next
-				else:				nextLink = nextLink.prev
+				betweenStep %= abs(indexOrSlice.step)
+				if indexOrSlice.step > 0:	nextLink = nextLink.next
+				else:						nextLink = nextLink.prev
 		else:
 			raise TypeError("Incorrect index type for OrderedSet")
 	
