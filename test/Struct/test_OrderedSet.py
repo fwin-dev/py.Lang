@@ -11,13 +11,9 @@ class Test_OrderedSet(unittest.TestCase):
 	
 	def test_toString(self):
 		"""This is for code coverage only"""
+		str(OrderedSet())
 		str(OrderedSet("abcde"))
 		repr(OrderedSet("abcde"))
-		str(OrderedSet())
-	
-# 	def test_reversed(self):
-# 		set_ = OrderedSet("bcd")
-# 		self.assertEqual([i for i in reversed(set_)], ["d", "c", "b"])
 	
 	def test_contains(self):
 		set_ = OrderedSet("bcd")
@@ -89,6 +85,7 @@ class Test_OrderedSet(unittest.TestCase):
 		set_.append("b", updateOnExist=False)
 		self.assertEqual(set_, OrderedSet("bcd"), "Set changed on append when updateOnExist=False")
 	
+	
 	def test_getitem_index(self):
 		set_ = OrderedSet("abc")
 		self.assertEqual(set_[0], "a", "Lookup element by positive index failed")
@@ -99,11 +96,30 @@ class Test_OrderedSet(unittest.TestCase):
 		self.assertEqual(set_[-2], "b", "Lookup element by negative index failed")
 		self.assertRaises(KeyError, set_.__getitem__, -4)
 	
-# 	def test_getitem_slice(self):
-# 		set_ = OrderedSet("abcdef")
-# 		self.assertEqual(set_[0:2], "ab", "Lookup elements by +:+ slice failed")
-# 		self.assertEqual(set_[1:-1], OrderedSet("bcde"), "Lookup elements by +:- slice failed")
-# 		self.assertEqual(set_[-3:-1], OrderedSet("de"), "Lookup elements by -:- slice failed")
+	def test_getitem_slice(self):
+		set_ = OrderedSet("abcdef")
+		self.assertEqual(set_[0:2], OrderedSet("ab"), "Lookup elements by +:+ slice failed")
+		self.assertEqual(set_[0:0], OrderedSet(), "Lookup elements by 0:0 slice failed")
+		self.assertEqual(set_[1:-1], OrderedSet("bcde"), "Lookup elements by +:- slice failed")
+		self.assertEqual(set_[-3:-1], OrderedSet("de"), "Lookup elements by -:- slice failed")
+	
+	def test_delitem(self):
+		set_ = OrderedSet("abcd")
+		del set_[1]
+		self.assertEqual(set_, OrderedSet("acd"), "Failed to delete item in middle of set")
+		del set_[2]
+		self.assertEqual(set_, OrderedSet("ac"), "Failed to delete item at end of set")
+		del set_[0]
+		self.assertEqual(set_, OrderedSet("c"), "Failed to delete item at beginning of set")
+	
+	def test_replace_byitem(self):
+		set_ = OrderedSet("xyz")
+		set_.replace("x", "a")
+		self.assertEqual(set_, OrderedSet("ayz"), "Failed to change item at beginning of set")
+		set_.replace("y", "b")
+		self.assertEqual(set_, OrderedSet("abz"), "Failed to change item in middle of set")
+		set_.replace("z", "c")
+		self.assertEqual(set_, OrderedSet("abc"), "Failed to change item at end of set")
 	
 	def test_setitem_index(self):
 		set_ = OrderedSet("abc")

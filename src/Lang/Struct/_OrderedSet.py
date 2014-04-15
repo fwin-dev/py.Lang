@@ -58,25 +58,21 @@ class OrderedSet(collections.MutableSet):
 			if elem == link_key:
 				return i
 	
-	def _iterLinks(self, indexOrSlice):
-		if isinstance(indexOrSlice, int):
-			if indexOrSlice == 0:
+	def _iterLinks(self, slice_):
+		if isinstance(slice_, slice):
+			if slice_.start == slice_.stop == 0:
 				raise StopIteration()
-			yield self._getLink_byIndex(indexOrSlice)
-		elif isinstance(indexOrSlice, slice):
-			if indexOrSlice.start == indexOrSlice.stop == 0:
-				raise StopIteration()
-			indexOrSlice = self._convertSlice(indexOrSlice)
-			nextLink = self._getLink_byIndex(indexOrSlice.start)
+			slice_ = self._convertSlice(slice_)
+			nextLink = self._getLink_byIndex(slice_.start)
 			betweenStep = 0		# if betweenStep, don't yield; 0 == False, > 0 == True
-			iterAll_step = max(1, min(-1, indexOrSlice.step))	#   = -1 if negative step, +1 if positive step
-			iterAll_stop = indexOrSlice.stop - indexOrSlice.start + iterAll_step		# + iterAll_step because range stops 1 short of last number
+			iterAll_step = max(1, min(-1, slice_.step))	#   = -1 if negative step, +1 if positive step
+			iterAll_stop = slice_.stop - slice_.start + iterAll_step		# + iterAll_step because range stops 1 short of last number
 			for _ in range(0, iterAll_stop, iterAll_step):
 				if betweenStep == 0:
 					yield nextLink
-				betweenStep %= abs(indexOrSlice.step)
-				if indexOrSlice.step > 0:	nextLink = nextLink.next
-				else:						nextLink = nextLink.prev
+				betweenStep %= abs(slice_.step)
+				if slice_.step > 0:	nextLink = nextLink.next
+				else:				nextLink = nextLink.prev
 		else:
 			raise TypeError("Incorrect index type for OrderedSet")
 	
@@ -196,11 +192,6 @@ class OrderedSet(collections.MutableSet):
 		elem = next(reversed(self)) if len(self) > 1 else next(iter(self))
 		self.discard(elem)
 		return elem
-	
-	def reverse(self):
-		newSet = OrderedSet(reversed(self))
-		self.__root = newSet.__root
-		self.__map = newSet.__map
 	
 	def __contains__(self, elem):
 		return elem in self.__map

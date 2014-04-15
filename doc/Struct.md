@@ -30,7 +30,12 @@ The built-in python `set` is just like a `list`, except for 2 things:
 However, there are some cases where an ordered set (aka a list with no duplicate elements) is desirable. For this, use
 the `OrderedSet` provided here, which provides a similar implementation compared to the built-in `set`, but also provides
 methods typically found in a list, such as `insert`/`insertAt`. Refer to the source and unit test for a list of all methods.
-**Note that slicing an `OrderedSet` is not yet implemented.**
 
 	from Lang.Struct import OrderedSet
 	set_ = OrderedSet(range(1,10))
+
+**Note that the following are not yet implemented:**
+
+* Slicing an `OrderedSet` with a negative step, for example: `OrderedSet(("a", "b", "c"))[3:0:-1]`
+* Using the `reversed` built-in function, for example: `reverse(OrderedSet(("a", "b", "c")))`
+* Calling `reverse()` on an `OrderedSet` instance, for example: `OrderedSet(("a", "b", "c")).reverse()`
