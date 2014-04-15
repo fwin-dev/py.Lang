@@ -9,7 +9,7 @@ class FrozenDict(dict):
 	"""
 	@classmethod
 	def _blocked_attribute(cls, obj):
-		raise AttributeError, "A FrozenDict cannot be modified."
+		raise AttributeError("A FrozenDict cannot be modified.")
 	_blocked_attribute = property(_blocked_attribute)
 	
 	__delitem__ = __setitem__ = clear = _blocked_attribute
