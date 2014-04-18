@@ -1,7 +1,5 @@
-from Lang.Concurrency import abstract, decorators, ResourceIsFullException, ResourceAlreadyReleasedException
-from Lang.Concurrency import Multiprocessing
+from Lang.Concurrency import abstract, decorators, ResourceAlreadyReleasedException
 
-import multiprocessing
 import time
 from abc import ABCMeta, abstractmethod
 
@@ -57,7 +55,6 @@ class Concurrency_LockSemaphore_Abstract(object):
 		self._checkStatusFunctions(self._lockSemInstance_paramsOnAcquire, 0)
 		self._lockSemInstance_paramsOnAcquire.acquire(timeout=None)	# wait forever
 		self._checkStatusFunctions(self._lockSemInstance_paramsOnAcquire, 1)
-		time.sleep(0.1)
 		self._lockSemInstance_paramsOnAcquire.release()
 		self._checkStatusFunctions(self._lockSemInstance_paramsOnAcquire, 0)
 	
@@ -70,76 +67,14 @@ class Concurrency_LockSemaphore_Abstract(object):
 		try:
 			self._lockSemInstance_paramsOnAcquire.acquire(timeout=0)
 			self._checkStatusFunctions(self._lockSemInstance_paramsOnAcquire, 1)
-			time.sleep(0.1)
 		finally:
 			self._lockSemInstance_paramsOnAcquire.release()
 			self._checkStatusFunctions(self._lockSemInstance_paramsOnAcquire, 0)
-	
-	def test_nonblocking_acquireRelease_acquireTooMany(self):
-		self._checkStatusFunctions(self._lockSemInstance_paramsOnAcquire, 0)
-		try:
-			for i in range(1, self._lockSemInstance_paramsOnAcquire.getMaxSlots() + 1):
-				self._lockSemInstance_paramsOnAcquire.acquire(timeout=None)
-				self._checkStatusFunctions(self._lockSemInstance_paramsOnAcquire, i)
-			time.sleep(0.1)
-			self.assertRaises(ResourceIsFullException, self._lockSemInstance_paramsOnAcquire.acquire, timeout=None)
-			self._checkStatusFunctions(self._lockSemInstance_paramsOnAcquire, self._lockSemInstance_paramsOnAcquire.getMaxSlots())
-		finally:
-			for i in range(self._lockSemInstance_paramsOnAcquire.getSlotsTakenByAnyone()-1, 0-1, -1):
-				self._lockSemInstance_paramsOnAcquire.release()
-				self._checkStatusFunctions(self._lockSemInstance_paramsOnAcquire, i)
 	
 	def test_nonblocking_acquireRelease_releaseTooMany(self):
 		self.test_nonblocking_acquireRelease()
 		self.assertRaises(ResourceAlreadyReleasedException, self._lockSemInstance_paramsOnAcquire.release)
 		self._checkStatusFunctions(self._lockSemInstance_paramsOnAcquire, 0)
-
-class Concurrency_LockSemaphore_ProcessDependentMixin(Concurrency_LockSemaphore_Abstract):
-	def test_acquireDuringForkNotAllowed(self):
-		@Multiprocessing.decorators.processify
-		def _testSecondInstance(lockSem):
-			self._checkStatusFunctions(lockSem, 0, 1)
-			return str(lockSem)
-		
-		firstInstance = self._lockSemInstance_paramsPreAcquire
-		secondInstance = self.getInstance_paramsPreAcquire()	# should return same instance due to multiton
-		
-		self._checkStatusFunctions(firstInstance, 0)
-		print(firstInstance)
-		print(secondInstance)
-		
-		with firstInstance:
-			print("acquired")
-			print(firstInstance)
-			self._checkStatusFunctions(firstInstance, 1, 1)
-			
-			with self.assertRaises(Exception):
-				print(_testSecondInstance(secondInstance))
-	
-	def test_partialBlocking_acquireRelease(self):
-		elapsedTime = self._test_concurrency_wait(timeout=0.1)
-		self.assertGreaterEqual(elapsedTime, 0.1)
-		self.assertLess(0.11)	# allow for some overhead here
-	
-	def test_blocking_concurrency_wait(self):
-		self._test_concurrency_wait(timeout=None)
-	
-	def _test_concurrency_wait(self, timeout):
-		self._checkStatusFunctions(self._lockSemInstance_paramsOnAcquire, 0)
-		try:
-			for i in range(1, self._lockSemInstance_paramsOnAcquire.getMaxSlots() + 1):
-				self._lockSemInstance_paramsOnAcquire.acquire(timeout=None)
-				self._checkStatusFunctions(self._lockSemInstance_paramsOnAcquire, i)
-			time.sleep(0.1)
-			startTime = time.clock()
-			self.assertRaises(ResourceIsFullException, self._lockSemInstance_paramsOnAcquire.acquire, timeout=timeout)
-			elapsedTime = time.clock() - startTime
-			self._checkStatusFunctions(self._lockSemInstance_paramsOnAcquire, self._lockSemInstance_paramsOnAcquire.getMaxSlots())
-		finally:
-			for i in range(self._lockSemInstance_paramsOnAcquire.getSlotsTakenByAnyone()-1, 0-1, -1):
-				self._lockSemInstance_paramsOnAcquire.release()
-				self._checkStatusFunctions(self._lockSemInstance_paramsOnAcquire, i)
-		return elapsedTime
 
 class Concurrency_Lock(Concurrency_LockSemaphore_Abstract):
 	def setUp(self):
