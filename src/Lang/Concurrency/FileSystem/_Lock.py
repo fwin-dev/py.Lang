@@ -40,6 +40,12 @@ class FileLock_ByFCNTL(abstract.Lock, Multiton_OneEquivalentInstance_OnDupReturn
 		self._filePath = os.path.join(self.lockFolder, _fileName)
 		self._file = None
 	
+	def __str__(self):
+		if self.getSlotsTakenBySelf() == 0:
+			return super(FileLock_ByFCNTL, self).__str__() + ", filePath='" + str(self._filePath) + "'"
+		else:
+			return super(FileLock_ByFCNTL, self).__str__() + ", file=" + str(self._file)
+	
 	def __eq__(self, other):
 		self._checkForkSafety()		# because __getattribute__ is not called when special methods are called in new style classes
 		return isinstance(other, self.__class__) and self.lockName == other.lockName and self.lockFolder == other.lockFolder and self._pid == other._pid
