@@ -36,7 +36,7 @@ class FileLock_ByFCNTL(abstract.Lock, Multiton_OneEquivalentInstance_OnDupReturn
 		
 		self._pid = os.getpid()
 		self._in_checkForkSafety = False
-		_fileName = str(self._pid) + "=" + str(crc32(self.lockName)) + "=" + quote(self.lockName, safe="_-+=^%$#@!.,/:;'\"|[]{}()") + ".lock"
+		_fileName = str(crc32(self.lockName)) + "=" + quote(self.lockName, safe="_-+=^%$#@!.,/:;'\"|[]{}()") + ".lock"
 		self._filePath = os.path.join(self.lockFolder, _fileName)
 		self._file = None
 	
