@@ -9,6 +9,10 @@ from zlib import crc32
 import os.path
 import os
 
+class ForkException(Exception):
+	def __init__(self, *args, **kwargs):
+		Exception.__init__(self, "ERROR: This FCNTL lock was duplicated during a process fork, but the lock did not (and can not) carry over. The lock must be released before the fork, and acquired after the fork.")
+
 class FileLock_ByFCNTL(abstract.Lock, Multiton_OneEquivalentInstance_OnDupReturnExisting):
 	"""
 	Pros of this solution:
@@ -48,7 +52,7 @@ class FileLock_ByFCNTL(abstract.Lock, Multiton_OneEquivalentInstance_OnDupReturn
 	def _checkForkSafety(self):
 		if self._pid != os.getpid():
 			if self.getSlotsTakenBySelf() > 0:
-				raise Exception("ERROR: This FCNTL lock was duplicated during a process fork, but the lock did not (and can not) carry over. The lock must be released before the fork, and acquired after the fork.")
+				raise ForkException()
 			self._pid = os.getpid()
 	
 	def _acquire(self, shouldBlock):
@@ -76,7 +80,7 @@ class FileLock_ByFCNTL(abstract.Lock, Multiton_OneEquivalentInstance_OnDupReturn
 		return self._filePath
 	
 	def getSlotsTakenByAnyone(self):
-		if self.getSlotsTakenBySelf() == 1:		# bypasses filesystem, since we know it can only be held once at a time
+		if self.getSlotsTakenBySelf() == 1:		# bypasses filesystem, since the same process (this one) may be able to double acquire a lock since the OS kernel knows its the same process
 			return 1
 		# if not taken by self, then self._file doesn't exist
 		if self._acquire(shouldBlock=False) == True:
