@@ -15,6 +15,8 @@ class ForkException(Exception):
 
 class FileLock_ByFCNTL(abstract.Lock, Multiton_OneEquivalentInstance_OnDupReturnExisting):
 	"""
+	A lock for multiple processes. Only one process is allowed to have the lock at a single time.
+	
 	Pros of this solution:
 	* The lock is automatically released by kernel if program quits without releasing it.
 	* It's a simple implementation compared to some others.

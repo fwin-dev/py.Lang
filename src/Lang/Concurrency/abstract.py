@@ -102,7 +102,7 @@ class LockSemaphore(object):
 		"""
 		*args and **kwargs are for optional/implementation specific parameters. If using them, there should always be a default value for all parameters.
 		
-		@param timeout:		Maximum time to wait, in seconds. Can be fractional. `0` will be non-blocking and return immediately. `None` means wait/block infinitely.
+		@param timeout:					Maximum time to wait, in seconds. Can be fractional. `0` will be non-blocking and return immediately. `None` means wait/block infinitely.
 		@param exceptionOnNotAcquire:	If `timeout` is not `None` and the semaphore could not be acquired because it's full, look at this parameter on how to handle this situation. If this parameter is `True`, a `ResourceIsFullException` is raised; if `False`, the method does not raise an exception and instead returns `False`.
 		
 		@return:	`True` if semaphore is acquired, or `False` if all slots already taken
@@ -111,9 +111,6 @@ class LockSemaphore(object):
 		
 		If an underlying unusual exception occurs during acquirement of the semaphore, that exception will always be raised, regardless of the value of `exceptionOnNotAcquire`.
 		"""
-		if not self.hasAvailableSlot():
-			raise ResourceIsFullException()
-		
 		if timeout in (None, 0):
 			if timeout == None:	shouldBlock = True
 			else:				shouldBlock = False
