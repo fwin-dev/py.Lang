@@ -47,6 +47,11 @@ class SequenceMatcher(_SequenceMatcher, object):
 			raise Exception("Elements in iterable must be hashable. Ex. use FrozenDict instead of dict, frozenset instead of set, etc.")		
 		return side
 	
+	def __eq__(self, other):
+		return isinstance(other, _SequenceMatcher) and self.a == other.a and self.b == other.b
+	def __ne__(self, other):
+		return not (self == other)
+	
 	def ratio(self):
 		"""
 		Corrects ratio in difflib.SequenceMatcher
