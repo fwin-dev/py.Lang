@@ -121,7 +121,7 @@ class SequenceMatcher(_SequenceMatcher, object):
 				yield _ElemsBlockSide(block, None)
 				continue
 			elems = cls._advanceIter(iterator, currentIndex, side.index, side.size)
-			yield _ElemsBlockSide(block, elems)
+			yield _ElemsBlockSide(side, elems)
 			currentIndex = side.index + side.size
 	
 	def _getElems(self, getBlocksFunc):
