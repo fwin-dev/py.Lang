@@ -174,7 +174,7 @@ class _BlockSide(object):
 		self.index = index
 		self.size = size
 	def __str__(self):
-		return "{index=" + str(self.index) + ",size=" + str(self.size) + "}"
+		return "BlockSide(index=" + str(self.index) + ",size=" + str(self.size) + ")"
 	def __repr__(self):
 		return str(self)
 class _ElemsBlockSide(object):
@@ -189,7 +189,7 @@ class _ElemsBlockSide(object):
 	def __getattr__(self, name):
 		return getattr(self.block, name)
 	def __str__(self):
-		return "{block=" + str(self.block) + ",elems=" + str(self.elems) + "}"
+		return "ElemsBlockSide(block=" + str(self.block) + ", elems=" + str(self.elems) + ")"
 	def __repr__(self):
 		return str(self)
 
@@ -211,7 +211,7 @@ class _Block(_TwoSide):
 	pass
 class _BlockMatch(_Block):
 	def __init__(self, indexA, indexB, size):
-		_TwoSide.__init__(self, _BlockSide(indexA, size), _BlockSide(indexB, size))
+		super(_BlockMatch, self).__init__(_BlockSide(indexA, size), _BlockSide(indexB, size))
 	def __getattr__(self, name):
 		if name == "size":
 			return self.a.size
@@ -220,7 +220,7 @@ class _BlockMatch(_Block):
 		return (self.a.index, self.b.index, self.a.size)[index]
 class _BlockMismatch(_Block):
 	def __init__(self, blockSideA, blockSideB):
-		_TwoSide.__init__(self, blockSideA, blockSideB)
+		super(_BlockMismatch, self).__init__(blockSideA, blockSideB)
 
 class _ElemMatch(_TwoSide):
 	pass
