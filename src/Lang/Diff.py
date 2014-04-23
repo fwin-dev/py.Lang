@@ -69,19 +69,37 @@ class SequenceMatcher(_SequenceMatcher, object):
 			if block.size != 0:
 				yield block
 	
-	def _diffSingleSide(self, currentBlock, lastBlock, sideName):
-		diffStart = getattr(lastBlock, sideName).index + lastBlock.size
-		diffLen = getattr(currentBlock, sideName).index - diffStart
+	def _get_mismatching_blocks_diffSingleSide(self, currentBlock, lastBlock, sideName):
+		if lastBlock != None:
+			diffStart = getattr(lastBlock, sideName).index + lastBlock.size
+		else:
+			diffStart = 0
+		
+		if currentBlock != None:
+			diffLen = getattr(currentBlock, sideName).index - diffStart
+		else:
+			diffLen = len(getattr(self, sideName)) - diffStart
+		
 		if diffLen == 0:
 			return None
 		return _BlockSide(diffStart, diffLen)
+	
+	def _get_mismatching_blocks_yieldIfNotNone(self, currentMatch, lastMatch):
+		blockSideA = self._get_mismatching_blocks_diffSingleSide(currentMatch, lastMatch, "a")
+		blockSideB = self._get_mismatching_blocks_diffSingleSide(currentMatch, lastMatch, "b")
+		if not (blockSideA == None == blockSideB):
+			yield _BlockMismatch(blockSideA, blockSideB)
+	
 	def get_mismatching_blocks(self):
 		lastMatch = None
 		for currentMatch in self.get_matching_blocks():
-			if lastMatch != None and currentMatch.size != 0:
-				yield _BlockMismatch(self._diffSingleSide(currentMatch, lastMatch, "a"),
-									 self._diffSingleSide(currentMatch, lastMatch, "b"))
+			if currentMatch.size != 0:
+				for i in self._get_mismatching_blocks_yieldIfNotNone(currentMatch, lastMatch):
+					yield i
 			lastMatch = currentMatch
+		if lastMatch != None:
+			for i in self._get_mismatching_blocks_yieldIfNotNone(None, lastMatch):
+				yield i
 	
 	@classmethod
 	def _advanceIter(cls, iterator, currentIndex, wantedStartIndex, length):
