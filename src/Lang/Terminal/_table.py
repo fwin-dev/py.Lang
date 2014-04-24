@@ -24,6 +24,8 @@ class Table(object):
 		"""
 		self.colMaxLens = maxLens
 		self.autoResizeCols = [True if maxLen == None else False for maxLen in self.colMaxLens]
+		if self.getColHeaders() != None:
+			self._updateColMaxLens(self.getColHeaders())
 		for row in self.rows:
 			self._updateColMaxLens(row)
 	
@@ -54,12 +56,14 @@ class Table(object):
 	def _fmtRow(self, row):
 		str_ = ""
 		for colNum in range(0, len(row)):
-			value = str(row[colNum])
+			value = row[colNum]
+			if not isinstance(value, str):		# don't always call str(), so it's compatible with FormattedText and any other custom string class
+				value = str(value)
 			if self.colMaxLens == None or self.colMaxLens[colNum] == None:
-				colStr = value.ljust(self._computeColMaxLen(colNum))
+				maxLen = self._computeColMaxLen(colNum)
 			else:
-				colStr = value.ljust(self.colMaxLens[colNum])
-			str_ += colStr + "  "
+				maxLen = self.colMaxLens[colNum]
+			str_ += value.ljust(maxLen) + "  "
 		return str_[:-2]
 	def __str__(self):
 		str_ = ""
