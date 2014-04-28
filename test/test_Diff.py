@@ -82,12 +82,6 @@ class Test_SequenceMatcher(unittest.TestCase):
 		self.assertEqual(blocks[2].a.size,  1)
 		self.assertEqual(blocks[2].b.index, 3)
 		self.assertEqual(blocks[2].b.size,  2)
-		
-		self.assertIsInstance(diff.get_matching(), GeneratorType)
-		self.assertIsInstance(diff.get_mismatching(), GeneratorType)
-		print(diff.get_matching())
-		print(next(diff.get_mismatching()))
-		raise Exception()
 	
 	def test_missing_elems(self):
 		diff = SequenceMatcher(a="abcdefg", b="cefhi")
