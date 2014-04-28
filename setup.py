@@ -42,7 +42,7 @@ setup(
 	description = "Common modules that probably should have been included in the Python standard library but weren't",
 	author = "Jesse Cowles",
 	author_email = "jcowles@indigital.net",
-	url = "http://projects.indigitaldev.net/py.Lang",
+	url = "http://projects.indigitaldev.net/jcowles/py.Lang",
 	
 	package_dir = {"":"src"},
 	packages = find_packages("src"),
