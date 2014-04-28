@@ -47,6 +47,8 @@ setup(
 	package_dir = {"":"src"},
 	packages = find_packages("src"),
 	zip_safe = False,
+	test_suite = "test",
+	
 	install_requires = requirements,
 	classifiers = [
 		# http://pypi.python.org/pypi?%3Aaction=list_classifiers
