@@ -1,30 +1,30 @@
 from setuptools import setup, find_packages
 from setuptools.command.install import install as _install
 
-requirements = ["termcolor >=1.1 , <2.0"]
+requirements = ["termcolor >=1.1, <1.2"]
 try:
 	import argparse
 except ImportError:
-	requirements.append("argparse >=1.2 , <1.3")
+	requirements.append("argparse >=1.2, <1.3")
 
 try:
 	from collections import OrderedDict
 except ImportError:
-	requirements.append("ordereddict >=1.1 , <1.2")
+	requirements.append("ordereddict >=1.1, <1.2")
 
 try:
 	from weakref import WeakSet
 except ImportError:
-	requirements.append("weakrefset >=1.0 , <1.1")
+	requirements.append("weakrefset >=1.0, <1.1")
 
 try:
 	import importlib
 except ImportError:
-	requirements.append("importlib >=1.0 , <1.1")
+	requirements.append("importlib >=1.0, <1.1")
 
 import platform
 if platform.system().lower() == "windows":
-	requirements.append("colorama >=0.2 , <0.3")
+	requirements.append("colorama >=0.2, <0.3")
 
 import sys
 class InstallHook(_install):
@@ -38,7 +38,7 @@ class InstallHook(_install):
 setup(
 	cmdclass = {"install": InstallHook},
 	name = "py.Lang",
-	version = "2.0.0.dev05",
+	version = "2.0.0.dev36",
 	description = "Common modules that probably should have been included in the Python standard library but weren't",
 	author = "Jesse Cowles",
 	author_email = "jcowles@indigital.net",
