@@ -38,7 +38,7 @@ class InstallHook(_install):
 setup(
 	cmdclass = {"install": InstallHook},
 	name = "py.Lang",
-	version = "2.0.0.dev36",
+	version = "2.0.0",
 	description = "Common modules that probably should have been included in the Python standard library but weren't",
 	author = "Jesse Cowles",
 	author_email = "jcowles@indigital.net",
