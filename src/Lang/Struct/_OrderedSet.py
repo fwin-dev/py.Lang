@@ -31,7 +31,7 @@ class OrderedSet(collections.MutableSet):
 	
 	def __setitem__(self, indexOrSlice, value):
 		if isinstance(indexOrSlice, slice):
-			raise NotImplemented
+			raise NotImplementedError
 		else:	# replace mode with single - same as python standard library
 			return self._replace(self._getLink_byIndex(indexOrSlice), value)
 	
