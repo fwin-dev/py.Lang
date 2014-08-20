@@ -1,6 +1,6 @@
 from Lang.Struct import OrderedSet
 
-class _SingletonMultitonAbstract(type):
+class _Meta_SingletonMultitonAbstract(type):
 	def getAllClasses(cls):
 		return OrderedSet(class_ for class_ in cls._instances.iterkeys() if issubclass(class_, cls))
 	def getAllInstances(cls):

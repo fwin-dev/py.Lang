@@ -1,17 +1,17 @@
-from _singleton_multiton_abstract import _SingletonMultitonAbstract, DuplicateInstanceException
+from _singleton_multiton_abstract import _Meta_SingletonMultitonAbstract, DuplicateInstanceException
 
 from Lang.Struct import weakref
 from abc import ABCMeta, abstractmethod
 
-class _Multiton_OneEquivalentInstance(_SingletonMultitonAbstract, ABCMeta):
+class _Meta_Multiton_OneEquivalentInstance(_Meta_SingletonMultitonAbstract, ABCMeta):
 	_instances = {}
 	
 	def getAllClasses(cls):
 		cls._multiton_pruneClasses()
-		return super(_Multiton_OneEquivalentInstance, cls).getAllClasses()
+		return super(_Meta_Multiton_OneEquivalentInstance, cls).getAllClasses()
 	def getAllInstances(cls):
 		cls._multiton_pruneClasses()
-		return super(_Multiton_OneEquivalentInstance, cls).getAllInstances()
+		return super(_Meta_Multiton_OneEquivalentInstance, cls).getAllInstances()
 	
 	@abstractmethod
 	def _multiton_onDup(self, existingInstance, newInstance):
@@ -26,7 +26,7 @@ class _Multiton_OneEquivalentInstance(_SingletonMultitonAbstract, ABCMeta):
 		cls._instances = dict((class_, instanceSet) for class_, instanceSet in cls._instances.iteritems() if len(instanceSet) > 0)
 	
 	def __call__(cls, *args, **kwargs):
-		newInstance = super(_Multiton_OneEquivalentInstance, cls).__call__(*args, **kwargs)		# create new, normal class instance
+		newInstance = super(_Meta_Multiton_OneEquivalentInstance, cls).__call__(*args, **kwargs)		# create new, normal class instance
 		if cls not in cls._instances:
 			cls._instances[cls] = weakref.WeakSet()
 		for instance in cls._instances[cls]:
@@ -35,11 +35,11 @@ class _Multiton_OneEquivalentInstance(_SingletonMultitonAbstract, ABCMeta):
 		cls._instances[cls].add(newInstance)
 		return newInstance
 
-class _Multiton_OneEquivalentInstance_OnDupRaiseException(_Multiton_OneEquivalentInstance):
+class _Meta_Multiton_OneEquivalentInstance_OnDupRaiseException(_Meta_Multiton_OneEquivalentInstance):
 	def _multiton_onDup(self, existingInstance, newInstance):
 		raise DuplicateInstanceException("An equivalent instance has already been created")
 
-class _Multiton_OneEquivalentInstance_OnDupReturnExisting(_Multiton_OneEquivalentInstance):
+class _Meta_Multiton_OneEquivalentInstance_OnDupReturnExisting(_Meta_Multiton_OneEquivalentInstance):
 	def _multiton_onDup(self, existingInstance, newInstance):
 		return existingInstance
 
@@ -58,7 +58,7 @@ class Multiton_OneEquivalentInstance_OnDupRaiseException(object):
 	Similar solutions and useful links:
 	- http://lifegoo.pluskid.org/?p=345
 	"""
-	__metaclass__ = _Multiton_OneEquivalentInstance_OnDupRaiseException
+	__metaclass__ = _Meta_Multiton_OneEquivalentInstance_OnDupRaiseException
 
 class Multiton_OneEquivalentInstance_OnDupReturnExisting(object):
 	"""
@@ -75,4 +75,4 @@ class Multiton_OneEquivalentInstance_OnDupReturnExisting(object):
 	Similar solutions and useful links:
 	- http://lifegoo.pluskid.org/?p=345
 	"""
-	__metaclass__ = _Multiton_OneEquivalentInstance_OnDupReturnExisting
+	__metaclass__ = _Meta_Multiton_OneEquivalentInstance_OnDupReturnExisting

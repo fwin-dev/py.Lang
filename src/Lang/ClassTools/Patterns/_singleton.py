@@ -1,24 +1,24 @@
 # works in Python 2 and 3
 
-from _singleton_multiton_abstract import _SingletonMultitonAbstract, DuplicateInstanceException
+from _singleton_multiton_abstract import _Meta_SingletonMultitonAbstract, DuplicateInstanceException
 
 import weakref
 
-class _Singleton_Abstract(_SingletonMultitonAbstract):
+class _Singleton_Abstract(_Meta_SingletonMultitonAbstract):
 	_instances = weakref.WeakValueDictionary()
 
-class _Singleton_OnDupRaiseException(_Singleton_Abstract):
+class _Meta_Singleton_OnDupRaiseException(_Singleton_Abstract):
 	def __call__(cls, *args, **kwargs):
 		if cls in cls._instances.iterkeys():
 			raise DuplicateInstanceException("This class is a singleton, but you tried to create more than one instance")
-		newInstance = super(_Singleton_OnDupRaiseException, cls).__call__(*args, **kwargs)
+		newInstance = super(_Meta_Singleton_OnDupRaiseException, cls).__call__(*args, **kwargs)
 		cls._instances[cls] = newInstance
 		return newInstance
 
-class _Singleton_OnDupReturnExisting(_Singleton_Abstract):
+class _Meta_Singleton_OnDupReturnExisting(_Singleton_Abstract):
 	def __call__(cls, *args, **kwargs):
 		if cls not in cls._instances:
-			newInstance = super(_Singleton_OnDupReturnExisting, cls).__call__(*args, **kwargs)
+			newInstance = super(_Meta_Singleton_OnDupReturnExisting, cls).__call__(*args, **kwargs)
 			cls._instances[cls] = newInstance
 		return cls._instances[cls]
 
@@ -45,7 +45,7 @@ class Singleton_OnDupRaiseException(object):
 	http://stackoverflow.com/questions/6760685/creating-a-singleton-in-python
 	http://stackoverflow.com/questions/392160/what-are-your-concrete-use-cases-for-metaclasses-in-python
 	"""
-	__metaclass__ = _Singleton_OnDupRaiseException
+	__metaclass__ = _Meta_Singleton_OnDupRaiseException
 
 class Singleton_OnDupReturnExisting(object):
 	"""
@@ -70,4 +70,4 @@ class Singleton_OnDupReturnExisting(object):
 	http://stackoverflow.com/questions/6760685/creating-a-singleton-in-python
 	http://stackoverflow.com/questions/392160/what-are-your-concrete-use-cases-for-metaclasses-in-python
 	"""
-	__metaclass__ = _Singleton_OnDupReturnExisting
+	__metaclass__ = _Meta_Singleton_OnDupReturnExisting
