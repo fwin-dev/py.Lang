@@ -1,12 +1,7 @@
-# works in Python 2 and 3
-
 from _singleton_multiton_abstract import _Meta_SingletonMultitonAbstract, DuplicateInstanceException
 
-import weakref
-
 class _Singleton_Abstract(_Meta_SingletonMultitonAbstract):
-	_instances = weakref.WeakValueDictionary()
-	
+	_instances = {}
 	def __getattribute__(cls, name):
 		"""
 		Intercept calls intended for bound methods on the instance, instead of unbound methods on the class.
