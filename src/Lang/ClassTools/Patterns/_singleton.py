@@ -6,6 +6,22 @@ import weakref
 
 class _Singleton_Abstract(_Meta_SingletonMultitonAbstract):
 	_instances = weakref.WeakValueDictionary()
+	
+	def __getattribute__(cls, name):
+		"""
+		Intercept calls intended for bound methods on the instance, instead of unbound methods on the class.
+		@see:	http://stackoverflow.com/questions/53225/how-do-you-check-whether-a-python-method-is-bound-or-not
+		@see:	http://bugs.python.org/issue16851#msg181937
+		"""
+		obj = super(_Singleton_Abstract, cls).__getattribute__(name)
+		if hasattr(obj, "__self__") and obj.__self__ == None:		# inspect.ismethod and inspect.isfunction are a little broken in py 2.7 - use this way of detecting methods vs. functions instead
+			# then it's a method that expects self as first argument
+			if cls in cls.getAllInstances():
+				instance = cls.getAllInstances()[cls]
+			else:
+				instance = cls()	# try to create the instance by using __call__
+			return getattr(instance, name)
+		return obj
 
 class _Meta_Singleton_OnDupRaiseException(_Singleton_Abstract):
 	def __call__(cls, *args, **kwargs):
