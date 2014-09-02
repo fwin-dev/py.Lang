@@ -1,6 +1,6 @@
-from _singleton_multiton_abstract import _Meta_SingletonMultitonAbstract, DuplicateInstanceException
+from _singleton_multiton_abstract import _SingletonMultitonAbstract_Meta, DuplicateInstanceException
 
-class _Singleton_Abstract(_Meta_SingletonMultitonAbstract):
+class _Singleton_Abstract(_SingletonMultitonAbstract_Meta):
 	_instances = {}
 	def __getattribute__(cls, name):
 		"""
@@ -19,12 +19,12 @@ class _Singleton_Abstract(_Meta_SingletonMultitonAbstract):
 		return obj
 
 
-class Meta_Singleton_OnDupRaiseException(_Singleton_Abstract):
+class Singleton_OnDupRaiseException_Meta(_Singleton_Abstract):
 	"""
 	A singleton allows only one instance of a class, per class/subclass. Upon trying to create a second instance of a class, an exception is raised.
 	
 		>>> class Foo(object):
-		... 	__metaclass__ = Meta_Singleton_OnDupRaiseException
+		... 	__metaclass__ = Singleton_OnDupRaiseException_Meta
 		... 	# your class's code here
 		>>> a = Foo()
 		>>> b = Foo()
@@ -45,7 +45,7 @@ class Meta_Singleton_OnDupRaiseException(_Singleton_Abstract):
 	If we were to call these functions before any Foo instance was created, the structures they return would be empty:
 	
 		>>> class Bar(object):
-		... 	__metaclass__ = Meta_Singleton_OnDupRaiseException
+		... 	__metaclass__ = Singleton_OnDupRaiseException_Meta
 		... 	# your class's code here
 		>>> Bar.getAllClasses()
 		OrderedSet()
@@ -59,7 +59,7 @@ class Meta_Singleton_OnDupRaiseException(_Singleton_Abstract):
 	Now let's see what happens when we lose our only reference to the singleton:
 	
 		>>> class Bar(object):
-		... 	__metaclass__ = Meta_Singleton_OnDupRaiseException
+		... 	__metaclass__ = Singleton_OnDupRaiseException_Meta
 		... 	# your class's code here
 		>>> Bar()
 		<...Bar object at 0x...>
@@ -77,7 +77,7 @@ class Meta_Singleton_OnDupRaiseException(_Singleton_Abstract):
 	
 		Bar.getAllInstances()[Bar]
 	
-	frequently, then you should take a look at using Meta_Singleton_OnDupReturnExisting instead.
+	frequently, then you should take a look at using Singleton_OnDupReturnExisting_Meta instead.
 	
 	If the internal reference was **not** always kept around, then, even though only one instance of the class could exist at any single
 	point in time, multiple instances could exist over a period of time. We want to avoid this, since re-instantiating a class that intends
@@ -89,10 +89,10 @@ class Meta_Singleton_OnDupRaiseException(_Singleton_Abstract):
 	Now let's talk about subclasses. Each subclass of a singleton superclass is also treated as a singleton.
 	
 		>>> class Foo(object):
-		... 	__metaclass__ = Meta_Singleton_OnDupRaiseException
+		... 	__metaclass__ = Singleton_OnDupRaiseException_Meta
 		... 	# your class's code here
 		>>> class Bar(Foo):		# Bar is now a subclass of Foo
-		... 	__metaclass__ = Meta_Singleton_OnDupRaiseException
+		... 	__metaclass__ = Singleton_OnDupRaiseException_Meta
 		... 	# your class's code here
 		>>> a = Foo()
 		>>> Foo.getAllClasses()
@@ -118,7 +118,7 @@ class Meta_Singleton_OnDupRaiseException(_Singleton_Abstract):
 	functions can be called on the singleton directly:
 	
 		>>> class Foo(object):
-		... 	__metaclass__ = Meta_Singleton_OnDupRaiseException
+		... 	__metaclass__ = Singleton_OnDupRaiseException_Meta
 		... 	def eat(self, a, b=2):
 		... 		print("eating " + str(a) + " " + str(b))
 		>>> Foo.eat(1, 2)		# behind the scenes, the Foo instance is created before eat() is called
@@ -136,7 +136,7 @@ class Meta_Singleton_OnDupRaiseException(_Singleton_Abstract):
 	mix and match using Foo() and Foo:
 	
 		>>> class Foo(object):
-		... 	__metaclass__ = Meta_Singleton_OnDupRaiseException
+		... 	__metaclass__ = Singleton_OnDupRaiseException_Meta
 		... 	def __init__(self, value):
 		... 		self.value = value
 		... 	def eat(self):
@@ -152,20 +152,20 @@ class Meta_Singleton_OnDupRaiseException(_Singleton_Abstract):
 	def __call__(cls, *args, **kwargs):
 		if cls in cls._instances.iterkeys():
 			raise DuplicateInstanceException("This class is a singleton, but you tried to create more than one instance")
-		newInstance = super(Meta_Singleton_OnDupRaiseException, cls).__call__(*args, **kwargs)
+		newInstance = super(Singleton_OnDupRaiseException_Meta, cls).__call__(*args, **kwargs)
 		cls._instances[cls] = newInstance
 		return newInstance
 
 
-class Meta_Singleton_OnDupReturnExisting(_Singleton_Abstract):
+class Singleton_OnDupReturnExisting_Meta(_Singleton_Abstract):
 	"""
-	@see	Meta_Singleton_OnDupRaiseException
+	@see	Singleton_OnDupRaiseException_Meta
 	
-	This metaclass is very similar to Meta_Singleton_OnDupRaiseException, but with one difference. Upon trying to create a second instance of a
+	This metaclass is very similar to Singleton_OnDupRaiseException_Meta, but with one difference. Upon trying to create a second instance of a
 	class, no exception is raised; the existing instance (which is kept track of as an internal reference in the metaclass) is returned instead.
 	
 		>>> class Foo(object):
-		... 	__metaclass__ = Meta_Singleton_OnDupReturnExisting
+		... 	__metaclass__ = Singleton_OnDupReturnExisting_Meta
 		... 	# your class's code here
 		>>> Foo()
 		<...Foo object at 0x...>
@@ -182,6 +182,6 @@ class Meta_Singleton_OnDupReturnExisting(_Singleton_Abstract):
 	"""
 	def __call__(cls, *args, **kwargs):
 		if cls not in cls._instances:
-			newInstance = super(Meta_Singleton_OnDupReturnExisting, cls).__call__(*args, **kwargs)
+			newInstance = super(Singleton_OnDupReturnExisting_Meta, cls).__call__(*args, **kwargs)
 			cls._instances[cls] = newInstance
 		return cls._instances[cls]

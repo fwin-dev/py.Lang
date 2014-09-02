@@ -53,9 +53,9 @@ in this package, depending on wanted behavior when your class's constructor is (
 one implementation will raise an exception for the second instantiation attempt, and the other will simply ignore and discard the second
 attempt, and give the originally instantiated object back. Let's see these in action:
 
-	from Lang.ClassTools.Patterns import Singleton_OnDupRaiseException
+	from Lang.ClassTools.Patterns import Meta_Singleton_OnDupRaiseException
 	
-	class Foo(Singleton_OnDupRaiseException):
+	class Foo(Meta_Singleton_OnDupRaiseException):
 		def __init__(self, value):
 			super(Foo, self).__init__()
 			self.value = value
@@ -64,9 +64,9 @@ attempt, and give the originally instantiated object back. Let's see these in ac
 
 And the other singleton implementation:
 
-	from Lang.ClassTools.Patterns import Singleton_OnDupReturnExisting
+	from Lang.ClassTools.Patterns import Meta_Singleton_OnDupReturnExisting
 	
-	class Foo(Singleton_OnDupReturnExisting):
+	class Foo(Meta_Singleton_OnDupReturnExisting):
 		def __init__(self, value):
 			super(Foo, self).__init__()
 			self.value = value

@@ -1,17 +1,17 @@
-from _singleton_multiton_abstract import _Meta_SingletonMultitonAbstract, DuplicateInstanceException
+from _singleton_multiton_abstract import _SingletonMultitonAbstract_Meta, DuplicateInstanceException
 
 from Lang.Struct import weakref
 from abc import ABCMeta, abstractmethod
 
-class _Meta_Multiton_eq(_Meta_SingletonMultitonAbstract, ABCMeta):
+class _Multiton_eq_Meta(_SingletonMultitonAbstract_Meta, ABCMeta):
 	_instances = {}
 	
 	def getAllClasses(cls):
 		cls._multiton_pruneClasses()
-		return super(_Meta_Multiton_eq, cls).getAllClasses()
+		return super(_Multiton_eq_Meta, cls).getAllClasses()
 	def getAllInstances(cls):
 		cls._multiton_pruneClasses()
-		return super(_Meta_Multiton_eq, cls).getAllInstances()
+		return super(_Multiton_eq_Meta, cls).getAllInstances()
 	
 	@abstractmethod
 	def _multiton_onDup(self, existingInstance, newInstance):
@@ -26,7 +26,7 @@ class _Meta_Multiton_eq(_Meta_SingletonMultitonAbstract, ABCMeta):
 		cls._instances = dict((class_, instanceSet) for class_, instanceSet in cls._instances.iteritems() if len(instanceSet) > 0)
 	
 	def __call__(cls, *args, **kwargs):
-		newInstance = super(_Meta_Multiton_eq, cls).__call__(*args, **kwargs)		# create new, normal class instance
+		newInstance = super(_Multiton_eq_Meta, cls).__call__(*args, **kwargs)		# create new, normal class instance
 		if cls not in cls._instances:
 			cls._instances[cls] = weakref.WeakSet()
 		for instance in cls._instances[cls]:
@@ -35,7 +35,7 @@ class _Meta_Multiton_eq(_Meta_SingletonMultitonAbstract, ABCMeta):
 		cls._instances[cls].add(newInstance)
 		return newInstance
 
-class Meta_Multiton_eq_OnDupRaiseException(_Meta_Multiton_eq):
+class Multiton_eq_OnDupRaiseException_Meta(_Multiton_eq_Meta):
 	"""
 	Only one instance of this class is allowed per equivalent instance. An equivalent instance is defined by using the `==` operator.
 	
@@ -53,13 +53,13 @@ class Meta_Multiton_eq_OnDupRaiseException(_Meta_Multiton_eq):
 	def _multiton_onDup(self, existingInstance, newInstance):
 		raise DuplicateInstanceException("An equivalent instance has already been created")
 
-class Meta_Multiton_eq_OnDupReturnExisting(_Meta_Multiton_eq):
+class Multiton_eq_OnDupReturnExisting_Meta(_Multiton_eq_Meta):
 	"""
-	This metaclass is very similar to Meta_Multiton_eq_OnDupRaiseException, but with one difference. Upon trying to
+	This metaclass is very similar to Multiton_eq_OnDupRaiseException_Meta, but with one difference. Upon trying to
 	create a second equivalent instance to one already made, no exception is raised; the existing equivalent instance (which is kept track
 	of as an internal reference in the metaclass) is returned instead.
 	
-	@see:	Meta_Multiton_eq_OnDupRaiseException
+	@see:	Multiton_eq_OnDupRaiseException_Meta
 	"""
 	def _multiton_onDup(self, existingInstance, newInstance):
 		return existingInstance

@@ -1,5 +1,5 @@
 from test_SingletonMultitonAbstract import _Test_SingletonMultiton_Abstract
-from Lang.ClassTools.Patterns import Singleton_OnDupRaiseException, Singleton_OnDupReturnExisting, DuplicateInstanceException
+from Lang.ClassTools.Patterns import Singleton_OnDupRaiseException_Meta, Singleton_OnDupReturnExisting_Meta, DuplicateInstanceException
 import unittest
 
 class _Test_Singleton_Abstract(_Test_SingletonMultiton_Abstract):
@@ -7,7 +7,7 @@ class _Test_Singleton_Abstract(_Test_SingletonMultiton_Abstract):
 
 class Test_Singleton_OnDupRaiseException(_Test_Singleton_Abstract, unittest.TestCase):
 	def getSuperClass(self):
-		return Singleton_OnDupRaiseException
+		return Singleton_OnDupRaiseException_Meta
 	
 	def test_multipleInstances_raiseException(self):
 		class Foo(self.getSuperClass()):
@@ -21,7 +21,7 @@ class Test_Singleton_OnDupRaiseException(_Test_Singleton_Abstract, unittest.Test
 
 class Test_Singleton_OnDupReturnExisting(_Test_Singleton_Abstract, unittest.TestCase):
 	def getSuperClass(self):
-		return Singleton_OnDupReturnExisting
+		return Singleton_OnDupReturnExisting_Meta
 
 	def test_multipleInstances_alwaysOriginalInstance(self):
 		class Foo(self.getSuperClass()):
